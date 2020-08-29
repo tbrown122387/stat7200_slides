@@ -1,0 +1,243 @@
+%\documentclass{beamer}
+\documentclass[%handout
+]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 4}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents
+``A First Look at Rigorous Probability Theory" (Jeffrey Rosenthal) Sections 2.1, 2.2, 2.3
+}
+
+
+
+\section{Probability Triples}
+
+\subsection{Extension Theorem}
+\subsubsection{Constructing Probability Triples}
+
+\frame
+{
+  \frametitle{Constructing Probability Triples}
+
+   \begin{itemize}
+
+      
+       \item[] <1->  Here we outline the major steps in constructing (complicated) probability triples on a sample space such as $\Omega=[0,1] \text{ or } \mathbf{R}$.
+       
+              \item <2->[1)]  Define a ``probability measure" $\mathbf{P}$ on $\mathcal{J}$, which is a collection of subsets of $\Omega$ that forms a \textit{semialgebra}. For instance, $\mathcal{J}$ can be chosen as the collection of all intervals. 
+              \item <3-> [2)]   Construct a new function $\mathbf{P}^*$ as an extension of $P$ over *all* subsets of $\Omega$. $\mathbf{P}^*$ is usually not a proper probability measure for all the subsets of $\Omega$.
+               \item <4->[3)]    Based on $\mathbf{P}^*$, we construct a new collection of subsets, denoted as $\mathcal{M}$. $\mathcal{M}$ stands for ``measurable."  
+               \item <5->[4)]    $\mathcal{M}$ is a $\sigma$-algebra and $\mathbf{P}^*$ is a proper probability measure on $\mathcal{M}$.
+                \item <6->[5)]    $\mathcal{J} \subseteq \mathcal{M}$ and the extension from $\mathbf{P}$ to $\mathbf{P}^*$ is ``unique."        
+                  \item [] <7-> The above steps lead to a probability triple $\{\Omega, \mathcal{M}, \mathbf{P}^*\}$.     
+              
+                 \end{itemize}
+}
+
+
+
+\subsubsection{Semialgebra}
+\frame
+{
+  \frametitle{Semialgebra}
+
+   \begin{itemize}
+
+      
+       \item<1->  \textbf{Semialgebra} 
+       
+       Let $\mathcal{J}$ be a collection of subsets of $\Omega$.  $\mathcal{J}$ is a semialgebra if 
+       
+       
+       a) $\emptyset, \Omega \in \mathcal{J}$.
+       
+    
+       b) If $A_1, A_2,\cdots, A_k \in \mathcal{J}$, then $\bigcap_{i=1}^k A_i \in \mathcal{J}$. (Closed under finite intersections) 
+       
+
+       c) If $A \in \mathcal{J}$, then there is a pairwise disjoint sequence of sets $B_1, B_2,\cdots, B_m \in \mathcal{J}$ so that $A^c=\bigcup_{i=1}^m B_i$. 
+       
+       \item<2-> [] \begin{Proposition}[Exercise 2.2.3] $\mathcal{J}=\{\text{ All ``intervals" contained in [0,1] (or } \mathbf{R})\}$  is a semialgebra.  \end{Proposition}
+       
+              \item<3-> \textbf{Remark} The notion of an ``interval'' includes singletons and open/closed/half-open/empty intervals. 
+         
+                 \end{itemize}
+}
+
+\subsubsection{Algebra}
+\frame
+{
+  \frametitle{Algebra}
+
+   \begin{itemize}
+
+      
+       \item<1->  \textbf{Algebra} 
+       
+       Let $\mathcal{B}_0$ be a collection of subsets of $\Omega$.  $\mathcal{B}_0$ is an {\bf algebra} if 
+       
+       a) $\emptyset \in \mathcal{B}_0$.
+    
+       b) If $A\in \mathcal{B}_0$, then $A^c \in \mathcal{B}_0$. (Closed under complement) 
+
+       c) If $A_1, \ldots, A_m \in \mathcal{B}_0$, then $\bigcup_{i=1}^m A_i \in \mathcal{B}_0$. 
+
+       \item<2-> \textbf{Remark} it's nearly the same as the definition for a $\sigma$-algebra, except the union in c) is *finite*.         
+       
+       \item<3-> \textbf{Remark} b), c) and De Morgan's law together imply further that algebras are closed under finite intersections, as well.  
+       
+       \item<4->   [] \begin{Proposition}[Exercise 2.2.5]
+       						$\mathcal{B}_0=\{\text{ All finite unions of ``intervals" in [0,1] (or } \mathbf{R})\}$  is an algebra.   
+       					\end{Proposition}    
+       
+                
+                 \end{itemize}
+}
+
+
+
+\subsubsection{Extension Theorem}
+\frame
+{
+  \frametitle{Extension Theorem}
+
+   \begin{itemize}
+
+             \item<1-> [] \begin{Theorem} \textbf{The Extension Theorem}  Let $\mathcal{J}$ be a semialgebra of subsets of $\Omega$ and $\mathbf{P} : \mathcal{J} \to [0,1]$ such that:
+             \newline
+             
+             a) $\mathbf{P} (\emptyset)=0, \mathbf{P}(\Omega)=1$.
+                 \newline
+         
+             b) $\BP(\bigcup_{i=1}^k A_i)\geq \sum_{i=1}^k \BP(A_i)$ whenever $A_1,\cdots,A_k \in\mathcal{J}$, $\bigcup_{i=1}^k A_i  \in\mathcal{J}$, and $A_1,\cdots,A_k$ are pairwise disjoint (\textit{finite superadditivity}).
+                   \newline
+       
+             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,\cdots,A_n,\cdots \in\mathcal{J}$, and $A\subset \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
+             \newline
+             
+             Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a countably-additive probability measure $\BP^*$ on $\mathcal{M}$ so that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
+             \end{Theorem}    
+       
+                
+                 \end{itemize}
+}
+
+
+\subsubsection{Outer Measure $\BP^*$}
+\frame
+{
+  \frametitle{Outer Measure $\BP^*$}
+
+   \begin{itemize}
+
+      
+       \item<1-> \textbf{Remarks:} $\BP^*$ is a function defined over *all* subsets of $\Omega$ (but its definition makes use of only sets from $\mathcal{J}$) but it isn't necessarily a probability measure if you're looking at all of these subsets. 
+       
+       
+		\item<2-> For any $A\subseteq \Omega$
+       
+       $$\BP^*(A):=\inf_{A_1,A_2\cdots, \in \mathcal{J}, A\subset \bigcup_i A_i} \sum_i \BP(A_i) $$
+       
+        \item<3->   [] \begin{Lemma} Outer measure satisfies the following properties:  
+       
+       a) $\BP^*(\emptyset)=0.$
+       
+       b) $\BP^*(A)\leq \BP^*(B)\text{ if } A\subseteq B.$ (Monotonicity)
+
+       c) $\BP^*(A)= \BP(A)\text{ if } A\in \mathcal{J}.$ ($\BP^*$ is an extension of $\BP$)
+        \end{Lemma}    
+    
+                 \end{itemize}
+}
+
+
+
+\subsubsection{Outer Measure $\BP^*$ is Countably Subadditive}
+\frame
+{
+  \frametitle{Outer Measure $\BP^*$ is Countably Subadditive}
+
+   \begin{itemize}
+
+            \item<1->   [] \begin{Lemma}[2.3.6.] Outer measure $\BP^*$ is countably subadditive:  
+            
+            $\BP^*(\bigcup_{n=1}^{\infty} B_n)\leq \sum_{n=1}^{\infty} \BP^* (B_n) \text{ for any }B_1, B_2,\cdots \in \Omega$
+               \end{Lemma}    
+       
+              \item<2-> []\textbf{Proof:} The key is $\BP^* (A)$ is defined as the infimum of the countable unions of sets in $\mathcal{J}$ that ``cover" $A$.
+             \item<3-> [1)] Given $\varepsilon>0$, for each $B_n$, there must be a sequence $\{C_{nk}\}_{k=1}^{\infty}$, s.t. $C_{nk}\in \mathcal{J}$, $B_n \subseteq \bigcup_k  C_{nk}$ and $\sum_k \BP(C_{nk}) < \BP^* (B_n)+\varepsilon/2^n$ (small typo in book)
+               \item<4-> [2)] Since $\bigcup_{n=1}^{\infty} B_n \subseteq \bigcup_{n, k} C_{n,k}$, $\BP^*(\bigcup_{n=1}^{\infty} B_n) \leq \sum_{n, k} \BP(C_{n,k}) <  \sum_n \BP^* (B_n)+\varepsilon$. 
+                \item<4-> [3)] As $\varepsilon$ is an arbitrary positive constant, we must have $\BP^*(\bigcup_{n=1}^{\infty} B_n)\leq \sum_{n=1}^{\infty} \BP^* (B_n) $.
+    
+                 \end{itemize}
+}
+
+
+\subsubsection{$\mathcal{M}$: The Measurable Sets   }
+\frame
+{
+  \frametitle{$\mathcal{M}$: The Measurable Sets}
+
+   \begin{itemize}
+
+            \item<1-> Outer measure cannot always be a probability measure over *all* subsets of $\Omega$ (recall Proposition 1.2.6). Define a refined collection of subsets using $\BP^*$:
+                        $$\mathcal{M}=\{A\subseteq \Omega : \BP^*(A\cap E)+\BP^*(A^c\cap E)=\BP^*(E) \text{ for all }E\subseteq \Omega \}$$
+                       
+                       
+\item<2->   [] \begin{Lemma} We have the following results regarding $\mathcal{M}$:
+       
+       a) $\emptyset \in \mathcal{M}, \Omega \in \mathcal{M}$
+       
+       b) $\text{If } A \in \mathcal{M}, \text{then } A^c \in \mathcal{M}$ (Closed under complement)
+
+        \end{Lemma}  
+           
+           
+           \item<3->   \textbf{Remark:} We often need to verify that a given set $A\in \mathcal{M}$. By the countable subadditivity of our outer measure, we always have $\BP^*(E) \leq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subset \Omega$. If it's easier, we only need need to verify  $\BP^*(E) \geq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subseteq \Omega$. This would can be achieved by using the finite superadditivity of $\BP$. 
+               
+                 \end{itemize}
+}
+
+
+\subsubsection{ $\mathcal{M}$ and $\BP^*$}
+\frame
+{
+  \frametitle{$\mathcal{M}$ and $\BP^*$}
+
+   \begin{itemize}
+
+            \item<1-> We still need to show that $\mathcal{M}$ is a $\sigma$-algebra and $\BP^*$ is a proper probability measure over $\mathcal{M}$. A review of our results so far:
+            
+              \item<2-> $\mathcal{M}=\{A: A\subseteq \Omega, \BP^*(A\cap E)+\BP^*(A^c\cap E)=\BP^*(E) \text{ for all }E\subseteq \Omega \}$.
+              
+              We already have $\emptyset \in \mathcal{M}, \Omega \in \mathcal{M}$ and $\mathcal{M}$ is closed under complement. So we still need to prove that $\mathcal{M}$ is closed under countable unions. 
+                       
+              \item<3-> Regarding $\BP^*$, for any $A\in\mathcal{M}$, first, $\BP^*(A)\geq 0$; second, in the definition of $\mathcal{M}$, by choosing $E=\Omega$, we have $\BP^*(A)=1- \BP^*(A^c)$. So we still need to show that, on $\mathcal{M}$, $\BP^*$ is countably additive. 
+              
+              \item<4-> Countable additivity of $\BP^*$ is shown in the next lecture, as well as the fact that $\mathcal{M}$ is a sigma-field. 
+              
+%              For the fact that $\mathcal{M}$ is closed under countable unions, we will follow the route: 
+%              
+%              $\mathcal{M}$ is closed under finite intersection $\Longrightarrow$ $\mathcal{M}$ is closed under finite union $\Longrightarrow$ $\mathcal{M}$ is closed under countable unions of disjoint sets $\Longrightarrow$$\mathcal{M}$ is closed under countable unions.
+                             
+                 \end{itemize}
+}
+
+
+
+\end{document}

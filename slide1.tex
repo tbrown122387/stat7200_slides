@@ -1,0 +1,355 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} %// Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 1}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents
+``A First Look at Rigorous Probability Theory" (Jeffrey Rosenthal) Sections A.1 and A.2
+}
+
+
+
+
+\section{Mathematical Background}
+\subsection{Set}
+
+\subsubsection{Definition and Basic Operations}
+\frame
+{
+  \frametitle{Set: Definition and Basic Operations}
+
+\begin{itemize}
+\item<1->
+\textbf{Set}: A set is a collection of elements.
+
+$$i.e, A=\{0,1,2,3,4\}$$
+
+\textbf{Element}: $a\in A$ or $a \not\in A$
+
+\textbf{Subset}: $A \subseteq B$ if every element of $A$ is also an element of $B$.
+
+\textbf{Empty Set and Universal Set}: $\emptyset$ and $\Omega$.
+\newline
+
+\item<2->  \textbf{Basic Operations: Union, intersection and complement}: 
+
+$$A\cup B=\{\omega: \omega\in A \text{ or } \omega \in B\}$$
+$$ A\cap B=\{\omega: \omega\in A \text{ and } \omega\in B\}$$
+$$ A^C=\{\omega\in \Omega: \omega \not \in A\}$$
+
+\end{itemize}
+
+}
+
+\subsubsection{Other Operations}
+
+\frame
+{
+  \frametitle{Other Operations}
+
+\begin{itemize}
+\item<1-> \textbf{Difference}: 
+$$A \backslash  B=\{\omega: \omega\in A \text{ and } \omega \not\in B\}=A\cap B^C$$
+\item<2-> \textbf{Product}: 
+$$\Omega_1 \times \Omega_2=\{(\omega_1,\omega_2): \omega_1\in \Omega_1, \omega_2\in \Omega_2 \}$$
+
+\item [] <3-> \textbf{Example:} 
+
+\item [1)]<3-> $\Omega_1=\{0,1,4\}, \Omega_2=\{3,7\}$
+$$\Omega_1 \times \Omega_2=\{ (0,3), (0,7), (1,3), (1,7),(4,3), (4,7) \}$$
+
+\item [2)]<3->   $\mathbf{R}=\{\text{All real number}\}$
+
+ $\mathbf{R}^2=\mathbf{R} \times \mathbf{R}=\{(x,y): x\in \mathbf{R}, y\in \mathbf{R}\}$
+
+\end{itemize}
+
+}
+
+
+\subsubsection{Collection of Sets}
+\frame
+{
+  \frametitle{Operations Involving Collection of Sets }
+
+\begin{itemize}
+\item<1-> In probability theory, we often have to deal with the collection of a large number of sets, which can be represented as:
+
+$$ \{A_\alpha\}_{\alpha\in I}, \text{ where } I \text{ can be any indicator set.}$$
+
+And we can expend the definition of union and intersection to any collection of sets. For instance:
+
+$$ \bigcup_\alpha A_\alpha=\{\omega: \omega \in A_\alpha \text{ for some } \alpha \in I\}$$
+
+
+\item<2-> \textbf{Example:} For  $x_0\in \mathbf{R}$, prove:
+
+$$\bigcap_{n=1}^{\infty} \{x: x\leq x_0+\frac{1}{n}\}=\{x:x\leq x_0 \},\ \bigcup_{x_0 \text{ rational}} \{x: |x-x_0|<0.1\}=\mathbf{R}$$
+
+\item<3-> \textbf{de Morgan's Law} See A.1 of the textbook.
+
+\end{itemize}
+
+}
+
+
+\subsubsection{Partition}
+\frame
+{
+  \frametitle{Partition}
+
+\begin{itemize}
+\item<1-> \textbf{Partition}: A collection $ \{A_\alpha\}_{\alpha\in I}$ of subsets of $\Omega$ forms a partition of $\Omega$ if:
+ \item[]<1-> 1) $ \{A_\alpha\}_{\alpha\in I}$ are disjoint: $A_{\alpha_1} \cap A_{\alpha_2}=\emptyset$ for any pair $\alpha_1 \neq \alpha_2$.
+ \item[]<1-> 2) and $\bigcup_\alpha A_\alpha=\Omega$.
+
+
+\item<2-> \textbf{Example:} Define $\{A_n\}_{n \in\mathbf{N}}$  so that $A_1=[1,\infty)$, $A_k=[1/k, 1/(k-1))$ for $k\geq 2$. Then $\{A_n\}_{n \in\mathbf{N}}$ forms a partition of $(0,\infty)$.
+
+
+\item<3-> For collection $ \{A_n\}_{n\in \mathbf{N}}$ (may not be disjoint)  that $\bigcup_1^{\infty} A_n=\Omega$. Define:
+
+ $B_1=A_1$, $B_2=A_2\backslash A_1$, $B_3=A_3\backslash (A_2\cup A_1)\cdots $,  $B_n=A_n \backslash \bigcup_1^{n-1} A_k,\cdots$,
+
+Then $ \{B_n\}_{n\in \mathbf{N}}$ forms a partition of $\Omega$.
+
+\end{itemize}
+
+}
+
+
+\subsubsection{Set and Event}
+\frame
+{
+  \frametitle{Set and Event}
+
+\begin{itemize}
+\item<1-> In probability theory, we call universal set $\Omega$ as sample space, set $A$ as event, and element $\omega$ as outcome. Furthermore, we can interpret the union of a collection of events as the event in which one or more events in the collection occur, and intersection as the event in which all the events in the collection occur. One key to understand rigorous probability is to think in term of sets/events.  
+
+\item [] <2-> \textbf{Example}: Suppose that $X$ and $Y$ are two random variables, $\varepsilon$ is a constant. Prove the following probability inequality:
+
+$$P(X+Y<\varepsilon)\leq P(X<\varepsilon/2)+P(Y<\varepsilon/2)$$
+
+\textbf{Hint:} Show that, $\{X+Y<\varepsilon\}\subseteq \{X<\varepsilon/2\}\cup \{Y<\varepsilon/2\}$.
+
+\end{itemize}
+
+}
+
+
+
+\subsection{Function}
+\subsubsection{Definition}
+
+\frame
+{
+  \frametitle{Function: Definition}
+
+\begin{itemize}
+\item<1-> \textbf{Function} is defined as a mapping from one set to another ($f: \Omega_1\rightarrow \Omega_2$). In probability, the most commonly used function is the random variable, which refers to a function from the sample space to the real space.
+
+\item<1-> For a function $f$ from set $\Omega_1$ to $\Omega_2$, we say $f$ maps $\Omega_1$ \textbf{onto} $\Omega_2$ if for every $b \in \Omega_2$, there is at least one $a\in \Omega_1$ so that $f(a)=b$. $f$ is \textbf{one to one} if $f(a_1)=f(a_2)$ would imply $a_1=a_2.$ These are also known as surjective and injective functions, respectively. We call $f$ a \textbf{bijection} from $\Omega_1$ to $\Omega_2$ if $f$ is both one to one and onto. 
+
+\item [] <2-> \textbf{Example}: Considering  functions from $\mathbf{R}$ to $\mathbf{R}$.
+
+ $f(x)=x^2$ is not onto nor one to one.  
+ 
+ $f(x)=e^x$ is one to one but not onto. 
+ 
+ $f(x)=x$ is a bijection. 
+
+\end{itemize}
+
+}
+
+
+\subsubsection{Image and Inverse Image}
+\frame
+{
+  \frametitle{Image and Inverse Image}
+
+\begin{itemize}
+\item<1-> \textbf{Function}  For $f: \Omega_1\rightarrow \Omega_2$, if $S_1\subseteq \Omega_1$ and $S_2\subseteq \Omega_2$, then the \textbf{image} of $S_1$ under $f$ is defined as $f(S_1)=\{\omega_2\in \Omega_2: \omega_2=f(\omega_1) \text{ for some } \omega_1\in S_1\}$, and the \textbf{inverse image} of $S_2$ is defined as: $f^{-1}(S_2)=\{\omega_1\in \Omega_1: f(\omega_1) \in S_2 \}$.
+\newline
+
+
+\textbf{Example}:  
+
+$f(x)=x^2: \mathbf{R}\rightarrow \mathbf{R}$. 
+
+The image of $(1,2)$ is $f(1,2)=(1,4)$, and the inverse image of $(-1,2)$ is $f^{-1}((-1,2))=(-\sqrt{2},\sqrt{2})$.
+
+
+\end{itemize}
+
+}
+
+
+
+\subsubsection{Inverse Image and Set Operations}
+\frame
+{
+  \frametitle{Inverse Image and Set Operations}
+
+\begin{itemize}
+
+\item [] <1-> \begin{Theorem} The inverse images preserve the usual set operations:
+$f^{-1}(S_1\cup S_2)=f^{-1}(S_1)\cup f^{-1}(S_2)$
+
+$f^{-1}(S_1\cap S_2)=f^{-1}(S_1)\cap f^{-1}(S_2)$ 
+
+$f^{-1}(S_1^C)= (f^{-1}(S_1))^C$
+\end{Theorem}
+
+\item [] <2->  \textbf{Proof}: Inverse images preserve union operation.
+
+For any $\omega\in f^{-1}(S_1\cup S_2)$, by definition of inverse image, $f(\omega)\in S_1\cup S_2$. Thus, we have $f(\omega) \in S_1$ or $f(\omega) \in S_2$. We can then deduce that  either $\omega\in f^{-1}(S_1)$ or $\omega \in f^{-1}(S_2)$, which leads to $\omega \in f^{-1}(S_1)\cup  f^{-1}(S_2)$.  Therefore, $f^{-1}(S_1\cup S_2)\subseteq f^{-1}(S_1)\cup f^{-1}(S_2)$. 
+
+\item [] <3-> Similarly, $\omega\in f^{-1}(S_1)\cup f^{-1}(S_2)$ implies $\omega\in f^{-1}(S_1\cup S_2)$, which implies $ f^{-1}(S_1)\cup f^{-1}(S_2) \subseteq f^{-1}(S_1\cup S_2)$. 
+
+\item [] <4->  Combing the above results, we have $f^{-1}(S_1\cup S_2)= f^{-1}(S_1)\cup f^{-1}(S_2)$.
+
+\end{itemize}
+
+}
+
+
+
+\subsection{Cardinality}
+\subsubsection{Definition}
+
+\frame
+{
+  \frametitle{Cardinality: Definition}
+
+  \begin{itemize}
+  \item<1-> \textbf{Cardinality} is a concept that tries to measure the size of a set through counting the number of elements. 
+  \item<2-> \textbf{Question:} How should we define cardinality for a set with an infinite number of elements? For instance, which of the following two sets has the greater cardinality: the set of even number, or the set of natural number? 
+  \item<3-> Two sets $\Omega_1$ and $\Omega_2$ have the same \textbf{cardinality} if there is a \textit{bijection} from $\Omega_1$ to $\Omega_2$.  Similarly, we say that the cardinality of $\Omega_1$ is less than the cardinality of $\Omega_2$ if there is a one to one function from $\Omega_1$ to $\Omega_2$.
+  \item<4-> For the purpose of this class, the infinity sets have two types of infinity: \textbf{countable (or countably infinite} and \textbf{uncountable (or uncountably infinite)}. 
+  
+  \end{itemize}
+}
+
+
+
+\subsubsection{Countable Set}
+
+\frame
+{
+  \frametitle{Countable Set}
+
+  \begin{itemize}
+  \item<1-> \textbf{Countable Set} A set $\Omega$ is countable if it has the same cardinality as the set of natural number $\mathbf{N}=\{1,2,3,\cdots,\}$. Or equivalently, $\Omega$ is countable if the all the elements in $\Omega$ can be listed as $\omega_1,\omega_2,\cdots,$
+  \item<2-> \textbf{Question:} Show that, the set of all integer number $\mathbf{Z}$ is countable.  
+ \item [] <3-> \begin{Proposition} 
+ Any infinite subset of $\mathbf{N}$ (or any countable set) is countable. 
+ \end{Proposition} 
+
+  \item<3-> For the set of rational number $\mathbf{Q}$, note that we can represent each rational number as: $q=m/n$, where $m\in \mathbf{Z}$ and $n \in \mathbf{N}$. In this regard, $\mathbf{Q}$ is equivalent to a subset of $\mathbf{Z}\times \mathbf{N}$. Is $\mathbf{Z}\times \mathbf{N}$ countable? 
+  
+  \end{itemize}
+}
+
+\subsubsection{Cardinality of the Product of Countable Sets}
+
+\frame
+{
+  \frametitle{Cardinality of the Product of Countable Sets}
+
+  \begin{itemize}
+  \item [] <1-> \begin{Proposition} The product of two countable sets is countable. That is, if $\Omega_1$ and $\Omega_2$ are countable, then $\Omega_1 \times \Omega_2$ is also countable. \end{Proposition} 
+
+  \item<2-> \textbf{Proof} Use the so-called zig-zag method. Since $\Omega_1$ and $\Omega_2$ are countable, we can write $\Omega_1=\{a_1, a_2,\cdots \}$, and $\Omega_2=\{b_1, b_2,\cdots \}$. Then each element in $\Omega_1 \times \Omega_2$ can be represented as $(a_m, b_n)$.  Now let us construct a grid with countably many rows and columns, and put $(a_m, b_n)$ on the intersection of the $m$th row and $n$th column. It is easy to see that this grid contains all elements in $\Omega_1 \times \Omega_2$. Furthermore, this grid allows us to list the elements in $\Omega_1 \times \Omega_2$ as a sequence by following a zig-zag path starting from $(a_1,b_1)$. 
+  
+  
+
+  \item[] <3->  \begin{Corollary} The set of rational number $\mathbf{Q}$ is countable.  \end{Corollary}
+  
+    
+  \end{itemize}
+}
+
+
+
+\subsubsection{Cardinality of the Union of Countable Sets}
+
+\frame
+{
+  \frametitle{Cardinality of the Union of Countable Sets}
+
+  \begin{itemize}
+  \item [] <1-> \begin{Proposition} The union of a finite number, or a countable number of countable sets is countable. That is, given a sequence of countable set $\Omega_1, \Omega_2,\ldots $, the union $\bigcup_i \Omega_i $ is also countable. \end{Proposition}
+
+  \item<2-> \textbf{Proof} Similar to the previous proof. The only difference is we will place the $m$th element of set $\Omega_n$ on  the intersection of the $m$th row and $n$th column. 
+    
+     \item<3-> \textbf{Remark} The \textbf{product} of a countable number of sets is not countable. We will discuss this in a future lecture. 
+   
+  \end{itemize}
+}
+
+\subsubsection{Uncountable Set}
+
+\frame
+{
+  \frametitle{Uncountable Set}
+
+  \begin{itemize}
+  \item [] <1-> \begin{Theorem} The set of real numbers $\mathbf{R}$ is not countable. \end{Theorem} 
+  \item <1-> \textbf{Uncountable} The cardinality of $\mathbf{R}$ is uncountable. 
+
+  \item<2-> \textbf{Proof}  We only need to prove that the interval $[0,1)$ is not countable. 
+  \item[]<3-> 1) Since $[0,1)$ is clearly infinity, we assume it is countable. Then we can list all numbers in $[0,1)$ as a sequence $x_1,x_2,\cdots,$. For each $x_i$, we assume its (unique) decimal expansion as $x_i=0.d_{i1}d_{i2}d_{i3}\cdots $. 
+
+  \item[]<4-> 2) Define a new number $f=0.f_1f_2f_3\cdots$ so that $f_k=d_{kk}+1$ (If $d_{kk}=9$, then $f_k=0$). 
+
+  \item[]<5-> 3) It is clearly that $f\in [0,1)$ and $f\neq x_k$ for any $k$ (since the $k$th digit of $f$ differs from the $k$th digit of $x_k$). In this way, we construct a number that belongs to $[0,1)$ but is not included in the presumably exhaustive list. 
+
+  \item[]<6-> 4) From this contradiction we deduce that $[0,1)$ is not countable. 
+
+
+    
+  \end{itemize}
+}
+
+
+\subsubsection{Cardinality of the Support of a Discrete Random Variables}
+
+\frame
+{
+  \frametitle{Cardinality of the Support of a Discrete Random Variable}
+
+  \begin{itemize}
+  \item [] <1-> \begin{Theorem} The support of any discrete random variable is at most countable. \end{Theorem} 
+    \item<1-> \textbf{Note}  If $X$ is a discrete random variable, then the support of $X$ is defined as: $S=\{x: P(X=x)>0\}$. 
+
+    \item<2-> \textbf{Proof} We firstly note that, for discrete r.v. $X$, $\sum_{x\in \mathbf{S}} P_x=1$.
+  
+    \item[]<3->  1) Firstly we  create a countable partition of the support:
+$S=\bigcup_{1}^{\infty} A_k $, $A_k=\{x: \frac{1}{k+1}<P_x\leq \frac{1}{k}\}$.
+
+    \item[]<4->  2) Now we argue that, the number of points in each subset $A_k$ must be finite. If not, since $P_x>1/(k+1)$ for any $x\in A_k$, $\sum_{x\in A_k} P_x$ would equal infinity if the number of points in $A_k$ is infinity. 
+
+    \item[]<5->  3) Therefore, $S$ can be represented as a countable partition, and the number of points in each subset is finite. Consequently, we can list all the points in $S$ as a finite or countable sequence. Thus the support $S$ of a discrete random variable must be at most countable.
+
+
+    
+  \end{itemize}
+}
+
+
+\end{document}
