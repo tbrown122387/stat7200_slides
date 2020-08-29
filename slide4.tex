@@ -127,7 +127,7 @@
              b) $\BP(\bigcup_{i=1}^k A_i)\geq \sum_{i=1}^k \BP(A_i)$ whenever $A_1,\cdots,A_k \in\mathcal{J}$, $\bigcup_{i=1}^k A_i  \in\mathcal{J}$, and $A_1,\cdots,A_k$ are pairwise disjoint (\textit{finite superadditivity}).
                    \newline
        
-             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,\cdots,A_n,\cdots \in\mathcal{J}$, and $A\subset \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
+             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,\cdots,A_n,\cdots \in\mathcal{J}$, and $A\subseteq \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
              \newline
              
              Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a countably-additive probability measure $\BP^*$ on $\mathcal{M}$ so that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
@@ -151,7 +151,7 @@
        
 		\item<2-> For any $A\subseteq \Omega$
        
-       $$\BP^*(A):=\inf_{A_1,A_2\cdots, \in \mathcal{J}, A\subset \bigcup_i A_i} \sum_i \BP(A_i) $$
+       $$\BP^*(A):=\inf_{A_1,A_2\cdots, \in \mathcal{J}, A\subseteq \bigcup_i A_i} \sum_i \BP(A_i) $$
        
         \item<3->   [] \begin{Lemma} Outer measure satisfies the following properties:  
        
@@ -208,7 +208,7 @@
         \end{Lemma}  
            
            
-           \item<3->   \textbf{Remark:} We often need to verify that a given set $A\in \mathcal{M}$. By the countable subadditivity of our outer measure, we always have $\BP^*(E) \leq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subset \Omega$. If it's easier, we only need need to verify  $\BP^*(E) \geq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subseteq \Omega$. This would can be achieved by using the finite superadditivity of $\BP$. 
+           \item<3->   \textbf{Remark:} We often need to verify that a given set $A\in \mathcal{M}$. By the countable subadditivity of our outer measure, we always have $\BP^*(E) \leq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subseteq \Omega$. If it's easier, we only need need to verify  $\BP^*(E) \geq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subseteq \Omega$. This would can be achieved by using the finite superadditivity of $\BP$. 
                
                  \end{itemize}
 }
