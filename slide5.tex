@@ -1,0 +1,237 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 5}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents
+``A First Look at Rigorous Probability Theory" (Jeffrey Rosenthal) Section 2.3 (continued)
+}
+
+
+\section{Probability Triple}
+
+\subsubsection{Extension Theorem}
+\frame
+{
+  \frametitle{Extension Theorem}
+
+   \begin{itemize}
+
+             \item<1-> [] \begin{Theorem} \textbf{The Extension Theorem}  Let $\mathcal{J}$ be a semialgebra of subsets of $\Omega$,  $\mathbf{P}$ a function from $\mathcal{J}$  to [0,1] with the following properties:
+             \newline
+             
+             a) $\mathbf{P} (\emptyset)=0, \mathbf{P}(\Omega)=1$.
+                 \newline
+         
+             b) $\BP(\bigcup_{i=1}^k A_i)\geq \sum_{i=1}^k \BP(A_i)$ whenever $A_1,\ldots,A_k \in\mathcal{J}$, $\bigcup_{i=1}^k A_i  \in\mathcal{J}$, and $A_1,\ldots,A_k$ are pairwise disjoint (\textit{finite superadditivity}).
+                   \newline
+       
+             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,\ldots,A_n,\ldots \in\mathcal{J}$, and $A\subseteq \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
+             \newline
+             
+             Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a probability measure $\BP^*$ on $\mathcal{M}$ so that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
+             \end{Theorem}    
+       
+                
+                 \end{itemize}
+}
+
+\subsubsection{Review From Last Lecture }
+\frame
+{
+  \frametitle{Constructing Probability Triples I }
+
+   \begin{itemize}
+
+      
+       \item[] <1->  Goal:  constructing complicated probability triples on sample space $\Omega$
+       
+              \item <1->[1)]  Select $\mathcal{J}$, a collection of subsets of $\Omega$ that forms a \textit{semialgebra}. A semialgebra includes empty set and sample space, closed under finite intersections, and the complement of a set in $\mathcal{J}$ can be represented as the unions of disjoint sets from $\mathcal{J}$.
+               \item <1->[2)]  Define a function $\mathbf{P}$ from $\mathcal{J}$ to $[0,1]$ that is finitely superadditive, countably monotonic and $P(\emptyset)=0, P(\Omega)=1$.
+               \item <2-> [3)]   Construct outer measure $\BP^*$ over all subsets of $\Omega$ based on $P$:
+               
+    $$\BP^*(A)=\inf_{A_1,A_2\ldots \in \mathcal{J}, A\subseteq \bigcup_i A_i} \sum_i \BP(A_i) $$
+
+               We have shown that the outer measure is an extension of $\mathbf{P}$, is monotonic and countably subadditive over all subsets.
+               
+              
+                 \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Constructing Probability Triples II }
+
+   \begin{itemize}
+
+      
+        \item <1->[4)]   We construct a new collection of subsets, denoted as $\mathcal{M}$:
+ 
+                         $$\mathcal{M}=\{A: A\subseteq \Omega, \BP^*(A\cap E)+\BP^*(A^c\cap E)=\BP^*(E) \text{ for all }E\subseteq \Omega \}$$
+
+ We have shown that $\mathcal{M}$ includes the empty set and sample space, and is closed under complement. And based on this definition, it is easy to see that $\BP^*(A)=1-\BP^*(A^c)$ for all $A\in\mathcal{M}$. 
+ 
+        \item <2->[5)]  To verify that $\mathcal{M}$ is a $\sigma$-algebra and $\BP^*$ is a proper probability measure on $\mathcal{M}$, we still need to show that $\mathcal{M}$ is closed under countable unions and $\BP^*$ is countably additive on $\mathcal{M}$. 
+        
+        
+        
+ 
+            
+           \item<3->[6)]  Note that, if we need to verify that whether a given set $A\in \mathcal{M}$. By the countable subadditivity of outer measure, we always have $\BP^*(E) \leq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subseteq \Omega$. Thus we only need to verify  $\BP^*(E) \geq \BP^*(A\cap E)+\BP^*(A^c\cap E)$ for all $E\subseteq \Omega$. 
+           
+       
+                 \end{itemize}
+}
+
+
+
+
+
+\subsubsection{$\BP^*$ is Countably Additive over $\mathcal{M}$}
+\frame
+{
+  \frametitle{$\BP^*$ is Countably Additive over $\mathcal{M}$}
+
+   \begin{itemize}
+
+            \item<1->   [] \begin{Lemma}[2.3.9] For disjoint $A_1, A_2,\ldots \in \mathcal{M}$, $\BP^*(\bigcup_n A_n)=\sum_n \BP^*(A_n)$.               \end{Lemma}    
+       
+              \item<2-> []\textbf{Proof:} We will show the finite additivity first.               
+             \item<3-> [1)]  For disjoint $A_1, A_2 \in \mathcal{M}$, since $A_1 \in \mathcal{M}$, we have (in the definition of $\mathcal{M}$, let $E=A_1\cup A_2$, and $A=A_1$):
+             
+             $\BP^*(A_1\cup A_2)=\BP^*(A_1\cap (A_1\cup A_2))+\BP^*(A_1^c \cap (A_1\cup A_2))=\BP^*(A_1)+\BP^*(A_2)$
+             
+             The finite additivity would then follow as the result of induction. 
+             
+                            \item<4-> [2)] For a countably disjoint sequence, by the finite additivity and monotonicity of $\BP^*$, we have
+                            
+                            $\sum_{i=1}^n \BP^*(A_i)=\BP^*(\bigcup_{i=1}^n A_i)\leq \BP^*(\bigcup_n A_n)$
+                            
+Furthermore,       $\sum_n \BP^*(A_n)=\lim_{n\rightarrow \infty} \sum_{i=1}^n \BP^*(A_i) \leq \BP^*(\bigcup_n A_n)$
+                            
+                \item<5-> [3)]  By the countable subadditivity of $\BP^*$, we have  $\sum_n \BP^*(A_n) \geq \BP^*(\bigcup_n A_n)$, thus  $\sum_n \BP^*(A_n) = \BP^*(\bigcup_n A_n)$ for disjoint sequence of $\mathcal{M}$.
+    
+                 \end{itemize}
+}
+
+
+\subsubsection{$\mathcal{M}$ is Closed under Finite Intersections/Unions}
+\frame
+{
+  \frametitle{$\mathcal{M}$ is Closed under Finite Intersections/Unions}
+
+   \begin{itemize}
+
+            \item<1->   [] \begin{Lemma}[2.3.10] If $A_1, A_2,\ldots A_n \in \mathcal{M}$, then $\bigcap_{i=1}^n A_i \in \mathcal{M}$ and  $\bigcup_{i=1}^n A_i \in \mathcal{M}$.                \end{Lemma}    
+       
+              \item<2-> []\textbf{Proof:} Since $\mathcal{M}$ is closed under complement, then by de Morgan's law, $\mathcal{M}$ is closed under finite unions if $\mathcal{M}$ is closed under finite intersections. So we need to show if $A, B\in \mathcal{M}$, then $A\cap B\in \mathcal{M}$.
+                         
+             \item<3-> [1)]  For any $E\in \Omega$, 
+             \begin{align*}& \BP^*(A\cap B \cap E)+\BP^*( (A\cap B)^c \cap E) \\ = & \BP^*(A\cap B \cap E)+\BP^*( (A^c\cap B \cap E) \cup (A\cap B^c \cap E) \cup (A^c\cap B^c \cap E) )  \\ \leq & \BP^*(A\cap B \cap E)+\BP^*( A^c\cap B \cap E) \\ + & \BP^*(A\cap B^c \cap E) +\BP^*( A^c\cap B^c \cap E) \\= & \BP^*(B \cap E)+\BP^*( B^c \cap E)=\BP^*(E)
+             \end{align*}
+                 
+              \item<4-> [2)]  By subadditivity, $\BP^*(E) \leq \BP^*(A\cap B \cap E)+\BP^*( (A\cap B)^c \cap E)$. Thus $\BP^*(E)=\BP^*(A\cap B \cap E)+\BP^*( (A\cap B)^c \cap E)$ and we have $A\cap B\in \mathcal{M}$.
+             
+             
+                 \end{itemize}
+}
+
+
+
+
+\subsubsection{$\mathcal{M}$ is Closed under Countable Unions of Disjoint Sets}
+\frame
+{
+  \frametitle{$\mathcal{M}$ is Closed under Countable Unions of Disjoint Sets: I}
+
+   \begin{itemize}
+
+            \item<1->  To show that $\mathcal{M}$ is closed under countable unions of disjoint sets, we need the following result
+\begin{Lemma}[2.3.11] Let $A_1, A_2,\ldots \in \mathcal{M}$ be disjoint. Define $B_n=\bigcup_{i=1}^n A_i$, then for any $E\subseteq \Omega$, we have 
+             $\BP^*(E\cap B_n)=\sum_{i=1}^n \BP^* (E\cap A_i)$. \end{Lemma}    
+       
+              \item<2-> []\textbf{Proof:} Since $B_n\in \mathcal{M}$ for all $n\in \mathbf{N}$, and note that $B_{n-1}\cap B_n=B_{n-1}$ and $B_{n-1}^c\cap B_n=A_{n}$, we have:
+             \begin{align*} \BP^*( E\cap B_n)& = \BP^*( B_{n-1}\cap E\cap B_n)+ \BP^*( B_{n-1}^c \cap E\cap B_n) \\ 
+             &= \BP^*( E\cap B_{n-1})+ \BP^*(  E\cap A_n)             \end{align*}
+                 
+              \item<3-> [] It is obvious that $\BP^*( E\cap B_1)=\BP^*( E\cap A_1)$, then the above equation would allow us to use induction to obtain $\BP^*(E\cap B_n)=\sum_{i=1}^n \BP^* (E\cap A_i)$.
+             
+             
+                 \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{$\mathcal{M}$ is Closed under Countable Unions of Disjoint Sets: II}
+
+   \begin{itemize}
+
+            \item<1->   [] \begin{Lemma}[2.3.13] For disjoint $A_1, A_2,\ldots \in \mathcal{M}$,  $\bigcup_{n} A_n\in \mathcal{M}$.                \end{Lemma}    
+       
+              \item<2-> []\textbf{Proof}: Let $B_n=\bigcup_{i=1}^n A_i$, then for any $E\subseteq \Omega$
+$$ \BP^*( E) =   \BP^*( E\cap B_n)+ \BP^*(E\cap B_n^c)  
+             = \sum_{i=1}^n \BP^*( E\cap A_{i})+ \BP^*(E\cap B_n^c)  $$
+                $$   \geq \sum_{i=1}^n \BP^*( E\cap A_{i})+ \BP^*(  E\cap (\bigcup_{j=1}^{\infty} A_j) ^c) $$
+                   
+                   \item<3-> [] Letting $n \to \infty$, we have: 
+                     $\BP^*( E) \geq \sum_{n} \BP^*( E\cap A_{n})+ \BP^*(  E\cap (\bigcup_{n} A_n) ^c)   \geq  \BP^*( E\cap (\bigcup_n A_{n}) )+ \BP^*(  E\cap (\bigcup_{n} A_n) ^c)$. Thus $(\bigcup_{n} A_n) \in \mathcal{M}$
+   
+
+\end{itemize}
+}
+
+\subsubsection{$\mathcal{M}$ is a $\sigma$-algebra}
+\frame
+{
+  \frametitle{$\mathcal{M}$ is a $\sigma$-algebra}
+
+   \begin{itemize}
+
+            \item<1->   [] \begin{Lemma}[2.3.14] $\mathcal{M}$ is a $\sigma$-algebra  \end{Lemma}    
+       
+              \item<2-> []\textbf{Proof}: We only need to prove that $\mathcal{M}$ is closed under countable unions. Let $A_1, A_2,\ldots \in \mathcal{M}$. For each $n$, define $B_n=A_n\bigcap (\bigcup_{i=1}^{n-1} A_i)^c$.                    
+                   \item<3-> [] Since we already show that $\mathcal{M}$ is closed under complement, finite intersections/unions, $B_n\in \mathcal{M}$.
+                   \item<4-> [] As $B_n\bigcap B_m=\emptyset$ for all $n\neq m$, by the previously established result, $\bigcup_n B_n \in \mathcal{M}$. However, $\bigcup_n A_n=\bigcup_n B_n$, so $\bigcup_n A_n \in \mathcal{M}$. Then $\mathcal{M}$ is closed under countable unions.
+\end{itemize}
+}
+
+\subsubsection{$\mathcal{J} \subseteq \mathcal{M}$}
+\frame
+{
+  \frametitle{$\mathcal{J} \subseteq \mathcal{M}$}
+
+   \begin{itemize}
+
+            \item<1->   [] \begin{Lemma} $\mathcal{J}\subseteq \mathcal{M}$ \end{Lemma}    
+       
+              \item<2-> []\textbf{Proof}: We need to show that for any $A\in \mathcal{J}$, $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$ for all $E\in\Omega$. 
+              
+                   \item<3->  By the definition of outer measure and A.4.2, for any $\varepsilon>0$, we can find $B_1, B_2 \ldots, \in\mathcal{J}$ so that $E\subseteq \bigcup_n B_n$ and $\sum_n \BP(B_n) < \BP^*(E)+\varepsilon$. Furthermore, by the definition of semialgebra, $A^c=\bigcup_{k=1}^K J_k$ where $J_1,J_2,\ldots J_k\in \mathcal{J} $ are pairwise disjoint. Thus: 
+                                      \item<4->$ \BP^*(E\cap A)+\BP^*(E\cap A^c ) \leq \BP^*((\bigcup_n B_n)\cap A)+\BP^*((\bigcup_n B_n) \cap A^c) $
+                                      \item<5->[] $=\BP^*( \bigcup_n (B_n \cap A) )+\BP^*((\bigcup_n B_n)\cap ( \bigcup_{k=1}^K J_k) )$ 
+                                      \item<6->[]  $\leq \sum_n \BP^*( B_n \cap A)+\sum_{n,k}\BP^*(B_n \cap  J_k)=\sum_n \BP( B_n \cap A)+\sum_{n,k}\BP(B_n \cap  J_k) $
+                                     \item<7->[]  $= \sum_n (\BP( B_n \cap A)+\sum_{k}\BP(B_n \cap  J_k) )\leq \sum_n \BP( B_n)  < \BP^*(E)+\varepsilon $
+                                     \item<8-> As $\varepsilon$ is an arbitrary constant, we  can conclude that $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$. Thus $A\in \mathcal{M}$, $\mathcal{J}\subseteq \mathcal{M}$ .
+                                      
+
+                   \end{itemize}
+}
+
+
+\end{document}
