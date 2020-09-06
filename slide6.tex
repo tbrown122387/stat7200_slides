@@ -1,0 +1,278 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+% \usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+
+\newtheorem{Proposition}[theorem]{Proposition}%
+
+\newcommand{\BP}{\mathbf{P}}
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 6}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents
+``A First Look at Rigorous Probability Theory" (Jeffrey Rosenthal) Section 2.4, 2.5}
+
+
+\section{Probability Triples}
+
+\subsubsection{Extension Theorem}
+\frame
+{
+  \frametitle{Extension Theorem}
+
+   \begin{itemize}
+
+             \item<1-> [] \begin{Theorem}[2.3.1.] \textbf{The Extension Theorem}  Let $\mathcal{J}$ be a semialgebra of subsets of $\Omega$,  $\mathbf{P}$ a function from $\mathcal{J}$  to [0,1] with the following properties:
+             \newline
+             
+             a) $\mathbf{P} (\emptyset)=0, \mathbf{P}(\Omega)=1$.
+                 \newline
+         
+             b) $\BP(\bigcup_{i=1}^k A_i)\geq \sum_{i=1}^k \BP(A_i)$ whenever $A_1,\ldots,A_k \in\mathcal{J}$, $\bigcup_{i=1}^k A_i  \in\mathcal{J}$, and $A_1,\ldots,A_k$ are pairwise disjoint (\textit{finite superadditivity}).
+                   \newline
+       
+             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,\ldots,A_n, \ldots \in\mathcal{J}$, and $A\subseteq \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
+             \newline
+             
+             Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a proper probability measure $\BP^*$ on $\mathcal{M}$ so that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
+             \end{Theorem}    
+       
+                
+                 \end{itemize}
+}
+
+
+
+
+\subsubsection{Application of Extension Theorem: Uniform Measure on [0,1]}
+\frame
+{
+  \frametitle{Application of Extension Theorem: Uniform Measure on [0,1]}
+
+   \begin{itemize}
+
+            \item<1->To construct the uniform measure on $[0,1]$, first we choose $\mathcal{J}$ as the collection of all intervals $I$ in $[0,1]$, then we define $\mathbf{P}$ as $\mathbf{P}(I)=$ the length of  $I$. Now it is easy to verify $\mathcal{J}$ is a semialgebra. If we can also verify  $\mathbf{P}$  satisfies the conditions listed in the extension theorem, we can apply the extension theorem to show that we may extend  $\mathbf{P}$ to the uniform measure $\BP^*$ over $\mathcal{M}\supseteq \mathcal{J}$.
+            
+\item<2-> We have $\mathbf{P} (\emptyset)=0$ and $\mathbf{P} ([0,1])=1$.
+
+\item<3-> For finite superadditivity, we need to show: for disjoint intervals $I_1,\ldots,I_k$ whose union $\bigcup_{i=1}^k I_i := I_0 = (a_0, b_0)$ is also an interval, we have $\BP(\bigcup_{i=1}^k I_i)\geq \sum_{i=1}^k \BP(I_i)$.  Note that we can always reorder these intervals so that their end points (denoted by $a_k, b_k$) satisfy:
+
+$a_0=a_1\leq b_1=a_2 \leq b_2=\cdots =a_k\leq b_k=b_0$.
+
+Then $\sum_{i=1}^k P(I_i)=\sum_{i=1}^k (b_i-a_i)=b_k-a_1=b_0-a_0=P(I_0)$.
+
+
+       
+                   \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Application of  Extension Theorem: Uniform Measure on [0,1] (Exercise 2.4.3 a) }
+
+   \begin{itemize}
+
+
+\item<1-> For countable monotonicity:  we should prove $\BP(I)\leq \sum_{n} \BP(I_n)$ whenever $I,I_1,I_2,\ldots$ are intervals and $I \subseteq \bigcup_{i=1}^\infty I_i$. First, we prove for the finite case.
+
+
+\item<2->  Let us suppose $\BP(I)\leq \sum_{i=1}^n \BP(I_i)$ holds for $n=k-1$. Then when $n=k$, without loss of generality, we may assume that the length of $I$ is positive and $a_k\leq b \leq b_k$. If $a_k\leq a $, the result follows immediately. 
+\item<3->[-]Otherwise, $a<a_k\leq b\leq b_k$, 
+
+then $I\cap I_k^c$ is still an interval and $I\cap I_k^c \subseteq \bigcup_{i=1}^{k-1} I_i $, $\BP(I\cap I_k^c)\leq \sum_{i=1}^{k-1} \BP(I_i)$.   
+\item<4->[-]Thus, $\BP(I \cap I_k^c)=a_k-a\geq a_k-a - (b_k - b)=\BP(I)-\BP(I_k)$, 
+
+we have $\BP(I)\leq \sum_{i=1}^k \BP(I_i)$.
+
+                   \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Application of  Extension Theorem: Uniform Measure on [0,1] (Exercise 2.4.3 b)}
+
+   \begin{itemize}
+
+
+\item<1->[-] Let $I, I_1, I_2, \ldots \in \mathcal{J}$ and assume $I := [a,b]$ is closed, $\{I_i\}_i$ are all open and $I \subseteq \bigcup_{i=1}^{\infty}I_i$. We want to show that $\BP(I) \le \sum_{i\ge1}\BP(I_i)$. 
+
+\item<2->[-] By the Heine-Borel Theorem, there exists $\{I_{i_j}\}_{j=1}^n$ such that $I \subseteq \bigcup_{j=1}^{n} I_{i_j}$
+
+\item<3->[-] By finite monotonicity (the previous slide), $\BP(I) \leq  \sum_{j=1}^n \BP( I_{i_j} ) \le \sum_{i\ge1}\BP(I_i).$
+
+
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Application of  Extension Theorem: Uniform Measure on [0,1] (Exercise 2.4.3 c)}
+
+   \begin{itemize}
+
+
+\item<1-> Let $I, I_1, I_2, \ldots \in \mathcal{J}$ and assume $I \subseteq \bigcup_{i=1}^{\infty}I_i$. We want to show that $\BP(I) \le \sum_{i\ge1}\BP(I_i)$. Here $I$ may not be closed, and the rest may not be open.
+
+\item<2-> Assume WLOG that the length of interval $I$ is positive. Pick any $\varepsilon <(b-a)/2$. Then $[a+\varepsilon, b-\varepsilon]$ is closed and has positive length. Also, enlarge each $I_k$ to the open interval $(a_k-\varepsilon/2^k, b_k+\varepsilon/2^k)$. Clearly $[a_0+\varepsilon, b_0-\varepsilon] \subseteq \bigcup_{i=1}^{\infty} (a_i-\varepsilon/2^i, b_i+\varepsilon/2^i)$.
+
+\item<3->[-] By the previous slide,  $b-a - 2\varepsilon \leq \sum_{i \ge 1} (b_i - a_i + \varepsilon/2^{i-1}) = \sum_{i\ge1}\BP(I_i) + 2\varepsilon $
+
+\item<4->[-]  As the choice of $\varepsilon$ is arbitrary, we have  $\BP(I) \leq \sum_{i=1}^{\infty} \BP(I_i)$.
+
+
+                   \end{itemize}
+}
+
+  \subsubsection{Lebesgue Measure}
+
+\frame
+{
+  \frametitle{Lebesgue Measure}
+
+   \begin{itemize}
+
+
+
+\item<1-> The previous discussion allows us to apply the extension theorem to construct a probability triple $(\Omega, \mathcal{M}, \BP^*)$ over $\Omega=[0,1]$. The $\sigma-$algebra $\mathcal{M}$ contains all intervals and the probability measure of any interval with endpoints $a,b$ equals $b-a$.
+
+\item<2-> This probability triple is known as the uniform distribution or the \textbf{Lebesgue Measure}, often denoted by $\lambda$. The set in $\mathcal{M}$ is called the \textbf{Lebesgue Measurable Sets}. 
+
+\item<3-> On the other hand, the Borel $\sigma$-algebra $\mathcal{B}$ is defined as smallest $\sigma$-algebra that contains all the intervals $\mathcal{J}$ (denoted as $\mathcal{B}=\sigma(\mathcal{J})$). Then  $\mathcal{B}$ must be a subset of $\mathcal{M}$.
+
+
+\item<3-> The main difference between $\mathcal{B}$ and $\mathcal{M}$ is that $\mathcal{M}$ is complete but $\mathcal{B}$ is not. The completeness is defined as if 
+$A\in \mathcal{M}$ and $\BP^*(A)=0$, then any subset $B$ of $A$ must belong to $\mathcal{M}$ as well.
+                   \end{itemize}
+}
+
+
+
+
+
+\subsubsection{Variation of Extension Theorem}
+\frame
+{
+  \frametitle{Variation of Extension Theorem}
+
+   \begin{itemize}
+
+            \item<1-> Here we provide an alternative formulation of the Extension Theorem
+            
+         \item<2->[]    \begin{corollary}[2.5.4] In the original extension theorem, the finite superadditivity condition and the countable monotonicity condition of $\mathbf{P}$ can be replaced by the following countable additivity condition:
+            
+                    $\BP(\bigcup_{n} A_n)= \sum_{n} \BP(A_n)$ for disjoint $A_1,A_2,\ldots \in\mathcal{J}$ with $\bigcup_{n} A_n  \in\mathcal{J}$.
+            
+            \end{corollary}    
+       
+              \item<3-> []\textbf{Proof}: We only need to show that the countable additivity implies both finite superadditivity and countable monotonicity. 
+              
+              \item<4->[]  Finite superadditivity follows immediately, so we just need to worry about the countable monotonicity. 
+                                      
+
+                   \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Variation of Extension Theorem: continued}
+
+   \begin{itemize}
+
+       
+              \item<1-> []\textbf{Proof (continued)}:  To prove countable monotonicity based on finite additivity, we first prove a useful property of the semialgebra:
+              
+              \textit{Property of Semialgebra}: If $K_1, K_2,\ldots, K_m \in\mathcal{J} $ are disjoint, then we can find $J_1, J_2,\ldots, J_K \in \mathcal{J}$ so that $K_1, K_2,\ldots, K_m, J_1, J_2,\ldots, J_K $ forms a partition of $\Omega$. 
+              
+                             \item<2->[-]  $K_1, K_2,\ldots, K_m, (\bigcup_{i=1}^m K_i)^c$ forms a partition of $\Omega$. Furthermore, $ (\bigcup_{i=1}^m K_i)^c= \bigcap_{i=1}^m K_i^c$, and according to the definition of semialgebra, each $K_i^c$ is the union of finite number of disjoint subsets of $\mathcal{J}$. Here we denote $K_i^c=\bigcup_{j=1}^{n_i} I_{ij}$ where $I_{ij} \in \mathcal{J}$,  and $\{I_{ij}: 1\leq j\leq n_i\}$ are disjoint. 
+             
+            
+                 \item<3->[-]  $\bigcap_{i=1}^m K_i^c=\bigcap_{i=1}^m \bigcup_{j=1}^{n_i} I_{ij}= \bigcup_{f \in F, 1\leq f(i) \leq n_i} \bigcap_{i=1}^m  I_{i, f(i)}$. By the second property of semialgebras, $\bigcap_{i=1}^m J_{i, f(i)} \in \mathcal{J}$. Also notice that the union is disjoint. 
+
+				\item<4->[-] Let $K = |F|$, list out functions $f_1, f_2, \ldots, f_K$, and define $J_j := \bigcap_{i=1}^m  I_{i, f_j(i)}$.
+                     
+                 \item<5->[-] Then $\bigcap_{i=1}^m K_i^c=\bigcup_{j=1}^K J_j$, $J_j \in \mathcal{J}$ and $K_1, K_2,\ldots, K_m, J_1, J_2,\ldots, J_K $ forms a partition of $\Omega$. 
+                 
+                \end{itemize}
+}
+
+
+
+
+
+
+
+\frame
+{
+  \frametitle{Variation of Extension Theorem: continued}
+
+   \begin{itemize}
+
+       
+              \item<1-> []\textbf{Proof (continued)}:  Then we have the following statement:
+              
+            If $K_1, K_2,\ldots, K_m \in\mathcal{J} $ are disjoint and $\bigcup_{i=1}^m K_i\subseteq B \in \mathcal{J}$, then $\BP(B)\geq \sum_{i=1}^m \BP(K_i)$. 
+            
+            
+            
+              
+                            \item<2->[-]  By the result in the previous slide,there exist $\{J_j\}_{j=1}^K \in \mathcal{J}$ such that $K_1, K_2,\ldots, K_m, J_1,\ldots, J_K$ forms a partition of $\Omega$. 
+            \item<3->[-]                     
+     $\BP(B)=\sum_{i=1}^m \BP(B\cap K_i)+ \sum_{j=1}^K \BP(B\cap J_j)\geq \sum_{i=1}^m \BP(B\cap K_i)=\sum_{i=1}^m \BP(K_i)$. The last equality follows from our countable additivity hypothesis.
+     
+                   \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Variation of Extension Theorem: continued}
+
+   \begin{itemize}
+
+       
+              \item<1-> []\textbf{Proof (continued)}:  Now let $A, A_1,A_2,\ldots \in \mathcal{J}$ such that $A \subseteq \bigcup_n A_n$. To prove countable monotonicity, we need to show $\BP(A)\leq \sum_n \BP(A_n)$.
+              
+            
+            
+              
+              \item<2->[-]  Define $B_n:=A\bigcap A_n$, then $B_n\in \mathcal{J}$ and $A=\bigcup_n B_n$,
+                            
+              \item<3->[-] Define $C_n:=B_n\bigcap (\bigcup_{i=1}^{n-1} B_{i})^c$, then $C_1,C_2, \ldots$ are disjoint and $\bigcup_n B_n=\bigcup_n C_n = A$.
+ \item<4->[-] As $(\bigcup_{i=1}^{n-1} B_{i})^c$ can be represented as the unions of finite disjoint subsets from $\mathcal{J}$ and $\mathcal{J}$ is closed under intersection. We should also be able to represent $C_n=\bigcup_{j=1}^{k_n} J_{nj}$ where $J_{nj}\in \mathcal{J}$ are disjoint. 
+ 
+ 
+ \item<5->[-] Consequently, $\BP(A)=\BP(\bigcup_n B_n)=\BP(\bigcup_n C_n)=\BP(\bigcup_{n,j} J_{nj} )$. By the countable additivity, $\BP(A)=\sum_{n,j} \BP(J_{nj} )=\sum_{n} (\sum_{j=1}^{k_n} \BP(J_{nj} ) )$.
+ 
+  \item<6->[-]  By the result we derived from previous slide, $\bigcup_{j=1}^{k_n} J_{nj}=C_n\subseteq B_n$ implies $\sum_{j=1}^{k_n} \BP(J_{nj})\leq \BP(B_n)$, and $B_n\subseteq A_n$ implies $\BP(B_n)\leq \BP(A_n)$.
+  
+  \item<6->[-]  $\BP(A)=\sum_{n} (\sum_{j=1}^{k_n} \BP(J_{nj} ) ) \leq \sum_n \BP(B_n) \leq \sum_n \BP(A_n) $
+ 
+     
+                   \end{itemize}
+}
+
+
+
+
+
+
+\end{document}
