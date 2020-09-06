@@ -141,7 +141,7 @@ Furthermore,       $\sum_n \BP^*(A_n)=\lim_{n\rightarrow \infty} \sum_{i=1}^n \B
        
               \item<2-> []\textbf{Proof:} Since $\mathcal{M}$ is closed under complement, then by de Morgan's law, $\mathcal{M}$ is closed under finite unions if $\mathcal{M}$ is closed under finite intersections. So we need to show if $A, B\in \mathcal{M}$, then $A\cap B\in \mathcal{M}$.
                          
-             \item<3-> [1)]  For any $E\in \Omega$, 
+             \item<3-> [1)]  For any $E\subseteq \Omega$, 
              \begin{align*}& \BP^*(A\cap B \cap E)+\BP^*( (A\cap B)^c \cap E) \\ = & \BP^*(A\cap B \cap E)+\BP^*( (A^c\cap B \cap E) \cup (A\cap B^c \cap E) \cup (A^c\cap B^c \cap E) )  \\ \leq & \BP^*(A\cap B \cap E)+\BP^*( A^c\cap B \cap E) \\ + & \BP^*(A\cap B^c \cap E) +\BP^*( A^c\cap B^c \cap E) \\= & \BP^*(B \cap E)+\BP^*( B^c \cap E)=\BP^*(E)
              \end{align*}
                  
@@ -220,7 +220,7 @@ $$ \BP^*( E) =   \BP^*( E\cap B_n)+ \BP^*(E\cap B_n^c)
 
             \item<1->   [] \begin{Lemma} $\mathcal{J}\subseteq \mathcal{M}$ \end{Lemma}    
        
-              \item<2-> []\textbf{Proof}: We need to show that for any $A\in \mathcal{J}$, $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$ for all $E\in\Omega$. 
+              \item<2-> []\textbf{Proof}: We need to show that for any $A\in \mathcal{J}$, $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$ for all $E \subseteq \Omega$. 
               
                    \item<3->  By the definition of outer measure and A.4.2, for any $\varepsilon>0$, we can find $B_1, B_2 \ldots, \in\mathcal{J}$ so that $E\subseteq \bigcup_n B_n$ and $\sum_n \BP(B_n) < \BP^*(E)+\varepsilon$. Furthermore, by the definition of semialgebra, $A^c=\bigcup_{k=1}^K J_k$ where $J_1,J_2,\ldots J_k\in \mathcal{J} $ are pairwise disjoint. Thus: 
                                       \item<4->$ \BP^*(E\cap A)+\BP^*(E\cap A^c ) \leq \BP^*((\bigcup_n B_n)\cap A)+\BP^*((\bigcup_n B_n) \cap A^c) $
