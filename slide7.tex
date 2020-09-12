@@ -237,14 +237,21 @@
     \item<1->  If $X$ and $Y$ are r.v.s., then $X+Y$ is still random variable as:
               
                   $\{X+Y\leq z\}=\bigcup_{r \text{ is rational}} \{X\leq r\} \cap \{Y\leq z-r\} $
-                 \item<3->  If $Z_1, Z_2, \ldots$ are r.v.s., and $\lim_{n\rightarrow \infty} Z_n(\omega)$ exists for every $\omega$ , then $Z=\lim_{n\rightarrow \infty} Z_n$ is also a random variable since :
                  
-$\{Z\leq z\} = \bigcap_{m=1}^{\infty} \{Z\leq z + \frac{1}{m} \}=\bigcap_{m=1}^{\infty} \bigcup_{N=1}^{\infty} \bigcap_{n=N}^{\infty} \{Z_n\leq z+\frac{1}{m}\}$
+    \item<3->  If $Z_1, Z_2, \ldots$ are r.v.s., and $\lim_{n\rightarrow \infty} Z_n(\omega)$ exists for every $\omega$ , then $Z=\lim_{n\rightarrow \infty} Z_n$ is also a random variable
                                   
-                  \item<3->[-]  which is to say, if the limit of $Z_n$, $Z$, is smaller than $z$, then for any (first intersection) small number such as $1/m$, we can find a large number $N$ (first union), so that for all (second intersection) $n\geq N$, $Z_n\leq z+\frac{1}{m}$. 
-                  
-                                        
-                 \end{itemize}
+\item<3->[-]  
+\begin{align*}
+\{Z\leq z\} &= \{ \limsup_{n} Z_n(\omega) \leq z\} \\
+&= \{ \lim_{n\to\infty} \sup_{k \ge n} Z_k(\omega) \leq z\} \\
+&= \cup_{n =1}^{\infty} \{  \sup_{k \ge n} Z_k(\omega) \leq z\} \\
+&= \cup_{n =1}^{\infty} \cap_{k=n}^{\infty} \{  Z_k(\omega) \leq z\}
+\end{align*}
+
+% which is to say, if the limit of $Z_n$, $Z$, is smaller th  an $z$, then for any (first intersection) small number such as $1/m$, we can find a large number $N$ (first union), so that for all (second intersection) $n\geq N$, $Z_n\leq z+\frac{1}{m}$. 
+%                   
+
+\end{itemize}
 }
 
 
