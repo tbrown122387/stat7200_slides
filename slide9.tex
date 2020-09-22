@@ -185,7 +185,7 @@ Proof on next slide...
 For any real $x$, $\{X \le x\} = \cap_n \{X_n \le x\}$, so the limit of random variables is still a rv. 
 \newline
 
-By monotonicity, $\BE[X_n] \le \BE[X]$ for all. Taking the limit yields $\lim_{n \to \infty} \BE[X_n] \le \BE[X]$. The limit exists because it is a monotonic sequence, and it may be infinite.
+By order preservation, $\BE[X_n] \le \BE[X]$ for all. Taking the limit yields $\lim_{n \to \infty} \BE[X_n] \le \BE[X]$. The limit exists because it is a monotonic sequence, and it may be infinite.
 \newline
 
 Last, pick $Y = \sum_{i=1}^m y_i 1_{A_i}$ be a simple rv such that $Y \le X$ and such that $\{A_i\}$ partitions $\Omega$. Pick an $0 <\epsilon$, and for each $i$, define $A_{in} = \{\omega \in A_i : X_{n}(\omega) \ge y_i - \epsilon  \}$ (not a partition). Clearly $\{A_{in}\} \nearrow A_i$ for any $i$. For a fixed $n$, $\BE[X_n] \ge  \sum_{i=1}^m (y_i - \epsilon) \BP(A_{in}) = \sum_{i=1}^m y_i \BP(A_{in}) - \epsilon \BP(\cup_{i=1}^m A_{in})$. Taking the limit: $\lim_{n \to \infty} \BE[X_n] \ge \sum_{i=1}^m y_i \BP(A_{i}) - \epsilon$. This is true for any epsilon, and any simple random variable $Y \le X$, and so the result holds.
@@ -245,18 +245,18 @@ Example, on $([0,1],\mathcal{F},\BP)$ consider $X_n(\omega) = n 1_{(0,n^{-1})}$.
 
 
                          
-                         \item<1-> As $\Psi_n(X)\rightarrow X$ as $n\rightarrow \infty$, by the monotone convergence theorem, we have $\lim_{n\rightarrow \infty} \BE(\Psi_n(X))=\BE(X)$. Then we may prove the following properties for non-negative random variables based on the similar properties for simple random variables.
-                         
-                         
-                                                                                                                                                                                            
-                         \item<2->  \textbf{Linearity} For non-negative random variables $X, Y$, and $a, b>0$, we have $\BE(aX+bY)=a\BE(X)+b\BE(Y)$.
-                                        \item<3->[]\textbf{Proof} We may construct $\Psi_n(X)\rightarrow X$ and $\Psi_n(Y)\rightarrow Y$, then $a\Psi_n(X)+b\Psi_n(Y)$ are an increasing sequence of non-negative random variables that converge to $aX+bY$. By the monotone convergence theorem:
-                              \item<4->[]                                \begin{align*}\BE(aX+bY)& =\lim_{n\rightarrow \infty} \BE (a\Psi_n(X)+b\Psi_n(Y)) \\ & =\lim_{n\rightarrow \infty}[ a\BE(\Psi_n(X))+b\BE(\Psi_n(Y)) ]=a\BE(X)+b\BE(Y)\end{align*}
-                               
-          
-                               
-                                                  
-                                 \end{itemize}
+\item<1-> As $\Psi_n(X)\rightarrow X$ as $n\rightarrow \infty$, by the monotone convergence theorem, we have $\lim_{n\rightarrow \infty} \BE(\Psi_n(X))=\BE(X)$. Then we may prove the following properties for non-negative random variables based on the similar properties for simple random variables.
+
+\item<2->  \textbf{Linearity} For non-negative random variables $X, Y$, and $a, b>0$, we have $\BE(aX+bY)=a\BE(X)+b\BE(Y)$.
+
+\item<3->[]\textbf{Proof} We may construct $\Psi_n(X)\rightarrow X$ and $\Psi_n(Y)\rightarrow Y$, then $a\Psi_n(X)+b\Psi_n(Y)$ is an increasing sequence of non-negative random variables that converge to $aX+bY$. By the monotone convergence theorem:
+
+\item<4->[]
+\begin{align*}\BE(aX+bY)& =\lim_{n\rightarrow \infty} \BE (a\Psi_n(X)+b\Psi_n(Y)) \\ 
+& =\lim_{n\rightarrow \infty}[ a\BE(\Psi_n(X))+b\BE(\Psi_n(Y)) ]=a\BE(X)+b\BE(Y)
+\end{align*}
+
+\end{itemize}
 }
 
 
