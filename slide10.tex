@@ -1,0 +1,350 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 10}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents
+``A First Look at Rigorous Probability Theory" (Jeffrey Rosenthal) Sections 4.3 and 4.4 }
+
+
+% \section{Mathematical Background}
+% \section{Why the Advanced Probability is Hard?}
+% \section{Probability Triple}
+% 
+% \section{Foundation of Probability}
+
+
+\subsection{Expectations}
+
+
+\subsubsection{Expectations of Simple Random Variables}
+
+\frame
+{
+  \frametitle{Expectations of Simple Random Variables}
+
+   \begin{itemize}
+
+
+                         
+\item<1-> A  random variable $X$ is simple if it only takes finite number of values: $X=\sum_{i=1}^n x_i \BI_{A_i}$, where $A_1, A_2,\cdots, A_n$ forms a partition of $\Omega$. 
+
+\item<1-> Then we can define the expectation of simple random variable as:
+                      $\BE(X)=\sum_{i=1}^n x_i \BP(A_i)$.
+
+\item<1-> \textbf{Linearity} For simple random variables $X, Y$, we have $\BE(aX+bY)=a\BE(X)+b\BE(Y)$ $(a,b\in \mathbf{R})$.
+
+\item<1-> \textbf{Order Preserving} For simple random variables $X, Y$, if $X\leq Y$ for every $\omega$, then we have $\BE(X)\leq \BE(Y)$.
+
+
+\item<1-> \textbf{Expectation and Independence} If $X, Y$ are simple random variables and $X\bot Y$, then $\BE(XY)=\BE(X)\BE(Y)$.                         
+
+                             
+\end{itemize}
+}
+
+\subsubsection{Expectation of Non-Negative Random Variable}
+
+
+\frame
+{
+  \frametitle{Expectation of Non-Negative Random Variable}
+
+   \begin{itemize}
+
+
+\item<1-> For a non-negative random variable $X$, we define its expectation as the supremum of the expectations of all the simple random variables $Y$ not greater than $X$. In other words:
+                         
+                         $$\BE(X)=\sup\{\BE(Y): \text{Y } simple, Y\leq X\}$$
+                         
+\item<1-> Given any non-negative random variable $X$, we can find a sequence of increasing simple random variables $\Phi_n(X)$, so that $\Phi_n(X)\rightarrow X$ as $n\rightarrow \infty$.
+         
+\item<1-> We used this to show that expectations are still order-preserving. 
+
+\item<1-> The monotone convergence theorem gives us a sufficient condition for $\lim_{n}\BE(\Phi_n(X))=\BE(X)$. We can use that to derive linearity and factoring properties for independent random variables.  
+
+                                                                                                                              \end{itemize}
+}
+
+
+\frame
+{
+\frametitle{The Monotone Convergence Theorem}
+
+Recall the MCT: 
+
+\begin{itemize}
+
+\item<2->[]\begin{Theorem}[The Monotone Convergence Theorem] If $X_1, X_2, \cdots$ are non-negative random variables so that $X_1\leq X_2\leq \cdots $. Suppose that $\lim_{n\rightarrow \infty} X_n(\omega)=X(\omega)$ for each $\omega \in \Omega$, then $X$ is a random variable and $\lim_{n\rightarrow \infty} \BE(X_n)=\BE(X)$. 
+                          
+\end{Theorem}                           
+                                                                                                          
+
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Property of Expectations of Non-Negative Random Variables }
+
+\begin{itemize}
+
+\item<1-> Last class we showed that expectations are linear for *finite* linear combinations. We can extend this to countable linear combinations:
+                                                  
+\item<1-> \textbf{Countable Linearity} If $X_1, X_2,\cdots \geq 0$, then define $M_n=\sum_{i=1}^n X_i$. We have:
+                             
+                             
+                             
+                              \begin{align*}\BE(\sum_{n=1}^{\infty} X_n )= \BE(\lim_{n\rightarrow \infty} M_n)  =\lim_{n\rightarrow \infty} \BE(M_n)= \lim_{n\rightarrow \infty} \sum_{i=1}^n \BE(X_i)=\sum_{n=1}^{\infty} \BE(X_n)\end{align*}
+                              
+                              
+                                                  
+                                 \end{itemize}
+}
+
+
+
+\subsubsection{Expectations of Arbitrary Random Variables}
+
+
+\frame
+{
+  \frametitle{Expectations of Arbitrary Random Variables}
+
+\begin{itemize}
+
+
+                         
+\item<1-> For any random variable $X$, we may split it into the positive part and the negative part: $X^{+}(\omega) =\max(X(\omega), 0)$, $X^{-}(\omega) =\max(-X(\omega), 0)$, then $X=X^{+}-X^-$, and $X^+, X^-\geq 0$.
+                         
+\item<2-> We can then define the expectation of arbitrary random variables as 
+                                                  
+                                                  $$\BE(X)=\BE(X^+)-\BE(X^-)$$
+                                                                           
+\item<3->  Note that the above expectation is only defined when at least one of  $\BE(X^+), \BE(X^-)$ is finite, if not, the expectation is undefined ( $\infty-\infty$ is undefined).                         
+                              
+\item<4-> \textbf{Order Preserving} For arbitrary random variables $X, Y$ with well defined expectation, if $X\leq Y$ then $\BE(X)\leq \BE(Y)$. (See Exercise 4.3.2)
+
+\item<5-> \textbf{Independence and Expectation} For arbitrary random variables $X, Y$ with finite expectation, if $X\bot Y$ then $\BE(XY)=\BE(X) \BE(Y)$. (See Exercise 4.3.4)
+
+                                          
+\end{itemize}
+}
+
+\frame
+{
+  \frametitle{Properties of Expectation: Finite Linearity}
+
+   \begin{itemize}
+
+ \item<1-> \textbf{Linearity} $\BE(X+Y)=\BE(X)+\BE(Y)$ for any random variables $X, Y$ with finite expectation.
+  
+   \item<2-> \textbf{Proof:}  
+   
+ \item<3->[-]First, if $X, Y\geq 0$, $X-Y\geq 0$, then $\BE(X-Y)=\BE(X)-\BE(Y)$.  This is true since $\BE(X)=\BE(X-Y+Y)=\BE(X-Y)+\BE(Y)$ (Linearity of non-negative random variables).                                           
+  \item<4->[-] Second, if $X, Y\geq 0$, then $\BE(X-Y)=\BE(X)-\BE(Y)$. 
+  
+  To prove this, let us denote $A=\{\omega: X(\omega)\geq Y(\omega)\}$. Then $(X-Y)^+=(X-Y)\BI_A \geq 0$ and $(X-Y)^-=(Y-X)\BI_{A^c} \geq 0$ :
+  
+ $\BE(X-Y)=\BE[(X-Y)\BI_A]-\BE[(Y-X)\BI_{A^c}]$ 
+ 
+ $\ \ \ \ \ \ \  =\BE(X\BI_A)-\BE(Y\BI_A)-\BE(Y\BI_{A^c})+\BE(X\BI_{A^c})$
+ 
+ $\ \ \ \ \ \ \ =\BE[X(\BI_A+\BI_{A^c})]-\BE[Y(\BI_{A}+\BI_{A^c})]=\BE(X)-\BE(Y)$
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Properties of Expectation: Linearity}
+
+   \begin{itemize}
+
+  
+   \item<1-> \textbf{Proof (continued):} Now let us return to general $X, Y$. 
+   
+   Denote $A=\{\omega: X(\omega)+Y(\omega)\geq 0\}$. Then 
+   
+    $(X+Y)^+=(X+Y)\BI_A=(X^++Y^+-X^--Y^-)\BI_A $ and $(X+Y)^-=(X^-+Y^--X^+-Y^+)\BI_{A^c}$. \newline
+    
+      
+\item<2->[-]$\BE(X+Y)=\BE[(X^++Y^+-X^--Y^-)\BI_A]-\BE[(X^-+Y^--X^+-Y^+)\BI_{A^c}]$
+
+\item<3->[]          \ \ \ \     \ \ \ \     (If $X, Y\geq 0$, then $\BE(X-Y)=\BE(X)-\BE(Y)$)
+
+\item<3-> []$ =\BE[(X^++Y^+)\BI_A]-\BE[(X^-+Y^-)\BI_A]-\BE[(X^-+Y^-)\BI_{A^c}]+\BE[(X^++Y^+)\BI_{A^c}]$
+
+
+\item<4->[]    \ \ \ \    \ \ \ \   (By the linearity of non-negative random variables)
+
+\item<4-> []$ =\BE[(X^++Y^+) (\BI_A+ \BI_A^c) ]-\BE[(X^-+Y^-)(\BI_A+ \BI_A^c) ]$
+
+$=\BE[X^++Y^+]-\BE[X^-+Y^-]=\BE(X^+)+\BE(Y^+)-\BE(X^-)-\BE(Y^-)$
+$=\BE(X)+\BE(Y)$
+
+
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Properties of Expectation: Linearity}
+
+   \begin{itemize}
+
+  \item<1-> [] For arbitrary random variables with finite expectations $X$, $Y$, and for any two real numbers $a,b$, we have $\BE[aX + bY] = a\BE[X] + b\BE[Y]$.
+  
+  \item<2-> [] From the previous result, it's clear that $\BE[aX+bY] = \BE[aX] + \BE[bY]$. All we need to show is that the nonrandom real numbers can be pulled out of the expectation.
+  
+\item<3-> [] WLOG assume $a < 0$: $\BE[aX] = \BE[(aX)^+] - \BE[(aX)^-] =  -\BE[a(X)^-] + \BE[a(X)^+] = a\BE[(X)^+]  -a\BE[(X)^-]  = a\BE[X]$. 
+
+
+\end{itemize}
+}
+
+
+
+
+\subsubsection{Expectations and Integrals }
+
+\frame
+{
+  \frametitle{Expectations and Integrals}
+
+   \begin{itemize}
+
+   \item<1-> Our previous discussion allow us to define the expectation $\BE(X)$ of any random variable $X$ on probability triple $(\Omega, \mathcal{F}, \BP)$.  The expectation we defined is also called as \textit{Lebesgue integral}, and can be denoted as:
+   
+   $$\BE(X)=\int_{\Omega} X(\omega) \BP(d \omega) $$
+   
+     
+   \item<2-> On the real space $\mathbf{R}$ the expectation or Lebesgue integral can be viewed as a generalization of the usual Riemann integral. 
+   
+   \item<3-> This is the reason why we can calculate the expectations of discrete random variables as the summation with respect to the probability mass function, and the expectations of continuous random variables as Reimann integrals with respect to the probability density functions.  
+   
+   \item<4-> Also, there are examples of random variables that are not Riemann integrable, but are Lebesgue integrable.
+
+\end{itemize}
+}
+
+
+\subsubsection{Expectations and Integrals }
+
+\frame
+{
+  \frametitle{Expectations and Integrals}
+
+Before we get into this, we need to review two properties from the previous chapters, that you might not have shown:
+
+\begin{itemize}
+
+\item<1-> Remark 4.2.3: Since expected values are unchanged if we modify the random variable values on sets of probability $0$, we still have $\lim_{n \to \infty}\BE[X_n] = \BE[X]$ if $\{X_n\} \nearrow X$ almost surely.
+
+\item<2-> Proof: let $A = \{ \omega : \{X_n\} \nearrow X\}$. By the standard MCT: $\lim_{n \to \infty}\BE[X_n1_A] = \BE[X1_A]$. Then $\lim_{n \to \infty}\BE[X_n] = \lim_{n \to \infty}\BE[X_n1_{A}] + \lim_{n \to \infty}\BE[X_n1_{A^c}] = \BE[X1_A] + 0 = \BE[X]$
+
+\item<3-> Remark 3.1.9: "If $(\Omega, \mathcal{F}, \BP)$ is complete, and if $X$ is a random variable, and $Y : \Omega \to \mathbf{R}$ such that $P(X = Y) = 1$, then $Y$ must also be a random variable.
+
+\item<4-> Proof: The only set we are guaranteed is measurable is $\{Y = X\}$. Let $A \in \mathcal{F}$ be arbitrary. Then $\{Y \in A\} = \{Y = X , X \in A\} \cup \{Y \in A, Y \neq X\}$. $\{Y \in A, Y \neq X\}$ is measurable because it is a subset of $\{X \neq Y\}$. $\{Y = X , X \in A\}$ is the intersection of two measurable sets. Therefore $\{Y \in A\}$ is measurable.
+
+
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Expectations and Riemann Integrals}
+
+   \begin{itemize}
+
+     
+   \item<1->Without loss of generality, let us consider any Riemann integrable function $X(t)$ over $[0,1]$.  We will show that $X$ is a random variable over the uniform measure (Lebesgue measure) $(\Omega, \mathcal{F}, \BP)$ on $\Omega=[0,1]$, and $\BE(X)=\int_{0}^1 X(t) dt$, the Riemann integral. 
+   
+
+   \item<2-> First, recall the definition of Riemann integral $\int_{0}^1 X(t) dt$. For any $\mathbf{s}=(s_0, s_1,\cdots, s_n)$ such that $0=s_0 < s_1 < \cdots < s_n=1$, let step functions $L_{\mathbf{s}} (t)=\inf_{s_{i-1} \le t \le s_i} X(t)$ and $U_{\mathbf{s}} (t)=\sup_{s_{i-1} \le t \le s_i} X(t)$ for $s_{i-1} \le t < s_i$. Then $L_{\mathbf{s}} (t) \leq X(t) \leq U_{\mathbf{s}} (t)$.
+ 
+    \item<3-> Then we may define the lower integral $L$ and upper integral $U$ as:
+    $L=\sup\{\sum_{i} (s_i-s_{i-1}) \inf_{s_{i-1} \le t \le s_i} X(t) \text{ for all } \mathbf{s}\}$, $U=\inf \{\sum_{i} (s_i-s_{i-1}) \sup_{s_{i-1} \le t \le s_i} X(t)\text{ for all } \mathbf{s}\}$
+
+    \item<4-> Since we assume that Riemann integral $\int_{0}^1 X(t) dt$ exists so we have  $L=U=\int_{0}^1 X(t) dt$.
+   
+   
+
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Expectations and Riemann Integrals}
+
+   \begin{itemize}
+
+    \item<1-> We may also view $L_{\mathbf{s}}$, $U_{\mathbf{s}}$ as simple random variables on $(\Omega, \mathcal{F}, \BP)$: $\BE(L_{\mathbf{s}})=\sum_{i} (s_i-s_{i-1}) \inf_{s_{i-1} \le t \le s_i}$, $\BE(U_{\mathbf{s}})=\sum_{i} (s_i-s_{i-1}) \sup_{s_{i-1} \le t \le s_i} X(t)$. 
+    
+    Lower integral $L=\sup_{\mathbf{s}} \BE(L_{\mathbf{s}})$, and upper integral $U=\inf_{\mathbf{s}} \BE(U_{\mathbf{s}})$
+    
+     
+   \item<2-> As $L=\sup_{\mathbf{s}} \BE(L_{\mathbf{s}})$, for any $n$, we should be able to find a simple random variable $L_n\leq X$, so that $\BE(L_n)\geq L-\frac{1}{n}$. Similarly, we can find simple random variable $U_n \geq X$ so that $\BE(U_n)\leq U+\frac{1}{n}.$
+   
+
+   \item<3-> We then let $A_n=\max (L_1, \cdots, L_n)$, $B_n=\min (U_1, \cdots, U_n)$. It is easy to see that $A_n$ is an increasing sequence of random variables and $B_n$ is a decreasing sequence of random variables. 
+   
+   \item<4-> Since $L_n\leq A_n\leq X\leq B_n \leq U_n$,  we have $L\leq \lim_{n\rightarrow \infty} \BE(A_n)\leq \lim_{n\rightarrow \infty} \BE(B_n)\leq U$. 
+   
+   Thus $\lim_{n\rightarrow \infty} \BE(A_n)=\lim_{n\rightarrow \infty} \BE(B_n)=L=U=\int_{0}^1 X(t) dt.$
+   
+    \item<5-> If we can show that $A_n$ converges to $X$, then $X$ must be a random variable. Furthermore, by the monotone convergence theorem, $\lim_{n\rightarrow \infty} \BE(A_n)=\BE(X)= \int_{0}^1 X(t) dt$.     
+   
+
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Expectations and Riemann Integrals}
+
+   \begin{itemize}
+
+\item<1-> To see why $A_n$ converges to $X$. Let us denote $S_k=\{\omega: \lim_{n\rightarrow \infty} (B_n-A_n) \ge 1/k\}$. That is, $S_k$ represents the set on which the limit of $B_n$ and $A_n$ differs at least by $1/k$. If we could prove that the probability of $S_k$ equals 0 for all $k$, we can then conclude that the set on which the limit of $B_n$ and $A_n$ differs has probability 0. But since $A_n\leq X\leq B_n$, we can conclude that both $A_n$ and $B_n$ should converges to $X$ with probability 1. 
+    
+         
+\item<2-> As $0=\lim_{n\rightarrow \infty} \BE(B_n-A_n) \geq \frac{1}{k}\BP(S_k)$. So $\BP(S_k)=0$. 
+   
+      \item<3-> Then $\BP(\lim_{n\rightarrow \infty} A_n< X) \leq \BP(\lim_{n\rightarrow \infty} A_n< \lim_{n\rightarrow \infty} B_n ) \leq \BP(\bigcup_k S_k) \leq \sum_k\BP(S_k)=0$. So $\{A_n\} \nearrow X$ almost surely.
+         
+         
+            
+      \item<4-> \textbf{Conclusion:}   Any Riemann integrable function $X(t)$ over $[0,1]$ is also a random variable over the uniform measure (Lebesgue measure) $(\Omega, \mathcal{F}, \BP)$ on $\Omega=[0,1]$, and $\BE(X)=\int_{0}^1 X(t) dt$.        
+
+
+\end{itemize}
+}
+
+\end{document}
