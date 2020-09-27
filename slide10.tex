@@ -159,17 +159,16 @@ Recall the MCT:
  \item<1-> \textbf{Linearity} $\BE(X+Y)=\BE(X)+\BE(Y)$ for any random variables $X, Y$ with finite expectation.
   
    \item<2-> \textbf{Proof:}  
+
+ \item<3->[-] $X + Y = (X+Y)^+ - (X+Y)^- = X^+ - X^- + Y^+ - Y^-$
+ 
+ \item<4->[-] Rearranging: $(X+Y)^+ + X^- + Y^- = (X+Y)^- + X^+ + Y^+ $
+ 
+ \item<5->[-] By linearity of nonnegative random variables: $\BE[(X+Y)^+] + \BE[X^-] + \BE[Y^-] = \BE[(X+Y)^-] + \BE[X^+] + \BE[Y^+] $
+ 
+ 
+ \item<6->[-] Rearranging, we have our result.
    
- \item<3->[-]First, if $X, Y\geq 0$, $X-Y\geq 0$, then $\BE(X-Y)=\BE(X)-\BE(Y)$.  This is true since $\BE(X)=\BE(X-Y+Y)=\BE(X-Y)+\BE(Y)$ (Linearity of non-negative random variables).                                           
-  \item<4->[-] Second, if $X, Y\geq 0$, then $\BE(X-Y)=\BE(X)-\BE(Y)$. 
-  
-  To prove this, let us denote $A=\{\omega: X(\omega)\geq Y(\omega)\}$. Then $(X-Y)^+=(X-Y)\BI_A \geq 0$ and $(X-Y)^-=(Y-X)\BI_{A^c} \geq 0$ :
-  
- $\BE(X-Y)=\BE[(X-Y)\BI_A]-\BE[(Y-X)\BI_{A^c}]$ 
- 
- $\ \ \ \ \ \ \  =\BE(X\BI_A)-\BE(Y\BI_A)-\BE(Y\BI_{A^c})+\BE(X\BI_{A^c})$
- 
- $\ \ \ \ \ \ \ =\BE[X(\BI_A+\BI_{A^c})]-\BE[Y(\BI_{A}+\BI_{A^c})]=\BE(X)-\BE(Y)$
 \end{itemize}
 }
 
@@ -180,40 +179,7 @@ Recall the MCT:
 
    \begin{itemize}
 
-  
-   \item<1-> \textbf{Proof (continued):} Now let us return to general $X, Y$. 
-   
-   Denote $A=\{\omega: X(\omega)+Y(\omega)\geq 0\}$. Then 
-   
-    $(X+Y)^+=(X+Y)\BI_A=(X^++Y^+-X^--Y^-)\BI_A $ and $(X+Y)^-=(X^-+Y^--X^+-Y^+)\BI_{A^c}$. \newline
-    
-      
-\item<2->[-]$\BE(X+Y)=\BE[(X^++Y^+-X^--Y^-)\BI_A]-\BE[(X^-+Y^--X^+-Y^+)\BI_{A^c}]$
-
-\item<3->[]          \ \ \ \     \ \ \ \     (If $X, Y\geq 0$, then $\BE(X-Y)=\BE(X)-\BE(Y)$)
-
-\item<3-> []$ =\BE[(X^++Y^+)\BI_A]-\BE[(X^-+Y^-)\BI_A]-\BE[(X^-+Y^-)\BI_{A^c}]+\BE[(X^++Y^+)\BI_{A^c}]$
-
-
-\item<4->[]    \ \ \ \    \ \ \ \   (By the linearity of non-negative random variables)
-
-\item<4-> []$ =\BE[(X^++Y^+) (\BI_A+ \BI_A^c) ]-\BE[(X^-+Y^-)(\BI_A+ \BI_A^c) ]$
-
-$=\BE[X^++Y^+]-\BE[X^-+Y^-]=\BE(X^+)+\BE(Y^+)-\BE(X^-)-\BE(Y^-)$
-$=\BE(X)+\BE(Y)$
-
-
-\end{itemize}
-}
-
-
-\frame
-{
-  \frametitle{Properties of Expectation: Linearity}
-
-   \begin{itemize}
-
-  \item<1-> [] For arbitrary random variables with finite expectations $X$, $Y$, and for any two real numbers $a,b$, we have $\BE[aX + bY] = a\BE[X] + b\BE[Y]$.
+  \item<1-> [] For arbitrary random variables with finite expectations $X$, $Y$, and for any two real numbers $a,b$, we can show $\BE[aX + bY] = a\BE[X] + b\BE[Y]$.
   
   \item<2-> [] From the previous result, it's clear that $\BE[aX+bY] = \BE[aX] + \BE[bY]$. All we need to show is that the nonrandom real numbers can be pulled out of the expectation.
   
