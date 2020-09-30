@@ -1,0 +1,192 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 11}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents
+``A First Look at Rigorous Probability Theory" (Jeffrey Rosenthal) Sections 5.1 and 5.2 }
+
+
+
+\subsection{Probability Inequalities}
+
+
+
+
+
+\frame
+{
+  \frametitle{Markov and Chebychev's Inequalities}
+
+   \begin{itemize}
+       \item<1->[]
+   \begin{Theorem}[Markov's Inequality] For non-negative random variable $X$, if $\alpha>0$, then $\BP(X\geq \alpha)\leq \BE(X)/\alpha$. 
+   \end{Theorem}
+
+\item<2-> \textbf{Proof} Let $A=\{\omega: X(\omega)\geq \alpha \}$, then we have $X\geq \alpha \BI_{A}$. By the order-preserving property of expectation,  Markov' inequality follows immediately. 
+
+\item<3-> Despite its simplicity, Markov's inequality can be quite useful in practice. For example, applying it to $f(X)=(X-\BE(X))^2$ gives us Chebychev's inequality:
+
+\item<4->[] 
+   \begin{Corollary}[Chebychev's Inequalities] For any random variable $Y$ with finite variance, for $\alpha\geq 0$, we have $\BP(|Y-\mu_Y|\geq \alpha)\leq \BV(Y)/\alpha^2$. 
+   \end{Corollary}
+
+         
+\end{itemize}
+}
+
+\frame
+{
+  \frametitle{The Cauchy-Schwarz Inequality}
+
+   \begin{itemize}
+       \item<1->[]
+   \begin{Theorem}[Cauchy-Schwarz Inequality] For random variables $X, Y$ so that $\BE(X^2)<\infty, \BE(Y^2)<\infty$, we have $\BE(|XY|) \leq \sqrt{\BE(X^2)\BE(Y^2)} $. 
+   \end{Theorem}
+
+\item<2-> \textbf{Proof} 
+\begin{align*}
+0 &\le \BE\left[ \left( \frac{|X| }{\sqrt{ \BE[X^2] }} - \frac{|Y| }{\sqrt{ \BE[Y^2] }} \right)^2 \right]\\
+&= 1 + 1 -2 \frac{\BE(|YX|) }{\sqrt{\BE(X^2)}\sqrt{\BE(Y^2)} } \\
+&= 2\left[1 - \frac{\BE(|YX|) }{\sqrt{\BE(X^2) \BE(Y^2)} }\right]
+\end{align*}
+
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{The Cauchy-Schwarz Inequality}
+
+   \begin{itemize}
+       \item<1->[]
+   \begin{Theorem}[Cauchy-Schwarz Inequality] For random variables $X, Y$ so that $\BE(X^2)<\infty, \BE(Y^2)<\infty$, we have $\BE(|XY|) \leq \sqrt{\BE(X^2)\BE(Y^2)} $. 
+   \end{Theorem}
+
+\item<2-> Special case 1: correlation must always be between $-1$ and $1$. For r.v.s $X$ and $Y$ with finite variances, $\mathbf{Cov} (X, Y)= \BE((X-\BE X)(Y-\BE Y ))$. Then $|\mathbf{Cov} (X, Y)|\leq \BE(|X-\BE X||Y-\BE Y|)\leq \sqrt{\BV(X)\BV(Y)}$, and $|\mathbf{Corr} (X,Y)|\leq 1.$
+
+\item<3-> Special case 2: the Cram\'er-Rao inequality. For esimator $\hat{\theta}$ and score function $U$. $\BE[U] = 0$ and $\BV\left[ U\right] = I(\theta)$. 
+         
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Jensen's Inequality}
+
+   \begin{itemize}
+       \item<1->[]
+   \begin{Theorem}[Jensen's Inequality] For random variable $X$ with finite mean, and a convex function $\phi: \mathbf{R}\rightarrow \mathbf{R}$,  we have $\BE(\phi(X)) \geq  \phi(\BE (X)) $. 
+   \end{Theorem}
+
+\item<2-> \textbf{Convex Function}:  $\phi(x)$ is convex if for any $x, y\in \mathbf{R}$ and $0<t<1$,  $t\phi(x)+(1-t) \phi(y) \geq \phi(tx+(1-t)y)$. For instance, $x^2, |x|, e^x$ are all examples of convex functions. 
+
+\item<3-> One key property of convex function is that given any point $(x_0, \phi(x_0))$, you may find a straight line $g(x)=a+bx$ that is bellow $\phi(x)$ and also passes through $(x_0, \phi(x_0))$ (usually it is the tangent at $x_0$ if the derivative of $\phi(x)$ exists at $x=x_0$). That is, $g(x)\leq \phi(x)$ and $g(x_0)=\phi(x_0)=a+bx_0$.  
+
+
+\item<4->  \textbf{Proof:} Apply the above property for $x_0=\BE(X)$, then we have 
+
+$\BE(\phi(X))\geq \BE(g(X))=a+b \BE(X)=g(\BE(X))=\phi (\BE(X))$.
+         
+\end{itemize}
+}
+
+\subsection{Almost Sure Convergence}
+
+
+\frame
+{
+  \frametitle{Almost Sure Convergence}
+
+   \begin{itemize}
+       \item<1-> \textbf{Pointwise Convergence} Suppose we have random variables $Z, Z_1, Z_2, \ldots $ on probability triple $(\Omega,\mathcal{F}, \BP)$ so that for each $\omega \in \Omega$, $\lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega)$. Then we may say that $\{Z_n\}$ converges to $Z$ pointwise, 
+       
+ 
+       \item<2-> This type of convergence is usually unnecessarily strong in probability theory. So a slightly weaker version is more popular and useful: we would only require $Z_n(\omega)$ converges to $Z(\omega)$ with probability one. That is, $\BP(\{\omega \in \Omega: \lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega) \})=1$. 
+
+
+     \item<3-> \textbf{Almost Sure Convergence} We say that $\{Z_n\}$ converges to $Z$ almost surely (or a.s., or with probability 1), if the above condition holds. And we usually denote it as $\BP(Z_n\rightarrow Z)=1$.
+     
+       \item<4-> \textbf{Example} Consider the uniform measure $(\Omega,\mathcal{F}, \BP)$ on $[0,1]$. Define $Z_n(\omega)=\BI_{[0,\frac{1}{2^n}]} (\omega)$, then for each $\omega>0$, we have $\lim_n Z_n(\omega)=0$ and $\lim_n Z_n (0)=1$. So  $\BP(\lim_{n\rightarrow \infty} Z_n(\omega)= 0)=\BP((0,1])=1$. That is, $\{Z_n\}$ converges to $Z=0$ almost surely (but not pointwise). 
+                
+\end{itemize}
+}
+
+
+
+
+
+\frame
+{
+  \frametitle{Almost Sure Convergence: A lemma}
+
+   \begin{itemize}
+       \item<1->[]
+       \begin{Lemma}[5.2.1] 
+       For r.v.s $Z, Z_1, Z_2, \ldots $ so that for each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$. Then $\BP(Z_n\rightarrow Z)=1$. (The converse is also true).
+       \end{Lemma}       
+ 
+    
+\item<2-> \textbf{Proof}: Pick $\omega \in \Omega$. $Z_n(\omega) \rightarrow Z(\omega)$ iff $\forall \epsilon > 0$, $\exists N$ such that $n \ge N$ implies $|Z_n(\omega) - Z(\omega)| < \epsilon$.
+
+\item<3-> $Z_n(\omega) \rightarrow Z(\omega)$ iff $\omega \in \bigcup_{N = 1}^{\infty} \bigcap_{n \ge N} \{|Z_n(\omega) - Z(\omega)| < \epsilon\}$
+
+\item<3-> $Z_n(\omega) \rightarrow Z(\omega)$ iff $\omega \in \liminf_{n \to \infty}\{|Z_n(\omega) - Z(\omega)| < \epsilon\} := \{|Z_n(\omega) - Z(\omega)| < \epsilon \text{ a.a}\}$ 
+
+\item<3-> $\BP(Z_n \rightarrow Z) = \BP(\{ \omega \in \Omega :  |Z_n(\omega) - Z(\omega)| < \epsilon \text{ a.a.}\}) = 1 - \BP(|Z_n - Z| \ge \epsilon \text{ i.o.})$
+% First, we can represent the event $\{\omega: Z_n (\omega) \rightarrow Z(\omega)\}$ as: 
+%        
+% $\{ Z_n\rightarrow Z \}=\bigcap_{h=1}^{\infty} \bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} \{ |Z_n-Z| <\frac{1}{h} \} $ (For each $h \in \mathbf{N}$, the events $\{ |Z_n-Z| <\frac{1}{h} \}$ occur almost always). 
+%        
+% \item<3->[-] The complement is $\{ Z_n\not \rightarrow Z \}=\bigcup_{h=1}^{\infty} \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} \{ |Z_n-Z| \geq \frac{1}{h} \} $ (There is $h\in \mathbf{N}$, the events $\{ |Z_n-Z| \geq \frac{1}{h} \}$ occur infinitely often.)
+%        
+%               \item<4->[-] $\BP(Z_n\not \rightarrow Z)= \BP(\bigcup_{h=1}^{\infty} \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} \{ |Z_n-Z| \geq \frac{1}{h} \} )$ $\leq \sum_{h=1}^{\infty}  \BP( |Z_n-Z| \geq \frac{1}{h} \ i.o. )=0$.
+%               
+%            \item<5->[-]  Thus $\BP(Z_n\not \rightarrow Z)=0$ and $\BP(Z_n \rightarrow Z)=1$. 
+                              
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Almost Sure Convergence and Borel-Cantelli Lemma}
+
+   \begin{itemize}
+       \item<1-> According to the  Borel-Cantelli Lemma: for a sequence of event $A_1, A_2, \cdots$, $\sum_n \BP(A_n) <\infty$ implies $\BP(A_n \ i.o. )=0$. Combining this with the lemma we obtained in previous slide: 
+       
+   \item<2->[]     \begin{Lemma} For r.v.s $Z, Z_1, Z_2, \ldots $ such that for any $\varepsilon>0$, $\sum_n \BP(|Z_n-Z| \geq \varepsilon)<\infty$. Then $\BP(Z_n\rightarrow Z)=1$.   \end{Lemma}       
+
+  \item<3-> \textbf{Example} Let $Z_1, Z_2, \ldots$ be random variables so that $P(Z_n=1)=\frac{1}{2^n}$ and $P(Z_n=0)=1-\frac{1}{2^n}$. Then for $1>\varepsilon>0$, $\BP(|Z_n|\geq \varepsilon)=\frac{1}{2^n}$ and $\sum_n \BP(|Z_n|\geq \varepsilon)=1<\infty$, so we must have $Z_n\rightarrow 0$ almost surely. 
+  
+  
+  \item<4-> \textbf{Note}  The converse of this lemma is not necessarily true. For instance, consider $Z_1, Z_2,\ldots$ defined on $([0,1],\mathcal{M}, \lambda)$, $Z_n(\omega)=\BI_{[0,\frac{1}{n}]} (\omega)$.                              
+\end{itemize}
+}
+
+
+\end{document}
