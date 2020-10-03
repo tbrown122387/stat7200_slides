@@ -1,0 +1,292 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 15}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+\subsection{Convergence Almost Surely}
+
+
+\frame
+{
+  \frametitle{Convergence Almost Surely}
+
+   \begin{itemize}
+       \item<1-> We say that $\{Z_n\}$ converges to $Z$ almost surely (or a.s., or with probability 1), if $\BP(\{\omega: \lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega) ,\omega \in \Omega\})=1$ \newline
+     
+       \item<2->$\BP(Z_n\rightarrow Z)=1$ is equivalent to
+       
+       For each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$ (or $\BP(|Z_n-Z| < \varepsilon \  a.a.)=1$) \newline
+       
+       
+       \item<3-> For r.v.s. $Z, Z_1, Z_2, \cdots $, we have that $\varepsilon>0$, $\sum_n \BP(|Z_n-Z| \geq \varepsilon)<\infty$ implies $\BP(Z_n\rightarrow Z)=1$ by the Borel-Cantelli lemma.  
+                
+\end{itemize}
+}
+
+
+
+\subsection{Convergence in Probability}
+
+\frame
+{
+  \frametitle{Convergence in Probability}
+
+   \begin{itemize}
+     \item<1-> \textbf{Convergence in Probability} For r.v.s. $Z, Z_1, Z_2, \ldots$, we say that $\{Z_n\}$ converges to $Z$ in probability, if for all $\varepsilon>0$, $\BP(|Z_n-Z|\geq \varepsilon) \rightarrow 0$ as $n\rightarrow \infty$. 
+     
+      
+      \item<2-> \textbf{Example} Let $Z_1, Z_2, \ldots$ be random variables such that $P(Z_n=1)=\frac{1}{2^n}$ and $P(Z_n=0)=1-\frac{1}{2^n}$. Then for $1>\varepsilon>0$, $\BP(|Z_n|\geq \varepsilon)=\frac{1}{2^n}\rightarrow 0$, so we must have $Z_n\rightarrow 0$ in probability. 
+      
+   \item<3->[]     \begin{Proposition} Convergence almost surely implies convergence in probability.  \end{Proposition}       
+
+  \item<4-> \textbf{Proof} If $\{Z_n\}$ converges to $Z$ almost surely, then for each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$. That is, $\BP(\limsup_n \{|Z_n-Z| \geq \varepsilon\})=0$.  
+    
+    \item<5->[-] $0\leq \liminf_n \BP(|Z_n-Z| \geq \varepsilon )\leq \limsup_n \BP(|Z_n-Z| \geq \varepsilon) \leq \BP(\limsup_n \{|Z_n-Z| \geq \varepsilon\})$=0. 
+    
+     \item<6->[-]  Thus, $\lim_n \BP(|Z_n-Z| \geq \varepsilon)=0$,  $\{Z_n\}$ converges to $Z$ in probability,.  
+                                
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Convergence in Probability and Convergence Almost Surely}
+
+	On the other hand, even if we know $\BP(|Z_n-Z| \geq \varepsilon) \to 0$, we still have no idea regarding the probability of $\{ |Z_n-Z| \geq \varepsilon \ i.o. \}$ is greater than 0. 
+	\newline
+		
+	If $\BP(|Z_n-Z| \geq \varepsilon)$ went to $0$ fast enough, then the $\sum_n \BP(|Z_n-Z| \geq \varepsilon) < \infty$, and we could invoke Borel-Cantelli. If it goes to $0$ slowly, then we can come up with counter-examples:       
+
+}
+
+\frame
+{
+  \frametitle{Convergence in Probability and Convergence Almost Surely}
+
+   \begin{itemize}
+     
+\item<2-> For $n \in \mathbb{N}$ let $Z_n$ be such that $\BP(Z_n = 1) = 1 - \BP(Z_n = 0) = \frac{1}{n}.$ Also, suppose these r.v.s are independent. 
+   
+\item<3-> Pick $1 > \epsilon > 0$. Then $\BP(|Z_n - 0| > \epsilon) = \BP(Z_n = 1) = n^{-1} \to 0$. So it converges *in probability*.
+
+\item<3-> On the other hand, $\sum_n \BP(|Z_n - 0| > \epsilon) = \infty$, so by the second Borel-Cantelli lemma, $\BP(|Z_n| > \epsilon \text{ i.o.} ) = 1$. Not only does it not converge almost surely to $0$, but it converges to $0$ almost nowhere!
+                                      
+\end{itemize}
+}
+
+\frame
+{
+  \frametitle{Convergence in Probability and Convergence Almost Surely}
+
+   \begin{itemize}
+     
+   \item<2-> \textbf{Example} Consider the uniform measure $([0,1],\mathcal{M}, \lambda)$ and define 
+      $Z_1=\BI_{[0,1/2)}$,$Z_2=\BI_{[1/2,1]}$, 
+      
+      $Z_3=\BI_{[0,1/4)}$,$Z_4=\BI_{[1/4,1/2)}$,$Z_5=\BI_{[1/2,3/4)}$, $Z_6=\BI_{[3/4,1]}$,
+      
+      $Z_7=\BI_{[0,1/8)}$,$Z_8=\BI_{[1/8,2/8)}$,$\ldots$, $Z_{14}=\BI_{[7/8,1]},$
+      
+      $\ldots $
+      
+    \item<3->[-] In general $Z_n = 1_{\left[\frac{k}{2^m}, \frac{k+1}{2^m} \right)}$ where $m = \floor{\log_2(n + 1)}$ and $k = n + 1 - 2^m$
+      
+    \item<3->[-] $\{Z_n\}$ converges to $0$ in probability because, for any $1 > \epsilon > 0$, $2^{- \floor{\log_2(n + 1)}} \le 1/(n+1) \to 0$. 
+    
+    \item<4->[-] But $\limsup_{n \to \infty} \{|Z_n| > \epsilon\} = \bigcap_{a=1}^ \infty \bigcup_{n \ge a} \left[\frac{k}{2^m}, \frac{k+1}{2^m} \right) = \bigcap_{a=1}^ \infty [0,1]$.
+    
+    
+    
+    \item<5->[-] For each $\omega$, the sequence $Z_1(\omega), Z_2(\omega),\cdots$ contains infinitely number of $1$s. 
+      
+      
+          
+                                      
+\end{itemize}
+}
+
+\subsection{Law of Large Numbers }
+
+
+
+\frame
+{
+  \frametitle{Weak Law of Large Numbers Version 1}
+
+   \begin{itemize}
+      \begin{Theorem}[WLLN V1] For a sequence of independent random variables $X_1, X_2,\ldots$ with the same mean $\mu$ and finite variance bounded by $\sigma^2$, define $S_n=X_1+X_2+\cdots +X_n$, then $S_n/n$ converges to $\mu$ in probability.
+      
+   \end{Theorem}
+      
+      \item<2-> \textbf{Proof} We need to prove that, for any $\varepsilon>0$, $\lim_n \BP(|S_n/n-\mu|\geq \varepsilon)=0$. 
+      
+
+      
+           \item<3->[-]  Since $\BE(S_n/n)=\sum_{i=1}^n \BE(X_i)/n=\mu$, by Chebychev's inequality, we have:
+           
+           $$\BP(|\frac{S_n}{n}-\mu|\geq \varepsilon) \leq \frac{\BV(S_n/n)}{\varepsilon^2} =\frac{\sum_{i=1}^n \BV(X_i)}{n^2 \varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2}\rightarrow 0$$
+           
+     \item<4->\textbf{Note} Since $\sum_n \frac{1}{n}=\infty$, the above proof does not suggest that  $S_n/n$ converges to $\mu$ almost surely.
+      
+                                      
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Strong Law of Large Numbers Version 1}
+
+   \begin{itemize}
+      \begin{Theorem}[SLLN V1] For a sequence of independent random variables $X_1, X_2,\ldots$ with the same mean $\mu$ and bounded finite fourth central moments  ($\BE(X_i-\mu)^4\leq a < \infty)$, define $S_n=X_1+X_2+\cdots +X_n$, then $S_n/n$ converges to $\mu$ almost surely.
+      
+   \end{Theorem}
+      
+      \item<2-> \textbf{Proof} Without loss of generality, let us assume that $\mu=0$ (otherwise we can set $X'_i=X_i-\mu$). 
+      
+      \item<3->[-] We want to show that, for any $\varepsilon>0$, $\sum_n \BP(|S_n/n|\geq \varepsilon)<\infty$, and then invoke BCL. Note that  
+      
+             $$\BP(|\frac{S_n}{n}|\geq \varepsilon)= \BP(S_n^4 \geq n^4 \varepsilon^4)  \leq \frac{\BE(S_n^4)}{n^4\varepsilon^4}$$
+             
+       If we can show that, $\BE(S_n^4) \leq K n^2$, where $K$ is a constant, then $\sum_n \BP(|S_n/n|\geq \varepsilon)\leq K\epsilon^{-4} \sum_n \frac{1}{n^2}<\infty,$ and we should have $S_n/n$ converges to $\mu$ almost surely.
+                 
+                                      
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Strong Law of Large Number Version 1: continued}
+
+\begin{itemize}
+      
+      \item<1-> \textbf{Proof: continued} As $S_n=X_1+X_2+\cdots +X_n$, the expansion of $S_n^4$ would contains four different terms: 1)  $X_i^4$, whose expectation is bounded by constant $a$; 2) $X_i (X_j^3)$, whose expectation equals 0 as we assume $\mu=0$; 3) $X_i X_j X_k^2$, whose expectation also equals 0. 4) $X_i^2 X_j^2$. 
+      
+      \item<2->[-] For the expectation of $X_i^2 X_j^2$ ($i\neq j$). Note that as $X^2\leq X^4+1$ (considering $X>1$ and $X\leq 1$), we have $\BE X_i^2 \leq \BE X_i^4+1\leq a+1$, so $\BE(X_i^2 X_j^2)\leq (a+1)^2$. 
+            
+      \item<3->[-] Furthermore, there are $n$ different terms in the form of $X_j^4$ in the expansion of $S_n$, and ${4 \choose 2}{n \choose 2}=3n(n-1)$ different terms in the form of $X_i^2X_j^2$. Thus:
+      
+      $$\BE(S_n^4)= \sum_i \BE (X_i^4)+\sum_{i\neq j} \BE(X_i^2 X_j^2)\leq n a+ 3n(n-1) (a+1)^2 \leq Kn^2.$$      
+             
+             We then have $S_n/n$ converges to $\mu$ almost surely.         
+                                      
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Relax the Conditions in the Law of Large Number}
+
+\begin{itemize}
+      
+      \item<1-> In the discussion above, to ensure the law of large numbers, we required that $X_i$s are independent random variables with finite high-order moments. 
+      
+%      \item<2-> One way to relax this condition is to allow for weak-dependence. As long as the second moments of $S_n$ are still on the order of $n$, a similar proof would still be valid.
+      
+      \item<2-> One way to relax this condition is to only require the first moment to be finite. In this situation, we would need to add an extra condition: that the $X_i$s are identically distributed (in addition to independent). 
+      
+      \item<3-> \textbf{Identically Distributed:}  A collection of random variable $\{X_{\alpha}\}_{\alpha\in I}$ is identically distributed if for any measurable function $f$, the expectation $\BE(f(X_{\alpha}) )$ is the same for all $\alpha \in I$. This condition is equivalent to: for any $x \in \mathbf{R}$, $\BP(X_{\alpha}\leq x)$ does not depend on $\alpha$.   
+      
+      \item<4-> \textbf{i.i.d.:}  A collection of random variable $\{X_{\alpha}\}_{\alpha\in I}$ are i.i.d. if they are independent and identically distributed. 
+                                      
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Strong Law of Large Number Version 2}
+
+   \begin{itemize}
+   \item<1->[]   \begin{Theorem}[SLLN V2] Let $X_1, X_2,\ldots$be a sequence of i.i.d. random variables with a finite mean $\mu$. Define $S_n=X_1+X_2+\cdots +X_n$. Then $S_n/n$ converges to $\mu$ almost surely.
+      
+   \end{Theorem}
+   
+      \item<2->[]   \begin{Corollary}[Weak Law of Large Number (WLLN) V2] Let $X_1, X_2,\ldots$be a sequence of i.i.d. random variables with a finite mean $\mu$. Define $S_n=X_1+X_2+\cdots +X_n$. Then $S_n/n$ converges to $\mu$ in probability.
+      
+   \end{Corollary}
+      
+      
+      \item<3->[] The second version of WLLN follows from the fact that convergence almost surely implies convergence in probability. 
+      
+                 
+                                      
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Proof to Strong Law of Large Number Version 2: Part I}
+
+   \begin{itemize}
+   \item<1-> First, without loss of generality, we may assume that $X>0$. Otherwise, we can let $X_i=X_i^+-X_i^-$, and apply the law of large number to $X_i^+$ and $X_i^-$ respectively. 
+   
+      \item<2->[-] Second, to prove almost sure convergence, the most reliable route is to use Chebchev's inequality to obtain an upper bound of $\BP( |S_n/n-\mu|\geq \varepsilon)$ and then apply  Borel-Cantelli Lemma to show that the probability of event $\{|S_n/n-\mu|\geq \varepsilon\ i.o.\}$ equals 0. However, the condition of applying Chebchev's inequality is that the variance of $X_i$ exists. For this purpose, we need to construct a truncated version of $X_i$. 
+                                            
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Proof to Strong Law of Large Number Version 2: Part II}
+
+   \begin{itemize}
+   \item<1-> Let $Y_i=X_i \BI_{X_i\leq i}$. Then $0\leq Y_i \leq i$, $\BE(Y_i^k) \leq i^k< \infty$ for any $k$.
+   
+    \item<2->[]\begin{Lemma} Define $T_n=Y_1+\cdots+Y_n$, if $T_n/n$ converges to $\mu$ almost surely, $S_n/n$ also converges to $\mu$ almost surely \end{Lemma} 
+    
+    \item<3-> \textbf{Proof:} We only need to show that $(T_n-S_n)/n \rightarrow 0$ almost surely. 
+    
+         \item<4->[-]  As $\sum_{k=1}^{\infty} \BP(X_k\neq Y_k)=\sum_{k=1}^{\infty} \BP (X_k>k) \leq \sum_{k=1}^{\infty} \BP (X_1\geq k)\leq \BE(X_1)=\mu<\infty$ (see Proposition 4.2.9), by the Borel-Cantelli Lemma, $\BP(X_k\neq Y_k\ i.o.)=0$. Thus $\BP(X_k-Y_k=0\ a.a)=1$.
+         
+         \item<5->[-]   For any $\omega\in \{\omega: X_k(\omega)-Y_k(\omega)=0\ a.a \}$, there is an $N \in \mathbf{N}$ so that for any $n>N$, $X_n(\omega)=Y_n(\omega)$. Correspondingly, for $n>N$, $(T_n(\omega)-S_n(\omega))/n=\sum_{i=1}^N (Y_i(\omega)-X_i (\omega) )/n \rightarrow 0$ as $n\rightarrow \infty$.  Thus $\BP (\lim_n (T_n-S_n)/n=0)\leq \BP(X_k-Y_k=0\ a.a)=1$.
+                                      
+\end{itemize}
+}
+
+
+
+
+
+
+\end{document}
