@@ -1,0 +1,302 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 13}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+\section{Theory of Convergence}
+\subsection{Convergence Almost Surely}
+\subsection{Convergence in Probability}
+
+\frame
+{
+  \frametitle{Convergence Almost Surely and Convergence in Probability}
+
+   \begin{itemize}
+       \item<1-> We say that $\{Z_n\}$ converges to $Z$ almost surely (or a.s., or with probability 1), if $\BP(\{\omega \in \Omega : \lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega)\})=1$. This definition is equivalent to $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$ (or $\BP(|Z_n-Z| < \varepsilon \  a.a.)=1$)  for each $\varepsilon>0$,     
+       
+       \item<1-> By the (first) Borel-Cantelli Lemma, for r.v.s. $Z, Z_1, Z_2, \ldots $, if for each $\varepsilon>0$, $\sum_n \BP(|Z_n-Z| \geq \varepsilon)<\infty$, then $\BP(Z_n\rightarrow Z)=1$.  \newline 
+       
+         \item<2-> We say that $\{Z_n\}$ converges to $Z$ in probability, if for all $\varepsilon>0$, $\BP(|Z_n-Z|\geq \varepsilon) \rightarrow 0$ as $n\rightarrow \infty$. \newline
+         
+        \item<3->  One key approach to prove convergence almost surely/ in probability is to apply Markov's  (or Chebychev's ) inequality to obtain an upper bound of $\BP(|Z_n-Z|\geq \varepsilon)$, and to show  $\sum_n \BP(|Z_n-Z| \geq \varepsilon)<\infty$ (for convergence almost surely) or  $\BP(|Z_n-Z|\geq \varepsilon) \rightarrow 0$ (for convergence in probability). 
+
+                
+\end{itemize}
+}
+
+
+
+\subsection{Law of Large Numbers }
+
+
+
+\frame
+{
+  \frametitle{Weak and Strong Laws of Large Numbers Version 1}
+
+   \begin{itemize}
+      \item<1->[]\begin{Theorem}[WLLN V1] For a sequence of independent random variables $X_1, X_2,\ldots$ with the same mean $\mu$ and finite variance bounded by $\sigma^2$, define $S_n=X_1+X_2+\cdots +X_n$. Then $S_n/n$ converges to $\mu$ in probability.
+      
+   \end{Theorem}
+      
+        \item<1->[]    \begin{Theorem}[SLLN V1] For a sequence of independent random variables $X_1, X_2,\ldots$ with the same mean $\mu$ and bounded finite fourth central moments  ($\BE(X_i-\mu)^4\leq a \leq \infty)$, define $S_n=X_1+X_2+\cdots +X_n$, then $S_n/n$ converges to $\mu$ almost surely.
+      
+   \end{Theorem}
+   
+                                      
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Strong Laws of Large Numbers Version 2}
+
+   \begin{itemize}
+   \item<1->[]   \begin{Theorem}[SLLN V2] For a sequence of i.i.d. random variables $X_1, X_2,\ldots$ with the finite mean $\mu$, define $S_n=X_1+X_2+\cdots +X_n$; then $S_n/n$ converges to $\mu$ almost surely.
+      
+   \end{Theorem}
+   
+      \item<2->[]   \begin{Corollary}[WLLN V2] For a sequence of i.i.d. random variables $X_1, X_2,\ldots$ with the finite mean $\mu$, define $S_n=X_1+X_2+\cdots +X_n$; then $S_n/n$ converges to $\mu$ in probability.
+      
+   \end{Corollary}
+      
+      
+      \item<3->[] The second version of WLLN follows from the fact that convergence almost surely implies convergence in probability. 
+      
+                 
+                                      
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Proof of SLLN V2: Part I}
+
+We now resume the proof to SLLN2 (started last lecture). 
+\newline
+
+If you didn't show this on your own after last lecture, let's do Proposition 4.2.9: if $X \ge 0$, then $\sum_{k=1}^{\infty} \BP(X \ge k) = E\floor{X}$.
+\newline
+
+\begin{align*}
+\sum_{k=1}^{\infty} \BP(X \ge k) &= \sum_{k=1}^{\infty} \sum_{l=1}^{\infty} \BP( k + l > X \ge k+l-1) \\
+&= \sum_{l=1}^{\infty} l \BP( 1 + l > X \ge 1+l-1) \\
+&= \sum_{l=1}^{\infty} l \BP( \floor{X} = l) \\
+&= \BE[\floor{X}]
+\end{align*}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part I}
+
+   \begin{itemize}
+   \item<1-> First, without loss of generality, we may assume that $X\geq 0$. Otherwise, we can let $X_i=X_i^+-X_i^-$, and apply the law of large number to $X_i^+$ and $X_i^-$ respectively. 
+   
+      \item<2->[-] Second, to prove almost sure convergence, the most reliable route is to use Chebchev's inequality to obtain an upper bound of $\BP( |S_n/n-\mu|\geq \varepsilon)$ and then apply the Borel-Cantelli lemma to show that the probability of event $\{|S_n/n-\mu|\geq \varepsilon\ i.o.\}$ equals 0. 
+	      
+      \item<3->[-] However, the condition of applying Chebchev's inequality is that the variance of $X_i$ exists. For this reason, we need to construct a truncated version of $X_i$. 
+                                            
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part II}
+
+   \begin{itemize}
+   \item<1-> Let $Y_i=X_i \BI_{X_i\leq i}$. Then $0\leq Y_i\leq i, Y_i\leq X_i$, $\BE(Y_i^k) \leq i^k< \infty$ for any $k$.
+   
+    \item<2->[]\begin{Lemma} Define $T_n=Y_1+\cdots+Y_n$, if $T_n/n$ converges to $\mu$ almost surely, $S_n/n$ also converges to $\mu$ almost surely \end{Lemma} 
+    
+    \item<3-> \textbf{Proof:} We only need to show that $(T_n-S_n)/n \rightarrow 0$ almost surely. 
+    
+         \item<4->[-]  As $\sum_{k=1}^{\infty} \BP(X_k\neq Y_k)=\sum_{k=1}^{\infty} \BP (X_k>k) \leq \sum_{k=1}^{\infty} \BP (X_1\geq k)\leq \BE(X_1)=\mu<\infty$ (see Proposition 4.2.9). By the Borel-Cantelli Lemma, $\BP(X_k\neq Y_k\ i.o.)=0$. Thus $\BP(X_k-Y_k=0\ a.a)=1$.
+         
+         \item<5->[-]   For any $\omega\in \{\omega: X_k(\omega)-Y_k(\omega)=0\ a.a \}$, there is an $N \in \mathbf{N}$ so that for any $n>N$, $X_n(\omega)=Y_n(\omega)$. Correspondingly, for $n>N$, $(T_n(\omega)-S_n(\omega))/n=\sum_{i=1}^N (Y_i(\omega)-X_i (\omega) )/n \rightarrow 0$ as $n\rightarrow \infty$.  Thus $\BP (\lim_n (T_n-S_n)/n=0)\geq \BP(X_k-Y_k=0\ a.a)=1$.
+                                      
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part III}
+
+   \begin{itemize}
+   \item<1-> Another trick we would like to use is to focus on a subsequence. 
+       
+    \item<2->[]\begin{Lemma} For $\alpha>1$, let $a_k=\left \lfloor{\alpha^k}\right \rfloor$, the greatest integer less than or equal to $\alpha^k$. If for any $\alpha>1$, $T_{a_n}/a_n$ converges to $\mu$ almost surely, then $T_n/n$ also converges to $\mu$ almost surely. \end{Lemma}
+        
+    \item<3-> \textbf{Proof:} For any $k$, we can find $n_k = n$ such that $a_n\leq k < a_{n+1}$:
+    
+    $\frac{a_n}{a_{n+1}}\frac{T_{a_n}}{a_{n}}= \frac{T_{a_n}}{a_{n+1}} \leq \frac{T_{k}}{k}\leq \frac{T_{a_{n+1}}}{a_{n}} = \frac{a_{n+1}}{a_{n}}\frac{T_{a_{n+1}}}{a_{n+1}}$
+    
+%    \item<4->[-] Pick $\omega in \{|T_{a_n}/a_n-\mu| < \varepsilon \ a.a.\}$. Take $n \to \infty$. Then
+   
+  \item<4-> [-] As $k\rightarrow \infty$, $\frac{a_n}{a_{n+1}}\rightarrow \frac{1}{\alpha}$ and $\frac{a_{n+1}}{a_{n}}\rightarrow \alpha$. 
+
+  \item<5->[-] Goal:       $\mu - \varepsilon \le \frac{\mu}{(1+\delta)\alpha} \le \frac{a_n}{a_{n+1}}\frac{T_{a_n}}{a_{n}} \leq \frac{T_{k}}{k}\leq  = \frac{a_{n+1}}{a_{n}}\frac{T_{a_{n+1}}}{a_{n+1}} \le \mu(1+\delta)\alpha < \mu + \varepsilon$
+  
+  %Thus, given any $\varepsilon>0$, it would be possible to choose $\alpha$ so that for large enough $k$,  $\frac{a_n}{a_{n+1}} \mu> \mu-\epsilon$ and  $\frac{a_{n+1}}{a_{n}} \mu<\mu+\epsilon$ 
+
+
+%  
+%    \item<5-> [-] As $T_{a_n}/a_n$ converges to $\mu$ almost surely, $\BP(|T_{a_n}/a_n-\mu| < \varepsilon \ a.a. )=1$, combing with the above result, we can show that $\BP(|T_{n}/n-\mu|< 2\varepsilon \ a.a.)=1$. Thus $T_n/n$ converges to $\mu$ almost surely.
+                                            
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part III (continued)}
+
+   \begin{itemize}
+        
+  \item<1->[-] Goal:       $\mu - \varepsilon \le \frac{\mu}{(1+\delta)\alpha} \le \frac{a_n}{a_{n+1}}\frac{T_{a_n}}{a_{n}} \leq \frac{T_{k}}{k}\leq  \frac{a_{n+1}}{a_{n}}\frac{T_{a_{n+1}}}{a_{n+1}} \le \mu(1+\delta)\alpha < \mu + \varepsilon$
+  
+  \item<2->[-] Pick $\varepsilon > 0$. Pick $\alpha > 1$ so that $\mu\alpha^2 < \mu + \varepsilon$. Then pick $\delta$ such that $(1 + \delta) < \alpha$. These two together imply $\mu(1+\delta)\alpha < \mu + \varepsilon$.
+ 
+  \item<3->[-] Pick $N_1$ such that $n > N_1$ implies $a_{n+1}/a_n < \alpha(1+\delta)^{1/2}$. Pick $N_2$ such that $n > N_2$ implies $T_{a_{n+1}}/a_{n+1} < \mu(1+\delta)^{1/2}$. Pick $N_3$ such that $n > N_3$ implies $T_{a_{n}}/a_{n} > \mu / (1+\delta)^{1/2}$
+%  $\frac{a_{n+1}}{a_{n}} < \alpha(1+\delta)$
+  %Thus, given any $\varepsilon>0$, it would be possible to choose $\alpha$ so that for large enough $k$,  $\frac{a_n}{a_{n+1}} \mu> \mu-\epsilon$ and  $\frac{a_{n+1}}{a_{n}} \mu<\mu+\epsilon$ 
+  
+
+
+%  
+%    \item<5-> [-] As $T_{a_n}/a_n$ converges to $\mu$ almost surely, $\BP(|T_{a_n}/a_n-\mu| < \varepsilon \ a.a. )=1$, combing with the above result, we can show that $\BP(|T_{n}/n-\mu|< 2\varepsilon \ a.a.)=1$. Thus $T_n/n$ converges to $\mu$ almost surely.
+                                            
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part IV}
+
+   \begin{itemize}
+   \item<1-> Here we will show that, for  $a_k=\left \lfloor{\alpha^k}\right \rfloor$ ($\alpha>1$), $T_{a_n}/a_n$ converges to $\mu$ almost surely. 
+       
+        
+    \item<2->[-] First, as $Y_n=X_n \BI_{X_n\leq n}$, and $X_i$s are i.i.d. random variables. $\BE(Y_n)=\BE(X_n \BI_{X_n\leq n} )=\BE(X_1 \BI_{X_1\leq n} )\rightarrow \BE(X_1)=\mu$ by the monotone convergence theorem.  
+    
+        \item<3->[-]  Second, as $n\rightarrow \infty$, $a_n\rightarrow \infty$, $\BE(T_{a_n}) /a_n=\sum_{i=1}^{a_n} \BE(Y_i)/a_n \rightarrow \mu $. Thus, we only need to show  $ (T_{a_n}-\BE(T_{a_n}) )/a_n \rightarrow 0$ almost surely. 
+        
+                \item<4->[-]  Our goal is then to verify that for any $\varepsilon >0$
+                
+                $$\sum_{n=1}^{\infty} \BP\left( \left| \frac{T_{a_n}-\BE(T_{a_n})}{a_n} \right|\geq \varepsilon\right)\leq \sum_{n=1}^{\infty}\frac{\BV(T_{a_n})}{a_n^2 \varepsilon^2}<\infty$$
+                  
+                                                
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part V}
+
+   \begin{itemize}
+   \item<1-> To show $\sum_{n=1}^{\infty}\frac{\BV(T_{a_n})}{a_n^2 \varepsilon^2}<\infty$,  note that:
+   
+   \begin{align*} \BV(T_{a_n})& =\sum_{k=1}^{a_n} \BV(Y_k) \leq \sum_{k=1}^{a_n} \BE(Y_k^2) \\ & = \sum_{k=1}^{a_n} \BE(X_k^2 \BI_{X_k\leq k})= \sum_{k=1}^{a_n} \BE(X_1^2 \BI_{X_1\leq k}) \leq a_n \BE(X_1^2 \BI_{X_1\leq a_n} ) \end {align*} 
+       
+        
+    \item<2->[-] So we have 
+    
+    $$\sum_{n=1}^{\infty}\frac{\BV(T_{a_n})}{a_n^2 \varepsilon^2}\leq \sum_{n=1}^{\infty} \frac{ \BE(X_1^2 \BI_{X_1\leq a_n} )}{a_n \varepsilon^2} = \frac{1}{\varepsilon^2} \BE(X_1^2 \sum_{n=1}^{\infty} \frac{1}{a_n}  \BI_{a_n\geq X_1} )$$
+    
+    
+        
+        \item<3->[-] We will show that $\sum_{n=1}^{\infty} \frac{1}{a_n}  \BI_{a_n\geq x} \leq \frac{2/x}{1-\alpha^{-1}}$, so that 
+        $$\BE(X_1^2 \sum_{n=1}^{\infty} \frac{1}{a_n}  \BI_{a_n\geq X_1} )\leq \BE(X_1^2  \frac{2/X_1}{1-\alpha^{-1}} )=\BE(\frac{2X_1}{1-\alpha^{-1}})=\frac{2\mu}{1-\alpha^{-1}}<\infty$$
+        
+                                                        
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part VI}
+
+   \begin{itemize}
+   \item<1-> We still need to show that $\sum_{n=1}^{\infty} \frac{1}{a_n}  \BI_{a_n\geq x} \leq \frac{2/x}{1-\alpha^{-1}}$ for $a_k=\left \lfloor{\alpha^k}\right \rfloor$ ($\alpha>1$). 
+     
+     \item<2-> We can verify that $a_n\geq \alpha^n/2$, then 
+     
+     \begin{align*}
+     \sum_{n=1}^{\infty} \frac{1}{a_n}\BI_{a_n\geq x} &  =\sum_{a_n\geq x} \frac{1}{a_n} \leq \sum_{\alpha^n \geq x} \frac{1}{a_n}  \leq \sum_{\alpha^n \geq x} \frac{2}{\alpha^n } \\ 
+     & = \sum_{k=0}^{\infty} \frac{2}{\alpha^{k}x } \\
+     &=\frac{2/x}{ 1-\alpha^{-1}} 
+     \end{align*}
+%\leq \sum_{k=0}^{\infty} \frac{2}{\alpha^{\log_{\alpha} x+k} }
+                                                               
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Proof OF SLLN V2: Part VII}
+
+   \begin{itemize}
+   \item<1-> \textbf{Summary} We first assume $X\geq 0$, then we define $Y_i=X_i \BI_{X_i\leq i}$, then for $\alpha>0$, we define the index of a subsequence as $a_k=\left \lfloor{\alpha^k}\right \rfloor$. 
+   
+      \item<2->[1)] We show that $ (T_{a_n}-\BE(T_{a_n}) )/a_n \rightarrow 0$ almost surely,
+      
+       \item<3->[2)] $T_{a_n}/a_n \rightarrow \mu$ almost surely.  
+
+          \item<4->[3)]  $T_{n}/n \rightarrow \mu$ almost surely.  
+          
+                    \item<5->[4)]  $S_{n}/n \rightarrow \mu$ almost surely.  
+                    
+                          \item<6->[5)] For general $X$, $\sum_{i=1}^n X_{i}^+/n \rightarrow \BE(X^+)$ and $\sum_{i=1}^n  X_{i}^-/n \rightarrow \BE(X^-)$ almost surely, then $ \sum_{i=1}^nX_{i}/n \rightarrow \mu$ almost surely.                                                                 
+\end{itemize}
+}
+
+
+\end{document}
