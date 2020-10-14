@@ -1,0 +1,270 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 14}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+
+%\section{Mathematical Background}
+%\section{Why the Advanced Probability is Hard?}
+%\section{Probability Triple}
+%\section{Foundation of Probability I}
+\section{Theory of Convergence I}
+
+
+\subsection{Convergence Almost Surely}
+
+\subsection{Convergence in Probability}
+
+\subsection{Law of Large Number }
+
+
+\section{Foundation of Probability II}
+
+\subsection{Distribution}
+
+
+
+\frame
+{
+  \frametitle{Distribution}
+
+   \begin{itemize}
+   \item<1-> \textbf{Distribution}  For a random variable $X$ on probability triple $(\Omega, \mathcal{F}, \BP)$, its distribution (law) is a function $\mu$ defined on all Borel subsets $\mathcal{B}$:
+   
+   $$\mu(B)=\BP(X\in B)=\BP(\{\omega:\omega\in X^{-1} (B)\})$$ 
+   
+      \item<2-> We can then verify that $(\mathbf{R}, \mathcal{B}, \mu)$ is a valid probability triple. This probability triple is sometimes called the probability triple induced by random variable $X$. 
+      
+       \item<3-> Notation-wise, we may write $\mu$ as $\mathcal{L}(X)$ and use $X\sim \mu$ to represent that $\mu$ is the distribution of X.
+       
+      \item<4-> \textbf{Remark} Generally speaking, if we want to compare two random variables $X$ and $Y$ directly, we need to make sure that they are defined on the same probability triple. However, such requirement is not necessary when we compare the distributions of two random variables, as both $\mathcal{L}(X)$ and $\mathcal{L}(Y)$ can be regarded as probability measures over the same sample space $\mathbf{R}$ and $\sigma-$algebra $\mathcal{B}$.
+                                                                   
+\end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{CDF}
+
+   \begin{itemize}
+  
+                \item<1-> \textbf{CDF} We define the cumulative distribution function of a random variable $X$ as $F_X(x)=\BP(X\leq x)$. 
+                
+                \item<2-> A CDF is a right-continuous, non-decreasing function, and $\lim_{x\rightarrow -\infty }F_X(x)=0, \lim_{x\rightarrow \infty }F_X(x)=1$
+
+	\item<3->\textbf{CDF specifies the Law (Prop. 6.0.2)}. It is clear that, for two random variables $X$ and $Y$, if $\mathcal{L}(X)=\mathcal{L} (Y)$, then $F_X(x)=F_Y(x)$ for all $x\in \mathbf{R}$. On the other hand, by the uniqueness of extension theorem, if $F_X(x)=F_Y(x)$ for all $x\in \mathbf{R}$, then $\mathcal{L}(X)=\mathcal{L} (Y)$ as well.                                             
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Distribution and Expectation}
+
+   \begin{itemize}
+  
+                \item<1-> When we discuss expectation of a random variable $X$, we define the expectation over the probability triple $(\Omega, \mathcal{F}, \BP)$. The following theorem shows that, the corresponding expectation defined over the probability triple induced by $X$ would be the same. 
+                
+               \item<2-> [] \begin{Theorem}[Change of Variable Theorem] 
+               On a probability triple $(\Omega, \mathcal{F}, \BP)$, let $X$ be random variable  with distribution $\mu$, and $f$ be any Borel-measurable function from $\mathbf{R}\rightarrow \mathbf{R}$. Assuming that all necessary expectations exist, we have:  
+               $$\BE_{\BP} [f(X)] := \int_{\Omega} f(X(\omega) )\mathbf{P} (d\omega)  =\int_{-\infty}^{\infty} f(t) \mu(dt) :=\BE_{\mu} [f(X)] $$ 
+               \end{Theorem} 
+                
+                                                      
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof of the Change of Variable Theorem}
+
+   \begin{itemize}
+  
+                \item<1->[1)] When $f$ is an indicator function: $f=\BI_B$ where $B$ is a Borel set: 
+                
+                $\BE_{\BP} (f)=  \int_{\Omega} f(X(\omega) )\mathbf{P} (d\omega)=\int_{\Omega} \BI_{X(\omega) \in B} \mathbf{P} (d\omega)=\BP(X\in B)$                
+                \item<2->[]    $\BE_{\mu}(f) = \int_{-\infty}^{\infty} f(t) \mu(dt) =\int_{\Omega} \BI_{t \in B} \mu(dt)=\mu(B)=\BP(X\in B)$
+
+                             
+               \item<3->[2)] For simple function $f$ (a finite linear combination of indicator function), the theorem holds as the expectation is linear.     
+               
+                              \item<4->[3)] For non-negative functions $f$, we can always construct a sequence of non-negative simple functions $f_n\nearrow f$ (e.g. define $f_n(\omega) = \Psi_n(f(\omega))$). Then by the monotone convergence theorem: 
+                              
+                              $\BE_{\BP} (f) =\lim_n \BE_{\BP} (f_n)=\lim_n \BE_{\mu} (f_n) =\BE_{\mu} (f)$.
+                              
+               
+                              \item<4->[4)] For general function $f$, we can write $f=f^+-f^-$, then by the linearity of expectation                              
+                              $\BE_{\BP} (f) =\BE_{\BP} (f^+)- \BE_{\BP} (f^-)=\BE_{\mu} (f^+)- \BE_{\mu} (f^-)=\BE_{\mu} (f)$.
+                                                      
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Distribution and Expectation}
+
+   \begin{itemize}
+  
+                \item<1-> Based on the previous theorem, the expectation of a function of random variable $X$ is determined by the distribution of $X$. Thus, for two random variables $X, Y$, if $\mathcal{L}(X)=\mathcal{L}(Y)$, then $\BE[f(X)]=\BE[f(Y)]$ for any measurable function $f$ (assuming the expectations exist). 
+                
+                \item<2-> On the other hand, if $\BE[f(X)]=\BE[f(Y)]$ for any measurable function $f$, by setting $f=\BI_{B}$ for any Borel set $B$, we have $\BP(X\in B)=\BE[f(X)]=\BE[f(Y)]=\BP(Y\in B)$, that is $\mathcal{L}(X)=\mathcal{L}(Y)$
+                
+                
+               \item<3->[] \begin{Corollary}[6.1.3.] For two random variables $X$ and $Y$,  $\mathcal{L}(X)=\mathcal{L}(Y)$ if and only if $\BE[f(X)]=\BE[f(Y)]$ for any measurable function $f$ (assuming the expectations exist. \end{Corollary}
+                               
+             \item<4-> Another useful result is: if $\BP(X=Y)=1$, we have $\mathcal{L}(X)=\mathcal{L} (Y)$, so $\BE[f(X)]=\BE[f(Y)]$ for any measurable function $f$.
+            
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Distribution: Point Mass}
+
+   \begin{itemize}
+  
+                \item<1-> If a random variable $X$ equals a constant $c$ with probability 1 ($\BP(X=c)=1$), the distribution of $X$ is called a point mass distribution $\delta_c$. 
+                
+                                \item<2->  For any Borel set $B$, $\delta_c(B)=\BP(X\in B)=\BP(c\in B)=\BI_B(c)$, which equals $1$ if $c\in B$ but $0$ otherwise.
+                                
+                                
+
+                                                \item<3->  The CDF of $X$, $F_X(x)=\delta_c((-\infty, x])$ equals $0$ for $x<c$ and equals $1$ for $x\geq c$.
+                                                
+                                                \item<4->  For any measurable function $f$, as $\BP(X=c)=1$, $\BE[f(X)]=\BE[f(c)]=f(c)$. \end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Distribution: Mixture Distribution}
+
+   \begin{itemize}
+  
+                \item<1-> Given a sequence of probability distribution $\{\mu_i \}$, we can define the mixture distribution as $\mu(B)=\sum_i \beta_i \mu_i (B)$ where $\{\beta_i\}$ is a sequence of non-negative constants summing to 1, and $B$ is any Borel set. 
+                
+                                \item<2->  It is easy to verify that $\mu$ is a proper probability measure on $\mathbf{R}$ and the Borel $\sigma$-algebra $\mathcal{B}$. We have the following results regarding the expectation with respect to a mixture distribution:
+                                
+                                
+
+               \item<3->[] \begin{Proposition}[6.2.1] For the mixture distribution defined above, let $f$ be any Borel measurable function and assuming all the necessary expectations exist, we have:
+                          $$\BE_{\mu}(f)=\int f d\mu =\sum_i \beta_i \int f d\mu_i=\sum_i  \beta_i \BE_{\mu_i} (f)$$
+               
+                \end{Proposition}
+                                                
+                                                \item<4-> \textbf{Proof} For $f=\BI_B$, the above equality is equivalent to $\mu(B)=\sum_i \beta_i \mu_i (B)$, which is true by definition. The general case follows by the linearity and the MCT. \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Distribution: Discrete Distributions}
+
+   \begin{itemize}
+  
+                \item<1-> Any discrete distribution can be viewed as the mixture distribution of at most countable point mass distribution. If $X$ can take value from the set $\{a_1, a_2, \ldots\}$ and $\BP(X=a_i)=p_i$, then the distribution of $X$ can be represented as 
+                
+                $$\mathcal{L} (X)=\sum p_i \delta_{a_i}$$ 
+                
+             \item<2->  Thus, for any function $f$, $\BE[f(X)]=\sum p_i \BE_{\delta_{a_i}} [f(X)]=\sum p_i f(a_i)$.
+                                
+                                
+             \item<3->  For instance, if $X\sim Bin(n,p)$, then $\mathcal{L} (X)=\sum_{k=0}^n {n \choose k} p^k(1-p)^{n-k} \delta_{k}$, and $\BE[f(X)]=\sum_{k=0}^n {n \choose k} p^k(1-p)^{n-k} f(k)$.
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Distribution: Absolutely Continuous Distributions} 
+
+   \begin{itemize}
+  
+                \item<1->  For Borel-measurable function $f\geq 0$ so that $\int_{-\infty}^{\infty} f(t)\lambda(dt)=1$ ($\lambda$ represents the (non/sigma-) finite Lebesque measure), we can define a distribution $\mu$ as:
+                
+                $$\mu(B)=\int_{-\infty}^{\infty} f(t) \BI_B \lambda(dt)=\int_{B} f(t) \lambda(dt), \ B\in \mathcal{B}$$
+                
+                
+             \item<2->  Such a distribution is known as an absolutely continuous distribution, and we usually use notations such as  $\mu(dt)=f(t)\lambda(dt)$ or $\frac{d\mu }{d\lambda} =f$. $f$ is either called a Radon-Nikodym derivative or a density.
+             
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Distribution: Absolutely Continuous Distributions} 
+
+   \begin{itemize}
+  
+                            \item<3->[] \begin{Proposition} For an absolutely continuous distribution $\mu$ with density $f$, let $g$ be any Borel measurable function; then we have: 
+          
+           $$\BE_{\mu}(g)=\int_{-\infty}^{\infty} g(t) \mu(dt)=  \int_{-\infty}^{\infty} g(t) f(t) \lambda(dt)$$ \end{Proposition}
+
+                                                  \item<4-> \textbf{Proof} For $g=\BI_B$, the equality holds by definition. The general case follows by the linearity and monotone convergence theorem. 
+                              
+                                
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Distribution: Practical Calculations and Examples} 
+
+   \begin{itemize}
+  
+                \item<1->  The expectation of discrete random variables can be calculated as sums. 
+                
+                \item<2-> The expectations of absolutely continuous random variables can be calculated using a Riemann integral. Thus, for absolutely continuous random variable $X$ with density $f$:
+                
+                
+                $\BE_{\mu}(g(X))=\int g(t) \mu(dt)=  \int g(t) f(t) \lambda(dt)= \int_{-\infty}^{\infty} g(t) f(t) dt$
+                               
+                \item<3-> Both are special cases of a Lebesgue integrals.
+                
+             \item<3->  Neither ac nor discrete: let $X \sim \mu=\frac{1}{2}\delta_1+\frac{1}{2} \mu_N$ where $\mu_N$ is the distribution of standard normal $N(0,1)$, then 
+             
+             $\BE_{\mu} (X)=\frac{1}{2}1+\frac{1}{2} 0=\frac{1}{2}$, $\BE_{\mu} (X^2)=\frac{1}{2}1+\frac{1}{2} 1=1$ and $\BV_{\mu}(X)=\BE_{\mu}(X^2)-[\BE_{\mu} (X) ]^2=\frac{3}{4}$.
+                               
+                                
+\end{itemize}
+}
+
+
+\end{document}
