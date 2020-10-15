@@ -111,12 +111,12 @@
                 \item<1->[1)] When $f$ is an indicator function: $f=\BI_B$ where $B$ is a Borel set: 
                 
                 $\BE_{\BP} (f)=  \int_{\Omega} f(X(\omega) )\mathbf{P} (d\omega)=\int_{\Omega} \BI_{X(\omega) \in B} \mathbf{P} (d\omega)=\BP(X\in B)$                
-                \item<2->[]    $\BE_{\mu}(f) = \int_{-\infty}^{\infty} f(t) \mu(dt) =\int_{\Omega} \BI_{t \in B} \mu(dt)=\mu(B)=\BP(X\in B)$
+                \item<2->[]    $\BE_{\mu}(f) = \int_{-\infty}^{\infty} f(t) \mu(dt) =\int_{\mathbf{R}} \BI_{t \in B} \mu(dt)=\mu(B)=\BP(X\in B)$
 
                              
                \item<3->[2)] For simple function $f$ (a finite linear combination of indicator function), the theorem holds as the expectation is linear.     
                
-                              \item<4->[3)] For non-negative functions $f$, we can always construct a sequence of non-negative simple functions $f_n\nearrow f$ (e.g. define $f_n(\omega) = \Psi_n(f(\omega))$). Then by the monotone convergence theorem: 
+                              \item<4->[3)] For non-negative functions $f$, we can always construct a sequence of non-negative simple functions $f_n\nearrow f$ (e.g. define $f_n(X(\omega)) = \Psi_n(f(X(\omega)))$). Then by the monotone convergence theorem: 
                               
                               $\BE_{\BP} (f) =\lim_n \BE_{\BP} (f_n)=\lim_n \BE_{\mu} (f_n) =\BE_{\mu} (f)$.
                               
