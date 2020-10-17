@@ -1,0 +1,435 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\newtcbtheorem[number within=section]{mytheo}{}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 15}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section[Outline]{}
+\frame{\tableofcontents
+``A First Look at Rigorous Probability Theory" (Jeffrey Rosenthal) Section 12.1 
+}
+
+
+\section[Beginnings]{}
+\frame
+{
+\frametitle{Motivation} 
+
+Let $\mu$ be a probabilty measure on $\mathbf{R}$. We have seen examples of probability measures for discrete random variables, continuous random variables, and discrete/continuous mixture random variables. Are these the only types?
+\newline
+
+Goal: prove Lebesgue's Decomposition. Write any measure as the sum of three components: discrete, absolutely continuous and singular.
+\newline
+
+
+Roadmap: Definitions $\to$ Hahn's Decomposition theorem $\to$ Lebesgue's Decomposition Theorem
+\newline
+
+
+
+}
+
+
+
+\frame
+{
+\frametitle{Definitions} 
+
+
+\begin{mytheo}{Definition: Measures dominating other measures}{domdefn}
+Let $\mu$ and $\lambda$ be two measures. We say $\mu$ is dominated by $\lambda$ if for any $B \in \mathcal{B}$, $\lambda(B) \implies \mu(B).$ It is written as $\mu \ll \lambda$.
+\end{mytheo}
+
+\begin{mytheo}{Definition: Absolutely Continuous}{abscontdefn}
+Let $\mu$ and $\lambda$ be two measures. We say $\mu$ is absolutely continuous with respect to $\lambda$ if for any $B \in \mathcal{B}$, $\mu(B) = \int_B f d\lambda$ for some $f \ge 0$.
+\end{mytheo}
+
+
+\begin{mytheo}{Definition: signed measure}{signedmeasure}
+Let $(\Omega, \mathcal{F})$ be a measurable space. Then $\phi : \mathcal{F} \to \mathbf{R}$ is a signed measure if 1.) $\phi(\emptyset) = 0$, and 2.) $\phi$ is countably additive.
+\end{mytheo}
+
+Apply the proof of Proposition 3.3.1 to show that $\phi$ is continuous.
+
+  % \ref{th:theoexample} and is given on page \pageref{th:theoexample}.
+
+% \begin{itemize}
+%   
+% \item<1-> 
+%                                            
+% \end{itemize}
+
+}
+
+
+
+
+\frame
+{
+\frametitle{Decomposing $\Omega$} 
+
+
+\begin{mytheo}{Lemma 12.1.4: Hahn's Decomposition}{hahn}
+Let $\phi$ be a signed measure on $(\Omega, \mathcal{F})$. Then there exists a two-set partition of $\Omega$: $A^+, A^- \in \mathcal{F}$ such that whenever $E \subseteq A^+$, we have $\phi(E) \ge 0$, and whenever $F \subseteq A^-$, we have $\phi(F) \le 0$.
+\end{mytheo}
+  % \ref{th:theoexample} and is given on page \pageref{th:theoexample}.
+
+% \begin{itemize}
+%   
+% \item<1-> 
+%                                            
+% \end{itemize}
+
+}
+
+
+
+
+
+\frame
+{
+\frametitle{Hahn Decomposition: Proof} 
+
+Define 
+$$
+\alpha = \sup \left\{ \phi(A) : A \in \mathcal{F} \right\}.
+$$
+
+We want to find $A^+$ such that $\phi(A^+) = \alpha$. 
+\newline
+
+
+Choose $A_1, A_2, \ldots \in \mathcal{F}$ such that $\phi(A_i) \to \alpha$. Then define $A = \cup_{i=1}^\infty A_i$. Then define 
+$$
+\mathcal{G}_n = \left\{ \bigcap_{k=1}^n A_k' : A_k' = A_k \text{ or } A_k' = A \setminus A_k  \right\}.
+$$
+Then define
+$$
+C_n = \bigcup_{S \in \mathcal{G}_n \text{ and } \phi(S) \ge 0} S
+$$
+and set 
+$$
+A^+ = \limsup_n C_n = \bigcap_{n=1}^{\infty} \bigcup_{k \ge n} C_k
+$$
+
+}
+
+\frame
+{
+\frametitle{Hahn Decomposition: Proof} 
+
+For any $n$, $\phi(C_n) \ge \phi(A_n)$.
+\newline
+
+Next, 
+$$
+\phi\left(C_m \cup \cdots \cup C_{n-1} \cup C_n \right) \ge \phi\left(C_m \cup \cdots \cup C_{n-1} \right)
+$$
+
+therefore
+$$
+\phi\left(C_m \cup \cdots \cup C_{n-1} \cup C_n \right) \ge \phi\left(C_m  \right) \ge  \phi\left(A_m  \right).
+$$
+
+Taking the limit on both sides, by continuity of $\phi$:
+$$
+\phi\left( \bigcup_{n=m}^{\infty} C_n  \right) \ge \phi\left(A_m  \right)
+$$
+
+
+Finally
+$$
+\phi(A^+) = \phi(\limsup_m C_m) = \lim_{m \to \infty} \phi\left( \bigcup_{k \ge m}^{\infty} C_k  \right) \ge \lim_{m \to \infty} \phi(A_m) = \alpha.
+$$
+
+
+}
+
+
+\frame
+{
+\frametitle{Hahn Decomposition: Proof} 
+
+We had $\phi(A^+) \ge \alpha$ from the previous slide. By definition of $\sup$, $\phi(A^+) \le \alpha$, so $\phi(A^+) = \alpha$.
+\newline
+
+Take $E \subseteq A^+$. Assume to the contrary that $\phi(E) < 0$. Then $\phi(A^+ \setminus E) = \phi(A^+) - \phi(E) > \phi(A^+) = \sup \{ \phi(A) : A \in \mathcal{F} \}$, which contradicts the definition of supremum. 
+\newline
+
+
+Define $A^- = \Omega \setminus A^+$. Again, we can show that for any $E \subseteq A^-$, we have $\phi(E) \le 0$. Assume to the contrary that $\phi(E) > 0$. Then, by additivity of $\phi$: $\phi(A^+ \cup E) = \phi(A^+) + \phi(E) > \phi(A^+)$. Again, this is a contradiction, so $\phi(E) \le 0$.
+
+
+}
+
+
+\frame
+{
+\frametitle{Decomposing Probability Measures} 
+
+
+Before we talk about the theorem that decomposes probability measures, we need another definition:
+
+\begin{mytheo}{Definition: Singular Measures}{singdefn}
+Let $\mu, \nu$ be two positive measures defined on some probability space $(\Omega, \mathcal{F})$. $\mu$ is {\bf singular} with respect to $\nu$, written $\mu \perp \nu$, if there exists an $S \in \mathcal{F}$ such that $\mu(S) = 0$ and $\nu(S^c) = 0$. 
+\end{mytheo}
+
+Intuitively, the two measures put probability on different places, and these two places partition the sample space.
+
+}
+
+
+
+\frame
+{
+\frametitle{Decomposing Probability Measures} 
+
+
+\begin{mytheo}{Lemma 12.1.1: Lebesgue's Decomposition}{lebesgue}
+Any probability measure $\mu$ on $\mathbf{R}$ can uniquely be decomposed as 
+$$
+\mu= \mu_{\text{disc}} + \mu_{\text{ac}} + \mu_{\text{sing}},
+$$
+where
+\begin{enumerate}
+\item $\mu_{\text{disc}} ( \mathbf{R} ) = \sum_{x \in \mathbf{R}} \mu_{\text{disc}}(\{x\})$
+\item $\mu_{\text{ac}}(A) = \int_A f d\lambda$ for any $A \in \mathcal{B}$, where $f$ is a nonnegative, Borel-measurable function $f$, and $\lambda$ is the Lebesgue measure on $\mathbf{R}$, and
+\item $\mu_{\text{sing}}(\{x\}) = 0$ for all $x \in \mathbf{R}$ but $\exists S \subseteq \mathbf{R}$ such that $\lambda(S) = 0$ and $\mu_{\text{sing}}(S^c) = 0$.
+\end{enumerate}
+\end{mytheo}
+
+}
+
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+The first part is easy. We can just define 
+$$
+\mu_{\text{disc}} ( A ) := \sum_{x \in A} \mu(\{x\})
+$$
+for any $A \in \mathcal{B}$.
+\newline
+
+In this way, $\mu - \mu_{\text{disc}}$ has no discete part:
+$$
+\sum_{x \in \mathbf{R}} \left[\mu - \mu_{\text{disc}}\right](\{x\}) = 0.
+$$
+
+Without loss of generality, write $\mu$ for $\mu - \mu_{\text{disc}}$.
+}
+
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+Now we construct an $f$ so that and define
+$$
+\mu_{\text{ac}}(A) = \int_A f d\lambda
+$$
+for any $A \in \mathcal{B}$. Before we do that, we he have to define a { \bf candidate density}.
+
+\begin{mytheo}{Definition: candidate density}{canddens}
+$g : \mathbf{R} \to \mathbf{R}^+$ is a {\bf candidate density} if, for all $E \in \mathcal{B}$:
+$$
+\mu(E) \ge \int_E g d\lambda
+$$
+\end{mytheo}
+
+}
+
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+If $g_1$ and $g_2$ are candidate densities, then so is $\max\{g_1,g_2\}$ because
+\begin{align*}
+\int_E \max\{g_1,g_2\} d\lambda 
+&= \int_{E \cap \{g_1 \le g_2\}} g_2 d\lambda + \int_{E \cap \{g_1 > g_2\}} g_1 d\lambda \\ 
+&\le \mu(E \cap \{g_1 \le g_2\}) + \mu(E \cap \{g_1 > g_2\}) \\
+&= \mu(E)
+\end{align*}
+
+Also, if $h_n \nearrow h$ pointwise, and each $h_n$ is a candidate density, then so is $h$ because
+$$
+\int_E h d\lambda = \lim_{n \to \infty}\int_E h_n d\lambda \le \mu(E).
+$$
+
+So, for any arbitrary collection of candidate densities $\{g_n\}$, $\lim_{n \to \infty} \max\{g_1, \ldots, g_n \} = \sup_n g_n$ is a candidate density.
+
+}
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+Define 
+$$
+\beta = \sup \left\{ \int_{\mathbf{R}} g d\lambda : g \text{ is a candidate density} \right\}.
+$$
+
+For each $n \in \mathbb{N}$, select $g_n$ such that $\beta - n^{-1} < \int_{\mathbf{R}} g_n d \lambda$.
+\newline
+
+Finally, choose $f = \sup_{n \ge 1} g_n$. Clearly $\int_{\mathbf{R}} f d\lambda = \beta$. 
+\newline
+
+Last, define
+$$
+\mu_{\text{ac}}(A) = \int_A f d\lambda,
+$$
+for any $A \in \mathcal{B}$
+
+
+}
+
+
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+Finally, define $\mu_{\text{sing}} = \mu - \mu_{\text{ac}}(A)$. We have to show that $\mu_{\text{sing}} \perp \lambda$.
+\newline
+
+For each $n \in \mathbb{N}$, define $\phi_n = \mu_{\text{sing}} - n^{-1}\lambda$.
+\newline
+
+Let $A^+_n$, $A^-_n$ be the Hahn decomposition for $\phi_n$, and call $M = \bigcup_{n=1}^{\infty} A^+_n$. 
+\newline
+
+$\cap_{n=1}^\infty A^-_n = M^c \subseteq A_n^-$, so, for all $n \in \mathbb{N}$, $0 \le \mu_{\text{sing}}(M^c) \le n^{-1}\lambda(M^c).$ So $\mu_{\text{sing}}(M^c) = 0$. 
+\newline
+
+
+Now we have to show that $\lambda(M) = 0$.
+
+
+
+
+}
+
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+
+Now we have to show that $\lambda(M) = 0$. Assume to the contrary that $\lambda(M) = \lambda\left(\bigcup_{n=1}^{\infty} A^+_n \right) > 0$.
+\newline
+
+There exists $n \in \mathbb{N}$ such that $\lambda(A_n^+) > 0$. For any $E \subseteq A_n^+$, we have $\mu_{\text{sing}}(E) \ge n^{-1}\lambda(E)$.
+\newline
+
+$g = f + n^{-1}1_{A_n^+}$ is a candidate density because, for any $D \in \mathcal{F}$
+\begin{align*}
+\int_D g d\lambda &= \int_D f d\lambda  + \frac{1}{n}\int1_{A_n^+}1_{D}d\lambda \\
+&= \mu_{\text{ac}}(D) + \frac{1}{n}\lambda\left(A_n^+ \cap D \right) \\
+&\le \mu_{\text{ac}}(D) + \mu_{\text{sing}}(A_n^+ \cap D) \\
+&\le \mu_{\text{ac}}(D) + \mu_{\text{sing}}( D) \\
+&= \mu(D)
+\end{align*}
+
+Unfortunately, this is a contradiction, though: $
+\int_{\mathbf{R}} g d\lambda = \beta + \frac{1}{n}\lambda(A_n^+) > \beta.
+$
+
+
+
+
+}
+
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+We showed that $\mu_{\text{sing}} \perp \lambda$. Now we show uniqueness.
+\newline
+
+Suppose there are two decompositions $\mu = \mu_{\text{sing}} + \mu_{\text{ac}} = \nu_{\text{sing}} + \nu_{\text{ac}}$. 
+\newline
+
+Looking at the singular parts, there exists $S_1$ and $S_2$ such that $\lambda(S_1) = \lambda(S_2) = 0$ and $\mu_{\text{sing}}(S_1^C) = \nu_{\text{sing}}(S_2^C) = 0$. 
+\newline
+
+Looking at the absolutely continuous parts, there exists $f,g$ such that $\mu_{\text{ac}}(A) = \int_A f d\lambda$ and $\nu_{\text{ac}}(A)= \int_A g d\lambda$.
+\newline
+
+We will show $\lambda(\{g = f\}) = 1$ by showing $\lambda(\{g > f\}) = 0$ and $\lambda(\{g < f\}) = 0$. To show $\lambda(\{g > f\}) = 0$ we will show $\lambda(\{g > f\} \cap S) = 0$ and $\lambda(\{g > f\} \cap S^c ) = 0$, where $S = S_1 \cup S_2$.
+}
+
+
+\frame
+{
+\frametitle{Lebesgue Decomposition: Proof} 
+
+First we show $\lambda(\{g > f\} \cap S^c ) = 0$. Again, define $S = S_1 \cup S_2$. Also define $B = S^c \cap \{g > f\}$.
+\newline
+
+$g > f$ on $B$, and we have $\int_B (g-f)d\lambda = \nu_{\text{ac}}(B) - \mu_{\text{ac}}(B) = \nu_{\text{ac}}(B) + \nu_{\text{sing}}(B) - \mu_{\text{ac}}(B) - \mu_{\text{sing}}(B)  = \mu(B) - \mu(B) =0$. Together these mean $\lambda(B) = 0$.
+\newline
+
+Also, $\lambda(S_1 \cup S_2) \le \lambda(S_1) + \lambda(S_2) = 0$. So $\lambda(\{g > f\}) = 0$.
+\newline
+
+Similarly, $\lambda(\{g < f\}) = 0$. So $g = f$ $\lambda$-a.s. So $\mu_{\text{ac}} = \nu_{\text{ac}}$. So $\mu_{\text{sing}} = \nu_{\text{sing}}$.
+}
+
+
+\frame
+{
+\frametitle{The Radon-Nikodym Theorem} 
+
+\begin{mytheo}{Corollary 12.1.2: Radon-Nikodym Theorem}{rnthm}
+A Borel probability measure $\mu$ is dominated by $\lambda$ if and only if there exists $f \ge 0$ such that
+$$
+\mu(A) = \int_A f d\lambda
+$$
+for any $A \in \mathcal{B}$.
+\end{mytheo}
+
+}
+
+\frame
+{
+\frametitle{The Radon-Nikodym Theorem: Proof} 
+
+Let $\mu$ be a Borel probability measure. Then 
+$$
+\mu = \mu_{\text{sing}} + \mu_{\text{ac}} + \mu_{\text{disc}}.
+$$
+
+Suppose $\mu$ is absolutely continuous with respect to $\lambda$, then $\mu_{\text{sing}}(A) = \mu_{\text{ac}}(A) = 0$ for any $A \in \mathcal{B}$. Clearly, if $\lambda(B) = 0$, then $\mu(B)  = 0$ as well. 
+\newline
+
+Suppose $\mu \ll \l$. For any $x \in \mathbf{R}$, $\lambda(\{x\}) = 0$. Also, if $S$ is such that $\lambda(S) = 0$ (and $\mu_{\text{sing}}(S^c) = 0$), then $\mu(S) = 0$, and specifically $\mu_{\text{sing}}(S) = 0$. So $\mu_{\text{sing}}(\Omega) = \mu_{\text{sing}}(S) + \mu_{\text{sing}}(S^c) = 0$. The only part left over of the three is the absolutely continuous part.
+}
+
+
+\end{document}
