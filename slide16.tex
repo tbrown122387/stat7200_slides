@@ -1,0 +1,195 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 16}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+\section{Convergence Theorems}
+
+
+
+\frame
+{
+  \frametitle{Recap: The Monotone Convergence Theorem } 
+
+   \begin{itemize}
+   
+   \item<1->[] \begin{Theorem}[Monotone Convergence Theorem] Let $X_1, X_2, \ldots $ be a sequence of increasing non-negative random variables that converges to random variable $X$ almost surely, then $\BE(X_n)\rightarrow \BE(X)$.   \end{Theorem}
+
+
+\item<2-> In this lecture we will explore other sufficient conditions, including the dominated condition and the uniformly integrable condition. We'll start, however, with an import tool we'll need called Fatou's Lemma.
+                                
+\end{itemize}
+}
+
+
+
+
+
+\frame
+{
+  \frametitle{Fatou's Lemma} 
+
+   \begin{itemize}
+   
+             \item<1->  The overall goal is  to establish the equality: $\lim_n \BE(X_n)=\BE(X)$. 
+             
+             \item<2-> This equality can only be valid if $\lim_n \BE(X_n)$ exists. However, there is no general guarantee that $\BE(X_1), \BE(X_2), \cdots$ converges. 
+             
+                   \item<3-> The MCT provides a condition where $\lim_n \BE(X_n)=\BE(X)$. This chapter also mentioned the ``Bounded Convergence Theorem," but we skipped chapter 7. 
+                  
+
+\item<4-> For general cases, $\limsup_n \BE(X_n)$ and $\liminf_n \BE(X_n)$  always exist. As $\liminf_n \BE(X_n) \leq \limsup_n \BE(X_n)$, if we can show that $\limsup_n \BE(X_n)\leq \BE(X)\leq  \liminf_n \BE(X_n)$, we may conclude that  $\lim_n \BE(X_n)=\limsup_n \BE(X_n)=\lim_n\BE(X_n)=\BE(X)$
+                     
+            
+                     \item<5-> We need the following famous lemma as the tool for studying $\limsup_n \BE(X_n)$ and $\liminf_n \BE(X_n)$.
+     
+  
+                \item<6->[] \begin{Theorem}[Fatou's Lemma] If $X_n\geq C>-\infty$ for all $n$ ($\{X_n\}$ is bounded below) then 
+                $$\BE(\liminf_n X_n)\leq \liminf_n \BE(X_n) $$ \end{Theorem}
+
+                                            \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Fatou's Lemma: Proof} 
+
+   \begin{itemize}
+   
+
+
+                
+                               \item<1-> \textbf{Proof:} The goal is to show $\BE(\liminf_n X_n)\leq \liminf_n \BE(X_n) $ when $X_n\geq C>-\infty$ for all $n$. 
+            
+                               
+                               
+                               Let $Y_n=\inf_{k\geq n} X_k$, then $C\leq Y_n\leq X_n$, then
+                               
+                               $ \liminf_n \BE(X_n) \geq \liminf_n \BE(Y_n).$
+                               
+                             \item<3->[-] Furthermore, as $\{Y_n\}$ forms an increasing sequence, its limit always exists. We define $Y=\lim_n Y_n=\liminf_n X_n$, then $\{Y_n\} \nearrow Y$.  By the monotone convergence theorem:
+                             
+                                                            $ \liminf_n \BE(Y_n)=\lim_n \BE(Y_n-C+C)=\lim_n \BE(Y_n-C)+C= \BE(Y-C)+C=\BE(Y) = \BE(\liminf_n X_n).$
+                                                            
+                                                            
+                             \item<4->\textbf{Remark} We often apply Fatou's lemma when $X_n\rightarrow X$, in this case, $\BE(X)\leq \liminf_n \BE(X_n) $.
+                              \end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{The Dominated Convergence Theorem} 
+
+   \begin{itemize}
+   
+  
+   \item<1->[] \begin{Theorem}[Dominated Convergence Theorem] Let $X, X_1, X_2, \ldots $ be random variables with $\BP(\lim_n X_n=X)=1$, and if there is another random variable $Y$ so that $\BE(Y)<\infty$ and $|X_n|\leq Y$ for all $n$, then $\lim_n \BE(X_n)=\BE(X)$.\end{Theorem}
+
+                
+                               \item<2-> \textbf{Proof} By the previous discussion, to prove $\lim_n \BE(X_n)=\BE(X)$, we only need to show that  $\limsup_n \BE(X_n)\leq \BE(X)\leq  \liminf_n \BE(X_n)$. This goal can be achieved using Fatou's lemma, and the ``bounded below" condition will be established through the fact that  $|X_n|\leq Y$. 
+                               
+                               
+                               
+                             \item<3->[-] As $Y+X_n\geq 0$, by Fatou's lemma, $\BE(Y)+\BE(X)=\BE(Y+X) \leq \liminf \BE(Y+X_n)=\BE(Y)+\liminf_n \BE(X_n).$ Thus $\BE(X)\leq \liminf_n \BE(X_n)$.
+                             
+                                                       \item<4->[-]  Similarly, as $Y-X_n\geq 0$,  applying Fatou's lemma, we have $\BE(-X)\leq \liminf_n \BE(-X_n)$. That is $\BE(X)\geq \limsup_n \BE(X_n)$
+                             
+
+                              \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Uniformly Integrable Condition} 
+
+   \begin{itemize}
+   
+  
+                \item<1-> For random variable $X$ and any $\alpha>0$, we may define the ``truncated tail" of $X$ as $|X|\BI_{|X|\geq \alpha}$. Then it is clear that $|X|\BI_{|X|\geq \alpha}\rightarrow 0$ as $\alpha\rightarrow \infty$ with probability 1. 
+                \item<2-> Furthermore, since $|X|\BI_{|X|\geq \alpha}\leq |X|$, if $\BE(|X|)<\infty$, we can apply the dominate convergence theorem: $\lim_{\alpha\rightarrow \infty}\BE(|X|\BI_{|X|\geq \alpha})=\BE(0)=0$. 
+                
+\item<3-> For a sequence of random variables $\{X_n\}$ with $\BE(|X_n|)<\infty$, although the expectation of the ``truncated tail" of each $X_n$ would converges to 0 as the threshold $\alpha\rightarrow \infty$. The convergence speed for each $n$ might be different. To establish a convergence theorem for $\BE(X_n)$, it is often necessary to make sure that such convergence speed is fast enough for each $n$. For this purpose, we propose the following conditions:
+                                
+                                
+                                                               
+                               \item<4-> \textbf{Uniformly Integrable} A collection of random variables $\{X_n\}$ is uniformly integrable if 
+                               $$\lim_{\alpha\rightarrow \infty} \sup_n \BE(|X_n| \BI_{|X_n|\geq \alpha})=0.$$
+                                                             
+                               
+                              \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Consequence of Uniformly Integrable Condition} 
+
+   \begin{itemize}
+   
+  
+                \item<1->[] \begin{Proposition}  If $\{X_n\}$ is uniformly integrable, then $\sup_n \BE(|X_n|)<\infty$. And if $\BP(\lim_n X_n=X)=1$, then $\BE(|X|)<\infty$.
+
+                 \end{Proposition}
+                
+                
+                \item<2-> \textbf{Proof:} As $|X_n|=|X_n| \BI_{X_n<\alpha}+|X_n| \BI_{X_n\geq \alpha}$, thus:
+                               \begin{align*} \sup_n \BE(|X_n|)& =\sup_n \BE(|X_n| \BI_{X_n<\alpha}+|X_n| \BI_{X_n\geq \alpha} ) \\ & \leq \alpha+\sup_n  \BE(|X_n| \BI_{X_n\geq \alpha} ) \end{align*}
+                
+                  \item<3->[-] Since $\lim_{\alpha\rightarrow \infty} \sup_n \BE(|X_n| \BI_{|X_n|\geq \alpha})=0$, we may choose a particular $\alpha_0$ so that $ \sup_n \BE(|X_n| \BI_{|X_n|\geq \alpha_0}) <1$. Then $ \sup_n \BE(|X_n|)\leq \alpha_0+1<\infty$. 
+                  
+                                    \item<4->[-] By Fatou's lemma, $\BE(|X|)\leq \liminf_n \BE(|X_n|)\leq \sup_n \BE(|X_n|) <\infty$.                                
+                              \end{itemize}
+}
+
+
+
+
+
+\frame
+{
+  \frametitle{The Uniform Integrability Convergence Theorem} 
+
+   \begin{itemize}
+   
+  
+                \item<1->[] \begin{Theorem}[Uniform Integrability Convergence Theorem] Let $X, X_1, X_2, \ldots $ be random variables with $\BP(\lim_n X_n=X)=1$, and if  $\{X_n\}$ is uniformly integrable, then $\lim_n \BE(X_n)=\BE(X)$.\end{Theorem}
+                                                                                                           
+                              \end{itemize}
+}
+
+
+
+
+\end{document}
