@@ -1,0 +1,265 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 17}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+
+\section{Convergence Theorems}
+
+
+
+
+
+\frame
+{
+  \frametitle{Uniformly Integrable: what does it mean} 
+
+\begin{itemize}
+   
+
+\item<1-> \textbf{Uniformly Integrable} A collection of random variables $\{X_n\}$ is uniformly integrable if $$\lim_{\alpha\rightarrow \infty} \sup_n \BE(|X_n| \BI_{|X_n|\geq \alpha})=0.$$
+                                                             
+ \item<2-> \textbf{Uniformly Integrable} If $\{X_n\}$ is uniformly integrable, then the expectation of $\{X_n\}$ is uniformly bounded:  $\sup_n \BE(|X_n|)<\infty$. And if 
+                               
+$\BP(\lim_n X_n=X)=1$, then $\BE(|X|)<\infty$.                               
+                              \end{itemize}
+}
+
+
+
+
+
+\frame
+{
+  \frametitle{The Uniform Integrability Convergence Theorem} 
+
+   \begin{itemize}
+   
+  
+\item<1->[] \begin{Theorem}[Uniform Integrability Convergence Theorem] Let $X, X_1, X_2, \ldots $ be random variables with $\BP(\lim_n X_n=X)=1$, and if  $\{X_n\}$ is uniformly integrable, then $\lim_n \BE(X_n)=\BE(X)$.\end{Theorem}
+                
+\item<2-> \text{Proof:} Let $Y_n=|X_n-X|$, then if $\lim_n \BE(Y_n)=0$, $\lim_n \BE(X_n)=\BE(X)$  by Jensen's inequality. To utilize the condition of uniform integrability, we represent $Y_n=Y_n\BI_{Y_n<\alpha}+Y_n\BI_{Y_n\geq \alpha}$. 
+                
+\item<3->[-] For the first part, fix $\alpha$, then $|Y_n\BI_{Y_n<\alpha}|\leq \alpha$, and $Y_n\BI_{Y_n<\alpha}\rightarrow 0$ pointwise/wp1. Thus, by the bounded convergence theorem:
+                                $$\lim_n \BE(Y_n\BI_{Y_n<\alpha})=0.$$
+                                
+                                    
+                                                                                           
+
+                                                                                                           
+                              \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{The Uniform Integrability Convergence Theorem: continued} 
+
+   \begin{itemize}
+   
+  
+                \item<1->\textbf{Proof: continued} For the second part, note that if $Y_n\geq \alpha$, as $|X|+|X_n|\geq Y_n$, we must have $|X_n|\geq \alpha/2$ or $|X|\geq \alpha/2$. Thus: 
+                 when $|X|\geq |X_n|$, $Y_n\BI_{Y_n\geq \alpha}\leq 2|X| \BI_{Y_n\geq \alpha} \leq 2|X| \BI_{|X| \geq \alpha/2}$;  
+                 when $|X|<|X_n|$, $Y_n\BI_{Y_n\geq \alpha}\leq 2|X_n| \BI_{|X_n| \geq \alpha/2}$. 
+                                                                                             
+                                       \item<2->[-] Then    $Y_n\BI_{Y_n\geq \alpha}\leq 2|X_n| \BI_{|X_n| \geq \alpha/2}+2|X| \BI_{|X| \geq \alpha/2}$. Consequently,                            
+                                                                $$\sup_n \BE(Y_n\BI_{Y_n\geq \alpha})\leq 2\sup_n \BE( |X_n| \BI_{|X_n| \geq \alpha/2} )+2\BE( |X| \BI_{|X| \geq \alpha/2} )$$
+
+
+\item<3->[-] By uniform integrability, the first term would go to 0 as $\alpha \rightarrow \infty$, and the second term also goes to 0 as $\BE(|X|)<\infty$. Thus:                        
+
+\item<4->  $$\lim_{\alpha\rightarrow \infty } \sup_n \BE(Y_n\BI_{Y_n\geq \alpha})=0.$$                     
+                                                                                                           
+                              \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{The Uniform Integrability Convergence Theorem: continued} 
+
+\begin{itemize}
+   
+  
+\item<1->\textbf{Proof: continued} Now we have $Y_n=Y_n\BI_{Y_n<\alpha}+Y_n\BI_{Y_n\geq \alpha}$, and 
+                
+$$\lim_n \BE(Y_n\BI_{Y_n<\alpha})=0, \lim_{\alpha\rightarrow \infty } \sup_n \BE(Y_n\BI_{Y_n\geq \alpha})=0.$$
+                   
+\item<2->[-] Then for any $\varepsilon>0$, we can first find $\alpha_0>0$, so that $\sup_n \BE(Y_n\BI_{Y_n\geq \alpha_0})<\varepsilon/2$. Then for the fixed $\alpha_0$, we can find $n_0 (\alpha_0)$ so that  $\BE(Y_n\BI_{Y_n<\alpha_0}) <\varepsilon/2$ for all $n\geq n_0 (\alpha_0)$. 
+                                       
+\item<3->[-] Then for any $n\geq n_0(\alpha_0)$, we have:
+                                        
+$$\BE(Y_n)=\BE(Y_n\BI_{Y_n<\alpha_0})+\BE(Y_n\BI_{Y_n\geq \alpha_0} )< \varepsilon/2+\varepsilon/2=\varepsilon$$
+
+
+Then $0 \le \left|E[X_n - X] \right| \le \BE(Y_n) \to 0$ as $n \to \infty$.
+
+\end{itemize}
+}
+
+
+\subsection{Exchange Different Operators}
+\frame
+{
+  \frametitle{Exchange Differentiation and Expectation} 
+
+   \begin{itemize}
+   
+  
+                % \item<1-> Expectations, limit (including infinite sum), differentiation, $\cdots$ can all be regarded as "operators". In light of this view, the convergence theorems essentially deal with the question that when it is legal to exchange the order of the operators of expectation and limit? 
+                % \item<2-> Similarly, we may ask, when can we exchange between: differentiation and expectation; multiple expectations; expectations and infinite summation? 
+                
+                
+                    \item<3->[] \begin{Theorem}[Exchange Differentiation and Expectation] Let $\{F_t\}_{a<t<b}$ be a collection of random variables with finite expectations on a probability triple $(\Omega, \mathcal{F}, \BP)$. Suppose further that for each $\omega$ and $t\in (a,b)$, the derivative $F'_t(\omega)=\frac{\partial}{\partial t} F_t(\omega)$ exists. Furthermore, if there is a random variable $Y$ on the same probability triple so that $\BE(Y)<\infty$ and $|F'_t| \leq Y$ for all $t\in (a,b)$. Then: 
+                    \begin{enumerate}
+                    \item $F'_t$ is a random variable with finite expectation;
+                    \item 2) $\phi(t)$ is differentiable with finite derivative $\phi'(t)=\BE(F'_t)$ for all $t\in (a,b)$, where $\phi(t)=\BE(F_t)$. 
+                    \end{enumerate}
+                    \end{Theorem}
+
+
+\end{itemize}
+}
+
+\frame
+{
+  \frametitle{Exchange Differentiation and Expectation: Proof} 
+
+   \begin{itemize}
+   
+  
+                \item<1-> The conditions in the theorem can be summarized as:  derivatives are dominated by a random variable with finite expectation. 
+
+               \item<2-> \textbf{Proof:} 
+                
+                1) To show that the derivative is a random variable, note that:
+                
+                $$F'_t=\lim_{h\rightarrow 0} \frac{F_{t+h}-F_t}{h}$$
+                
+                So $F'_t$ is a random variable as it is the limit of random variables. 
+               
+               \item<3->[-]  Furthermore, we have $\BE(|F'_t|)\leq \BE(Y)<\infty$.  
+                
+                  \item<4->[-] By the mean value theorem, there is always a $t^*$ between $t+h$ and $t$, so that $\frac{F_{t+h}-F_t}{h}=F'_{t^*}$. Then $|\frac{F_{t+h}-F_t}{h}|\leq Y$. By DCT: 
+                  
+                  
+                                  \begin{align*} \phi'(t)& =\lim_{h\rightarrow 0} \frac{\phi(t+h)-\phi(t) }{h}=\lim_{h\rightarrow 0} \BE \big (  \frac{F_{t+h}-F_t}{h} \big ) \\ 
+                                  &=\BE \big (\lim_{h\rightarrow 0}   \frac{F_{t+h}-F_t}{h} \big )=\BE(F'_t). \end{align*}
+                                  
+                                                                      \end{itemize}
+}
+
+% \frame
+% {
+%   \frametitle{Exchange Expectations} 
+% 
+%    \begin{itemize}
+%    
+%                 \item<1->[] \begin{Theorem}[Fubini's Theorem: Exchange Expectations] Let $\mu$ be a probability measure on $\mathcal{X}$ and $\nu$ be a probability measure on $\mathcal{Y}$. Define $\mu\times \nu$ as the product measure on $\mathcal{X}\times \mathcal{Y}$. For measurable function $f(x,y): \mathcal{X}\times \mathcal{Y} \rightarrow \mathbf{R}$, if either $\BE_{\mu\times\nu} (f^+) <\infty$ or $\BE_{\mu\times\nu} (f^-)<\infty$  (or both), then: 
+%                 $$\BE_{\mu\times\nu} (f)=\BE_{\mu} [\BE_{\nu} ( f )]=\BE_{\nu} [\BE_{\mu} ( f )]$$
+%                 \end{Theorem}
+% 
+% 
+%                 \item<2-> In Fubini's Theorems, if we treat one of the measure as the counting measure on $\mathbf{N}$, we have the following results regarding the exchange of expectations and countable summation:                 
+%                 
+%                     \item<3->[] \begin{Proposition}[Exchange Expectation and Summation] For random variables $Z_1, Z_2, \cdots$ with $\sum_i \BE(|Z_i|) <\infty$. Then
+%                     $$\BE(\sum_i Z_i)=\sum_i \BE(Z_i) $$
+%                      \end{Proposition}
+% 
+% 
+% \end{itemize}
+% }
+
+\subsection{Moment Generating Functions}
+
+\frame
+{
+  \frametitle{Moment Generating Function} 
+
+   \begin{itemize}
+   
+                \item<1->\textbf{Moment generating function} of random variable $X$:
+                
+                $$M_{X}(s)=\BE(e^{sX}), s\in \mathbf{R}.$$
+
+                \item<2-> For instance, the moment generating function of a $N(0,1)$ distributed random variable is $M_X(s)=e^{s^2/2}$.
+                
+                \item<3-> If $X\bot Y$, then $M_{X+Y} (s)=M_X(s) M_Y(s)$. 
+                
+                \item<4-> We always have $M_X(0)=1$. But for certain $s\neq 0$, $M_X(s)$ might be infinity. 
+
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{MGF expansions} 
+
+   \begin{itemize}
+                   \item<1->[] \begin{Theorem} Let $X$ be random variable such that $M_X(s)<\infty$ for $0 < |s|<s_0$. Then $\BE(|X^n|)<\infty$ for all $n$. And for $|s|<s_0$, we have:
+                
+                $M_X(s)=\sum_{k=0}^{\infty} \BE(X^k)s^k/k!.$ We also have $\BE(X^r)=M_X^{(r)} (0)$.                \end{Theorem}
+                
+                                
+                \item<2->\textbf{Proof:} Write the Taylor expansion $e^{sX}=\sum_{k=0}^{\infty} X^ks^k/k!$.
+                
+                
+                For $|s|<s_0$, define $Z_n=\sum_{k=0}^n X^ks^k/k!$, then $\lim_n Z_n= e^{sX}$, and $|Z_n|\leq \sum_{k=0}^n |Xs|^k /k! \leq \sum_{k=0}^{\infty} |Xs|^k/k! = e^{|sX|}\leq e^{sX}+ e^{-sX}$.
+                 
+                 \item<3->[-] Furthermore, as $|s|<s_0$, $\BE(e^{sX}+ e^{-sX}) =M_X(s)+M_X(-s)<\infty$. Thus, $\BE(Z_n)\leq \BE(e^{sX}+ e^{-sX})<\infty$. By the dominated convergence theorem, $M_X(s)=\BE(\lim_n Z_n)=\lim_n\BE(Z_n)=\sum_{k=0}^{\infty} \BE(X^k)s^k/k!.$
+                
+                
+                 \item<4->[-] The above proof also suggests that  $\BE(|X^n|)<\infty$.
+                
+            
+                
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Expansion of Moment Generating Function: continued} 
+
+Now about using it to generate the moments. 
+
+We rely on the fact that power series are infinitely-differentiable:
+
+\begin{align*}
+M_X^{(r)}(s) &= \left[ \sum_{k=0}^{\infty} \BE(X^k)s^k/k!\right]^{(r)} \\
+&= \sum_{k=0}^{r-1} 0 + \BE[X^r] + \sum_{k=r+1}^{\infty}\BE(X^k)\left[k \cdots (k-r+1) \right]\frac{s^{k-r}}{k!} 
+\end{align*}
+
+Then plug in $s=0$ to get $\BE[X^r]$.
+
+}
+
+
+\end{document}
