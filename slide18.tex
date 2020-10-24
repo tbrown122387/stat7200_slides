@@ -1,0 +1,295 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 18}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+
+% \section{Mathematical Background}
+% \section{Why the Advanced Probability is Hard?}
+% \section{Probability Triple}
+% \section{Foundation of Probability I}
+% \section{Theory of Convergence I}
+
+
+% 
+% \section{Foundation of Probability II}
+% 
+% \subsection{Distribution}
+
+
+
+
+\section{Convergence Theorems}
+
+
+
+
+\subsection{Exchange Different Operators}
+
+\subsection{Moment Generating Functions}
+
+\frame
+{
+  \frametitle{MGFs: recap} 
+
+   \begin{itemize}
+   
+                \item<1->\textbf{Moment generating function} of random variable $X$:
+                
+                $$M_{X}(s)=\BE(e^{sX}), s\in \mathbf{R}.$$
+
+                
+                \item<2-> If $X\bot Y$, then $M_{X+Y} (s)=M_X(s) M_Y(s)$. 
+                
+                \item<3->  Let $X$ be random variable such that $M_X(s)<\infty$ for $0 < |s| < s_0$. Then $\BE(|X^n|)<\infty$ for all $n$. And for $|s|<s_0$, we have:
+                
+                $$M_X(s)=\sum_{k=0}^{\infty} \BE(X^k)s^k/k!, \BE(X^r)=M_X^{(r)} (0)$$. 
+
+\end{itemize}
+}
+
+
+
+\subsection{Large Deviations Theory}
+
+\frame
+{
+  \frametitle{Large Deviations Theory} 
+
+   \begin{itemize}
+
+                 \item<1-> LLN:, for i.i.d. rvs $X_1, X_2,\ldots$, with finite mean $\mu$ and finite variance $\sigma^2$: for any $\varepsilon > 0$, 
+                 $$\BP \left( \left|\frac{X_1+\cdots+X_n}{n}-\mu \right|\geq \varepsilon \right) \rightarrow 0.$$
+  
+                   \item<2-> However, this does not tell us any thing about the \textbf{speed} of convergence. It does not tell us how large $n$ should be to guarantee the probability of a large deviation would be smaller than a certain threshold (say 5\%).                   
+                   
+                    \item<3-> \textbf{Large deviations theory} studies the speed of convergence by estimating the probability of the large deviation as a function of sample size $n$. 
+                    
+                  \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Large Deviations Theory and Moment Generating function} 
+
+   \begin{itemize}
+
+                 \item<1-> Cherbychev's inequality gives us a weak result:
+                                  $$\BP\left(\frac{X_1+\cdots+X_n}{n}\geq \mu+\varepsilon\right)\leq \BP\left(\left|\frac{X_1+\cdots+X_n}{n}-\mu\right|\geq \varepsilon \right)\leq \frac{\sigma^2}{ n \varepsilon}$$
+                            That is, the probability of large deviation decreases in the order of $O(1/n)$ (roughly proportional to $1/n$), which is rather slow. 
+
+               \item<2->[] \begin{Theorem}[Large Deviation Theorem for LLN] Let $X_1, X_2,\ldots$ be i.i.d. random variables with mean $\mu$, and $M_{X_i}(s) <\infty $ for $s\in (-a, b)$ where $a, b>0$. Then 
+               $$\BP \left( \frac{X_1+\cdots+X_n}{n}\geq \mu+\varepsilon \right) \leq \rho^n$$
+               where $\rho=\inf_{0<s<b} [e^{-s(\mu+\varepsilon)} M_{X_1} (s) ]<1.$
+                            \end{Theorem}
+          
+          
+                            \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Large Deviation Theorem for LLN: Proof} 
+
+   \begin{itemize}
+
+                 \item<1-> \textbf{Proof:} To estimate $\BP(\frac{X_1+\cdots+X_n}{n}\geq \mu+\varepsilon)$, let $Y_i=X_i-\mu-\varepsilon$, then for $-a<s<b$, we have $M_{Y_i}(s)=e^{-s(\mu+\varepsilon)} M_{X_i} (s) <\infty$. Also note that for $s>0$, the function $e^{sx}$ is an increasing and non-negative function, then by Markov's inequality: 
+                          \begin{align*} &  \BP(\frac{X_1+\cdots+X_n}{n}\geq \mu+\varepsilon) \\ =  & \BP(\frac{Y_1+\cdots+Y_n}{n}\geq 0) = \BP(Y_1+\cdots+Y_n\geq 0) \\ = &   \BP(e^{s(Y_1+\cdots+Y_n)}\geq 1) \leq M_{Y_1+\cdots Y_n} (s)= [ e^{-s(\mu+\varepsilon)} M_{X_1} (s) ]^n \end{align*}
+      
+              for all $0<s<b$. Thus, the probability of large deviation should be bounded by $\rho^n$ where $\rho=\inf_{0<s<b} [e^{-s(\mu+\varepsilon)} M_{X_1} (s) ]$. 
+              
+ 
+                 \item<2->[-] We still need to show that $\rho<1$. Define $g(s)=e^{-s(\mu+\varepsilon)} M_{X_1} (s) $, we can verify that $g(0)=1$ and $g'(0)=-\varepsilon<0$.  This suggests that, the function $g(s)$ would decrease as $s$ increases around the $s=0$. Then for some small $s>0$, we must have $g(s)<1$. As a result,  $\rho<1$.
+                           
+          
+                            \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Large Deviations: Example} 
+
+   \begin{itemize}
+
+                 \item<1-> Let us consider the case when $X_1, X_2,\ldots$ are i.i.d. standard normal random variables. Let us take $\varepsilon=1$. Without using the mgf, we have:
+                 
+      $$\BP(\frac{X_1+\cdots+X_n}{n}\geq 1)\leq  \frac{1}{  n} \le \alpha$$
+
+                 \item<2-> By the large deviation theorem we just stated, and note that the mgf of  $N(0,1)$ is $e^{s^2/2}$ for all $s$, we have:
+                 
+                       $$\BP\left(\frac{X_1+\cdots+X_n}{n}\geq 1 \right)\leq  [\inf_{s>0} e^{-s} e^{s^2/2}]^n=e^{-\frac{n }{2}} \le \alpha.$$
+                       
+                       This result suggests that, if we want to control the probability of large $(>1)$ deviation under $\alpha$, then $n$ must be at least $2\log (1/\alpha)$
+
+
+
+                 \item<3-> For $\alpha=0.05$, the first estimation yields $n=20$ while the second estimation yields $n=6$. For $\alpha=0.01$, the first estimation yields $n=100$ while the second estimation yields $n=10$.  If $\alpha=0.001$, the results are $n=1000$ and $n=14$ respectively. 
+                            \end{itemize}
+}
+
+\section{Theory of Convergence II}
+\subsection{Weak Convergence}
+
+\frame
+{
+  \frametitle{Weak Convergence (chapter 10) } 
+
+   \begin{itemize}
+
+                 \item<1-> \textbf{Weak Convergence} (Also known as convergence in distribution). Given Borel probability measures $\mu_1, \mu_2,\ldots, $ on $\mathbf{R}$, we say that $\{\mu_n \}$ converges weakly to $\mu$ if $\int_{\mathbf{R}} f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for \textit{all bounded continuous functions} $f:\mathbf{R}\rightarrow \mathbf{R}$. 
+
+                 \item<2-> \textbf{Example:} Let $\mu_n\sim N(0, \frac{1}{n})$, then  $\{\mu_n \}$ converges weakly to $\delta_0$, the point mass at $0$. 
+
+                 \item<3-> \textbf{Note:} Unlike the convergence almost surely and convergence in probability, which are about the convergence of random variables, the weak convergence solely focuses on the convergence of probability measures. Thus, the weak convergence of measure $\{\mu_n \}$ usually does not guarantee the convergence of random variables $\{X_n\}$ even if $\mathcal{L} (X_n)\sim \mu_n$. 
+                 
+                   \item<4-> For instance, for random variable $Z\sim N(0,1)$, define $Z_k=Z$ when $k$ is odd, and $Z_k=-Z$ when $k$ is even. Then $\{Z_n\}$ does not converge almost surely or in probability. However, since $\mathcal{L} (Z_n) \sim N(0,1)$,  the distributions of $\{Z_n\}$ would converge weakly to $N(0,1)$.
+                   
+                                               \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Equivalent Definitions of Weak Convergence} 
+
+   \begin{itemize}
+
+               \item<1->[] \begin{Theorem}[Equivalent Definitions of Weakly Convergence] The following statements are all equivalent definitions:
+
+               (1) $\{\mu_n\}$ converges weakly to $\mu$. (Original definition) 
+               \vspace{2mm}
+               
+                 {\color{blue} (2) $\mu_n(A)\rightarrow \mu(A)$ for all measurable set $A$ such that $\mu(\partial A)=0$. ($\partial A$ is defined as the boundary of set $A$) }
+                              \vspace{2mm}
+
+               (3) $\mu_n((-\infty, x])\rightarrow \mu((-\infty, x])$ for all $x\in \mathbf{R}$ such that $\mu(\{x\})=0$. That is, the convergence of CDFs. (Note, $\{x\}$ is the boundary of set $(-\infty, x]$.)
+                              \vspace{2mm}
+
+                 {\color{blue}  (4) (Skorohod's Theorem) there are rvs $Y, Y_1, Y_2, \ldots$ defined on the same probability triple, with $\mathcal{L} (Y)=\mu$ and $\mathcal{L} (Y_n)=\mu_n $ such that $Y_n\rightarrow Y$ with probability 1 (This theorem connects the strongest type of convergence: convergence almost surely, with weak convergence.) }
+                              \vspace{2mm}
+
+               (5) $\int_{\mathbf{R}}f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for all bounded Borel-measurable functions $f:\mathbf{R}\rightarrow \mathbf{R}$. such that $\mu(D_f)=0$, where $D_f$ is the set of discontinuous points of $f$. (The continuous condition of definition 1) is relaxed.)
+              
+                            \end{Theorem}
+
+                                               \end{itemize}
+}
+
+
+
+% \frame
+% {
+%   \frametitle{Structure of Proof} 
+% 
+%    \begin{itemize}
+% 
+%                \item<1-> To show the equivalence of all the five statements, in principle, we need to show that any one of the statement would imply any other statements, which involving $5\times 4=20$ different proofs. 
+%                
+%                      \item<2-> Still, usually we can reduce the number of proofs by creating "loops". For instance, to show that four statements $(1), (2), (3)$ are equivalent, instead of going through 6 different proofs, we actually only need to show 3 different relationships: $(1) \Rightarrow (2)\Rightarrow (3) \Rightarrow (1)$, since any other "implication relationship" would be the direct consequence of the aforementioned result. 
+%                      
+%                       \item<3-> In this case, our proof will follow the following structure: 
+%                   %  \begin{figure}[c]
+%                   %     \includegraphics[scale=0.3]{StructureofProof.pdf}
+%                   % \end{figure}   
+%                   %    
+%                                        
+%                      
+%                      
+%                                                \end{itemize}
+% }
+
+
+
+\frame
+{
+  \frametitle{Proof: Some Immediate Results} 
+
+   \begin{itemize}
+
+               \item<1->   (1) $\{\mu_n\}$ converges weakly to $\mu$. 
+               \vspace{2mm}
+               
+                 {\color{blue} (2) $\mu_n(A)\rightarrow \mu(A)$ for all measurable set $A$ such that $\mu(\partial A)=0$. }
+                              \vspace{2mm}
+
+
+               (5) $\int_{\mathbf{R}}f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for all bounded Borel-measurable functions $f:\mathbf{R}\rightarrow \mathbf{R}$. such that $\mu(D_f)=0$, where $D_f$ is the set of discontinuous points of $f$. 
+                                            \vspace{5mm}
+
+
+                     \item<2-> $(5)\Rightarrow (1)$: Immediate result, since the set of discontinuous points of a continuous function is the empty set. 
+                     
+                      \item<3-> $(5)\Rightarrow (2)$: Let $f=\BI_{A}$, then the set of discontinuous points of $f$ is the boundary of $A$, so  $D_{\BI_A}=\delta A$, $\mu(D_{\BI_A})=\mu(\delta A)=0$,  $\mu_n(A)=\int_{\mathbf{R}}f d\mu_n  \rightarrow \int_{\mathbf{R}}f d\mu =\mu(A)$.
+                     
+                                       
+                     
+                     
+                                               \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof: Some Immediate Results} 
+
+   \begin{itemize}
+
+\item<1->
+               
+                (2) $\mu_n(A)\rightarrow \mu(A)$ for all measurable set $A$ such that $\mu(\partial A)=0$.  
+                              \vspace{2mm}
+
+
+               {\color{blue}  (3) $\mu_n((-\infty, x])\rightarrow \mu((-\infty, x])$ for all $x\in \mathbf{R}$ such that $\mu(\{x\})=0$.}
+                                            \vspace{5mm}
+
+               
+               
+               
+                     \item<2-> $(2)\Rightarrow (3)$: Immediate result, since $\partial (-\infty, x]=\{x\}$.
+                     
+                      \item<3-> \textbf{Interior, boundary, closure and exterior:} 
+                      
+                      Given any set $A \subseteq \mathbf{R}$, the interior is defined as 
+                      $$\{x\in A: \exists \varepsilon> 0, (x-\varepsilon, x+\varepsilon)\subseteq A\},$$ 
+                      
+                      the boundary is defined as 
+                                            $$\partial A= \{x\in \mathbf{R}: \forall \varepsilon> 0, A\cap (x-\varepsilon, x+\varepsilon)\neq \emptyset, A^c \cap (x-\varepsilon, x+\varepsilon)\neq \emptyset \},$$
+                      
+                      the closure is defined as the union of $A$ and its boundary, and exterior is defined as the interior of the complement of $A$. Interior, boundary and exterior forms a partition of $\mathbf{R}$.
+                     
+                     \item<4->      For instance, the interior of $(a, b]$ is $(a, b)$, the boundary is $\{a, b\}$, the closure is $[a, b]$ and the exterior is $(-\infty, a)\cup (b, \infty)$.           
+                     
+                     
+                                               \end{itemize}
+}
+
+
+
+
+\end{document}
