@@ -1,0 +1,297 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 23}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+\subsection{Weak Convergence}
+
+
+
+\frame
+{
+  \frametitle{Equivalent Definitions of Weakly Convergence} 
+
+   \begin{itemize}
+
+               \item<1->[] \begin{Theorem}[Equivalent Definitions of Weakly Convergence] The following statements are all equivalent definition of weak convergence:
+
+               (1) $\{\mu_n\}$ converges weakly to $\mu$. (Original definition) 
+               \vspace{2mm}
+               
+                 {\color{blue} (2) $\mu_n(A)\rightarrow \mu(A)$ for all measurable set $A$ such that $\mu(\partial A)=0$. ($\partial A$ is defined as the boundary of set $A$) }
+                              \vspace{2mm}
+
+               (3) $\mu_n((-\infty, x])\rightarrow \mu((-\infty, x])$ for all $x\in \mathbf{R}$ such that $\mu(\{x\})=0$. That is, the convergence of CDFs. (Note, $\{x\}$ is the boundary of set $(-\infty, x]$.)
+                              \vspace{2mm}
+
+                 {\color{blue}  (4) (Skorohod's Theorem) there are random variable $Y, Y_1, Y_2, \cdots$ defined on the same probability triple, with $\mathcal{L} (Y)=\mu$ and $\mathcal{L} (Y_n)=\mu_n $ such that $Y_n\rightarrow Y$ with probability 1 (This theorem connects the strongest type of convergence: convergence almost surely, with the week convergence.) }
+                              \vspace{2mm}
+
+               (5) $\int_{\mathbf{R}}f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for all bounded Borel-measurable functions $f:\mathbf{R}\rightarrow \mathbf{R}$. such that $\mu(D_f)=0$, where $D_f$ is the set of discontinuous points of $f$. (The continuous condition of definition 1) is relaxed.)
+              
+                            \end{Theorem}
+
+                                               \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Structure of Proof} 
+
+   \begin{itemize}
+
+               \item<1-> Our proof will follow the following structure: 
+%                    \begin{figure}[c]
+%                       \includegraphics[scale=0.3]{StructureofProof.pdf}
+% \end{figure}   
+                     
+                    \item<2-> We have proved:   $(5)\Rightarrow (1)$,  $(5)\Rightarrow (2)$ and  $(2)\Rightarrow (3)$
+                                       
+                     
+                     
+                                               \end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Proof: $(1) \Rightarrow (3)$ } 
+
+   \begin{itemize}
+
+\item<1->
+               
+                (1)  $\{\mu_n\}$ converges weakly to $\mu$:  $\int_{\mathbf{R}} f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for all bounded continuous functions $f$.
+                              \vspace{2mm}
+
+
+               {\color{blue}  (3) $\mu_n((-\infty, x])\rightarrow \mu((-\infty, x])$ for all $x\in \mathbf{R}$ such that $\mu(\{x\})=0$.}
+                                            \vspace{2mm}
+
+               
+               
+               
+                     \item<2-> \textbf{Strategy:}  We can not apply $(1)$ directly by setting $f=\BI_{(-\infty, x]}$ since $\BI_{(-\infty, x]}$, although bounded, is discontinuous at $x$. We may resolve this issue by  constructing continuous approximation  of $\BI_{(-\infty, x]}$. 
+                     
+                     \item<3-> \textbf{Proof:} For any $\varepsilon>0$ (which is used to control how good the approximation is), define $f(t)=1$ for $t\leq x$ and $0$ for $t\geq x+\varepsilon$, but let $f(t)$ be a linear function on $(x, x+\varepsilon)$. 
+                     \item<4->[-]  As $f$ is now continuous and $\BI_{(-\infty, x]} \leq f \leq \BI_{(-\infty, x+\varepsilon]}$:
+                     $$\limsup_n \mu_n((-\infty, x]) \leq \limsup_n \int f d\mu_n=\int f d\mu \leq \mu((-\infty, x+\varepsilon])$$
+                     
+                     \item<5->[-] Let $\varepsilon\rightarrow 0$. By the continuity of probability, we have $\limsup_n \mu_n((-\infty, x]) \leq \mu((-\infty, x])$
+                     
+                                         
+                                               \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Proof: $(1) \Rightarrow (3)$: continued} 
+
+   \begin{itemize}
+
+                     \item<1-> \textbf{Proof: continued} Similarly, define $f(t)=1$ for $t\leq x-\varepsilon$ and $0$ for $t\geq x$, but let $f(t)$ be a linear function on $(x-\varepsilon, x)$. Then $f$ is linear and $\BI_{(-\infty, x-\varepsilon]} \leq f \leq \BI_{(-\infty, x]}$. And:
+                     $$\liminf_n \mu_n((-\infty, x]) \geq \liminf_n \int f d\mu_n=\int f d\mu \geq \mu((-\infty, x-\varepsilon])$$
+                     
+              \item<2->[-]     Let $\varepsilon\rightarrow 0$, $\liminf_n \mu_n((-\infty, x]) \geq \mu((-\infty, x) )=\mu((-\infty, x])$. The last equality holds since $\mu(\{x\})=0$. 
+              
+              \item<3->[-]  In summary:  $$\liminf_n \mu_n((-\infty, x]) \geq \mu((-\infty, x]) \geq \limsup_n \mu_n((-\infty, x])$$
+               
+               \item<4->[-] we then must have:  $$\lim_n \mu_n((-\infty, x]) =\mu((-\infty, x]) $$                    
+                                               \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Proof: $(4) \Rightarrow (5)$ } 
+
+   \begin{itemize}
+
+\item<1->
+               
+
+
+               (4) there are random variable $Y, Y_1, Y_2, \cdots$ defined on the same probability triple, with $\mathcal{L} (Y)=\mu$ and $\mathcal{L} (Y_n)=\mu_n $ such that $Y_n\rightarrow Y$ with probability 1.
+                                                           \vspace{2mm}
+                                                           
+                                                           
+
+            {\color{blue}   (5) $\int_{\mathbf{R}}f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for all bounded Borel-measurable functions $f:\mathbf{R}\rightarrow \mathbf{R}$. such that $\mu(D_f)=0$, where $D_f$ is the set of discontinuous points of $f$. }
+              
+                                            \vspace{2mm}
+
+               
+\item<2-> \textbf{Proof:} Pick an appropriate $f$. First, we want to show that $P\left( f(Y_n) \to f(Y) \right) = 1$. Note that
+\begin{itemize}
+\item $0 \le P(Y_n(\omega) \to Y(\omega), D_f) \le P( D_f) = 0$
+\item$1 = P(Y_n \to Y) = P(Y_n \to Y, D_f) + P(Y_n \to Y, D_f^c) +  P(Y_n \to Y, D_f^c)$
+\item $\{\omega : f(Y_n) \to f(Y)\} \supseteq \{\omega :  Y_n(\omega) \to Y(\omega)\} \cap \{\omega :  Y(\omega) \in D_f^c \}$
+\end{itemize}
+so $f(Y_n) \to f(Y)$ wp1 by (4) and monotonicity of $\BP$.
+
+\item<3->[-] Because $f$ is bounded, $f(Y)$ is integrable, so $\BE[f(Y_n)]\rightarrow \BE[f(Y)]$ by the dominated convergence theorem.
+
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$ } 
+
+   \begin{itemize}
+
+\item<1-> (3) $\mu_n((-\infty, x])\rightarrow \mu((-\infty, x])$ for all $x\in \mathbf{R}$ such that $\mu(\{x\})=0$.
+                                            \vspace{2mm}
+
+              {\color{blue}  (4) there are random variables $Y, Y_1, Y_2, \ldots$ defined on the same probability triple, with $\mathcal{L} (Y)=\mu$ and $\mathcal{L} (Y_n)=\mu_n $ such that $Y_n\rightarrow Y$ with probability 1 }
+                                                           \vspace{2mm}
+
+               
+\item<2-> \textbf{Strategy:}  We will construct random variables with CDFs $F_n(x)=\mu_n((-\infty, x])$, $F(x)=\mu((-\infty, x])$, then we will show the convergence of these random variables using the fact that the corresponding CDFs converge.
+                     
+\end{itemize}
+}
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$:  Probability Integral Transform} 
+
+\begin{itemize}
+
+\item<1-> \textbf{Proof:} We can construct random variable with given CDF using probability integral transform theorem. 
+                       
+\item<2-> This theorem states that,  for random variable $U$ that follows uniform distribution, given any CDF $F(x)$, define quantile function $Q(p)=\inf \{x: F(x) \geq p\}$, then the random variable $Q(U)$ follows distribution with CDF $F(x)$. 
+        
+\item<3->[-] The reason is, by definition $Q(p)\leq q \Leftrightarrow F(q)\geq p$
+                     
+                                          $$\BP[Q(U)\leq x] =\BP [F(x) \geq U]=F(x)$$
+                                          
+\item<4->[-] Other useful results include: 
+                       
+                      a) $F(q)< p \Leftrightarrow Q(p)> q $
+
+                       
+                       b) When the CDF is continuous and strictly increasing, the quantile function is the inverse of CDF.  
+                       
+                       
+                       c) The quantile function $Q(p)$ is a non-decreasing function, same as the CDF.
+                       
+                    %   c) $F[Q(p)]\geq p$, but $Q[F(q)] \leq q$                        
+                                               \end{itemize}
+}
+
+
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
+
+   \begin{itemize}
+          
+                     
+                     \item<1-> \textbf{Proof: continued} Let $F_n(x)=\mu_n((-\infty, x])$, $F(x)=\mu((-\infty, x])$, and let $(\Omega, \mathcal{F}, \BP)$ be the uniform measure over $\Omega=[0,1]$, and $Y_n(\omega)=\inf \{y: F_n(y) \geq \omega\}$, $Y(\omega)=\inf \{y: F(y) \geq \omega\}$. Then $Y_n$ has CDF $F_n(x)$ and $Y$ has CDF $F(x)$.  
+                     
+                     
+                     \item<2->[-] Now we will show that $Y_n(\omega)\rightarrow Y(\omega)$ if $Y(\omega)$ is continuous at $\omega$. 
+                     
+                         \item<3->[-] Firstly, define $Y(\omega) = y$. Then $y-\varepsilon<Y(\omega)< y+\varepsilon$ implies:
+                                                  $$F(y-\varepsilon)< \omega \leq F(y+\varepsilon) $$
+                         
+                        If $Y(\omega)$ is continuous at $\omega$, the above inequality must be strict. 
+                         
+                %   \item<4->[-] The reason is, if  $F(y-\varepsilon)=\omega$, then $Y(\omega ) \leq y-\varepsilon$, but $Y(\omega)=y$, then $y\leq y-\varepsilon$, a contradiction. 
+                   
+                   \item<4->[-] The reason: if $F(y+\varepsilon)=\omega$, for any $\delta>0$, $F(y+\varepsilon)<\omega+\delta$, then $Y(\omega+\delta)>y+\varepsilon=Y(\omega)+\varepsilon$. This indicates that there is a jump of at least size $\varepsilon$ of $Y(\omega)$ at $\omega$, which is a contradiction to the continuity of $Y$ at $\omega$. 
+                   
+                        \item<5->[-] Thus,    $F(y-\varepsilon)<\omega< F(y+\varepsilon) $
+                                         
+                                               \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
+
+   \begin{itemize}
+          
+                     
+                     \item<1-> \textbf{Proof: continued}  In the previous slide, if $Y$ is continuous at $\omega$, and $Y(\omega)=y$, then $F(y-\varepsilon)<\omega< F(y+\varepsilon) $ for all $\varepsilon>0$. 
+                     
+                     \item<2-> Now for a particular $\varepsilon$, we can always find $0<\varepsilon'<\varepsilon$, so that $\mu(y-\varepsilon')=\mu(y+\varepsilon')=0$. ($\BP(x)>0$ only for at most countably many $\{x\}$). Then $F_n(y-\varepsilon')\rightarrow F(y-\varepsilon')$ and $F_n(y+\varepsilon')\rightarrow F(y+\varepsilon')$. Thus, for large enough $n$, we have:  
+                     $$F_n(y-\varepsilon')<\omega< F_n(y+\varepsilon') $$                  
+                     
+                     \item<3->[-] Since $\omega< F_n(y+\varepsilon')$, $\omega \le F_n(y+\varepsilon')$, then: 
+                     
+       \hspace{3cm}             $Y_n(\omega)\leq  y+\varepsilon'=Y(\omega)+\varepsilon'$. 
+       
+       \vspace{5mm}
+                     \item<4->[-] Since $F_n(y-\varepsilon')<\omega$, then $ y-\varepsilon' < Y_n(\omega) $, which implies a weaker inequality: 
+                     
+       \hspace{3cm}             $Y_n(\omega)\geq y-\varepsilon'=Y(\omega)-\varepsilon'$. 
+                            \vspace{5mm}
+
+                         \item<5->[-] In summary, $|Y_n(\omega)-Y(\omega)|\leq \varepsilon'<\varepsilon$ for large enough $n$. Thus, $Y_n(\omega)\rightarrow Y(\omega)$ when $Y$ is continuous at $\omega$
+                                                                  
+                                               \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
+
+   \begin{itemize}
+          
+                     
+\item<1-> \textbf{Proof: continued} Finally, we need to establish the fact that $Y$ is continuous with probability 1. Or equivalently, $D_Y$, the set of the discontinuous points of $Y$, has probability 0. This statement can be justified based on : a) $Y$ is defined on a uniform measure over $[0,1]$, b)$D_Y$ is at most countable. 
+
+\item<2-> To show  $D_f$ is at most countable, let us first create a partition of $\mathbf{R}=\bigcup_{z\in \mathbf{Z}} (z, z+1]$, and define $\Omega_z=\{\omega: z<Y(\omega)\leq z+1 \} = Y^{-1}\left( (z,z+1] \right)$. 
+
+Since $Y$ is a non-decreasing function, each $\Omega_z$ should be an interval on $[0,1]$ and $\{\Omega_z\}$ forms a partition of $[0,1]$.
+
+\item<3-> Then Let $D_f^z = \text{ Discontinuous points in } \Omega_z$. Clearly $D_f=\bigcup_z D_f^z$. 
+
+\item<4-> Next define $D_f^z \supseteq D_f^z(m) = \{ \text{ jumps that have size } \ge m^{-1} \}$. 
+
+\item<5-> Clearly $|D_f^z| \le m$ and $D_f = \bigcup_z \bigcup_m D_f^z(m)$. Therefore the number of discontinuous points is at most countable. 
+
+                                               \end{itemize}
+}
+
+
+
+\end{document}
