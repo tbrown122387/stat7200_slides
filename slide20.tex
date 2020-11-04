@@ -1,0 +1,271 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 24}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+\section{Theory of Convergence II}
+\subsection{Weak Convergence}
+
+
+
+\frame
+{
+  \frametitle{Equivalent Definitions of Weak Convergence} 
+
+   \begin{itemize}
+
+               \item<1->[] \begin{Theorem}[Equivalent Definitions of Weakly Convergence] The following statements are all equivalent definition of weak convergence:
+
+               (1) $\{\mu_n\}$ converges weakly to $\mu$. (Original definition) 
+               \vspace{2mm}
+               
+                 {\color{blue} (2) $\mu_n(A)\rightarrow \mu(A)$ for all measurable set $A$ such that $\mu(\partial A)=0$. ($\partial A$ is defined as the boundary of set $A$) }
+                              \vspace{2mm}
+
+               (3) $\mu_n((-\infty, x])\rightarrow \mu((-\infty, x])$ for all $x\in \mathbf{R}$ such that $\mu(\{x\})=0$. That is, the convergence of CDFs. (Note, $\{x\}$ is the boundary of set $(-\infty, x]$.)
+                              \vspace{2mm}
+
+                 {\color{blue}  (4) (Skorohod's Theorem) there are random variable $Y, Y_1, Y_2, \cdots$ defined on the same probability triple, with $\mathcal{L} (Y)=\mu$ and $\mathcal{L} (Y_n)=\mu_n $ such that $Y_n\rightarrow Y$ with probability 1 (This theorem connects the strongest type of convergence: convergence almost surely, with weak convergence.) }
+                              \vspace{2mm}
+
+               (5) $\int_{\mathbf{R}}f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for all bounded Borel-measurable functions $f:\mathbf{R}\rightarrow \mathbf{R}$. such that $\mu(D_f)=0$, where $D_f$ is the set of discontinuous points of $f$. (The continuous condition of definition 1) is relaxed.)
+              
+                            \end{Theorem}
+
+                                               \end{itemize}
+}
+
+
+
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$ } 
+
+   \begin{itemize}
+
+\item<1->
+               
+
+
+              (3) $\mu_n((-\infty, x])\rightarrow \mu((-\infty, x])$ for all $x\in \mathbf{R}$ such that $\mu(\{x\})=0$.
+                                            \vspace{2mm}
+
+              {\color{blue}  (4) there are random variable $Y, Y_1, Y_2, \cdots$ defined on the same probability triple, with $\mathcal{L} (Y)=\mu$ and $\mathcal{L} (Y_n)=\mu_n $ such that $Y_n\rightarrow Y$ with probability 1 }
+                                                           \vspace{2mm}
+
+               
+                     \item<2-> \text{Proof:} We have shown that, let $F_n(x)=\mu_n((-\infty, x])$, $F(x)=\mu((-\infty, x])$, and let $(\Omega, \mathcal{F}, \BP)$ be the uniform measure over $\Omega=[0,1]$, and $Y_n(\omega)=\inf \{x: F_n(x) \geq \omega\}$, $Y(\omega)=\inf \{x: F(x) \geq \omega\}$. 
+                     
+                     \item<3->[-] Then $Y_n$ has CDF $F_n(x)$ and $Y$ has CDF $F(x)$.  and  $Y_n(\omega)\rightarrow Y(\omega)$ if $Y(\omega)$ is continuous at $\omega$. 
+
+                                         
+                                               \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Example} 
+
+   \begin{itemize}
+          
+                     
+                     \item<1-> If $\mu_n\sim N(0,\frac{1}{n} )$, then $\{\mu_n\}$ converges weakly to $\mu=\delta_0$,   
+                     
+                                         
+                     \item<2-> It is usually easier to show the weak convergences using CDF function (definition (3)). In this case, note that the CDF of $\mu$, $F_{\mu} (x)=0$ for $x<0$, but $F_{\mu}(x)=1$ for $x\geq 0$. 
+                     
+                     \item<3-> Now for $x<0$, let $Z$ be a random variables that follow $N(0, 1)$ distribution, then as $n\rightarrow \infty$,  $$F_{\mu_n} (x)=\BP(Z\leq \sqrt{n} x)\rightarrow 0=F_{\mu} (x)$$                      
+                    \item<4-> For $x>0$, $$F_{\mu_n} (x)=1-\mu_n((x,\infty) )=1-\BP(Z> \sqrt{n} x)\rightarrow 1=F_{\mu} (x)$$ 
+                    
+                    \item<5-> For $x=0$, $F_{\mu_n} (0)=\frac{1}{2} \not \rightarrow 1=F_{\mu} (0)$ as $n\rightarrow \infty$. However, since $\mu(\{0\})=1\neq 0$, we can still conclude that $\{\mu_n\}$ converges weakly to $\mu=\delta_0$. 
+
+                                                                                       
+                                               \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{On Skorohod's Representation Theorem} 
+
+   \begin{itemize}
+          
+                     
+                     \item<1-> The definition (4) is also known as Skorohod's Representation Theorem. This theorem essentially states that, if probability measure $\{\mu_n\}$ converge weakly to $\mu$, then we can then find random variables $Y, Y_1, Y_2,\ldots$ such that $\mathcal{L} (Y_n) =\mu_n$, $\mathcal{L} (Y) =\mu$, and $\{Y_n\}$ converges to $Y$ almost surely. 
+                     
+           
+\item<2->  However, if we start with random variables $X_1, X_2, \ldots$, and $\{ \mathcal{L} (X_n) \}$converges weakly to $\mathcal{L} (X)$, this does not allow us to deduce any conclusion regarding whether  $\{X_n\}$ would converge to $X$ in probability or almost surely. In fact, do not even know whether $X, X_1, X_2,\cdots$ are defined on the same probability triple.  
+
+\item<3-> However, by applying  Skorohod's Representation Theorem, we will be able to find other random variables that have the same distribution as $\{X_n\}$ and ${X}$, but are defined on the same sample space and enjoy the strong condition of convergence almost surely. 
+                              
+\item<4-> This theorem can be used to link results involving weakly converges to the results involving convergence almost surely. Example on the next slide...        
+                                                                                                            
+                                               \end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{On Skorohod's Representation Theorem: Example} 
+
+\begin{itemize}
+              
+\item<1->[] \begin{Proposition} If $X_n\geq 0$, and $\{ \mathcal{L} (X_n) \}$converges weakly to $\mathcal{L} (X)$\, then $\BE(X) \leq \liminf \BE(X_n)$ \end{Proposition}          
+                    
+\item<2-> \textbf{Proof:} Fatou's Lemma (Theorem 9.1.1) Told us that $E[\liminf_n X_n] \le \liminf_n E[X_n]$. $\liminf_n X_n$ is only defined if all of these random variables are defined on the same probability space. 
+
+\item<3-> However, by applying  Skorohod's Representation Theorem, we can find random variables $Y, Y_1, Y_2, \cdots$ such that $\mathcal{L} (Y_n) =\mathcal{L} (X_n)$, $\mathcal{L} (Y) =\mathcal{L} (X)$, and $\{Y_n\}$ converges to $Y$ almost surely. Then: 
+                   
+\item<4->[]  $$\BE(X)=\BE(Y)=\BE(\liminf_n Y_n) \leq \liminf_n \BE(Y_n) =\liminf_n \BE(X_n)$$ 
+
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Convergence in Probability Implies Weak Convergence} 
+
+\begin{itemize}
+          
+                     
+\item<1->[] \begin{Theorem}[Convergence in Probability Implies Weak Convergence] If $\{X_n\}\rightarrow X$ in probability, then $\{ \mathcal{L} (X_n) \}$ converges weakly to $\mathcal{L} (X)$ \end{Theorem}  
+                     
+\item<2->\textbf{Proof:} We need to show $\BP(X_n\leq z)\rightarrow \BP(X\leq z)$ for $\BP(X=z)=0$ based on the fact that, for any $\varepsilon>0$, $\BP(|X_n-X| \geq \varepsilon) \rightarrow 0.$
+
+\item<3-> We will show $\limsup_n \BP(X_n\leq z) \le \BP(X\leq z) \le \liminf_n \BP(X_n\leq z)$
+                     
+\item<4->[-] $\BP(X_n\leq z)=\BP(X_n\leq z, X\leq z+\varepsilon)+\BP(X_n\leq z, X> z+\varepsilon) \leq \BP(X\leq z+\varepsilon)+\BP(|X-X_n| \geq \varepsilon)$
+
+\item<5->[-] Then we have: $\limsup_n \BP(X_n\leq z) \leq \BP(X\leq z+\varepsilon)$, let $\varepsilon\rightarrow 0$, $\limsup_n \BP(X_n\leq z) \leq \BP(X\leq z)$
+
+\item<6->[-] $\BP(X \leq z-\varepsilon)=\BP(X \leq z-\varepsilon, X_n \leq z)+\BP(X \leq z-\varepsilon, X_n> z) \leq \BP(X_n \leq z)+\BP(|X-X_n| \geq \varepsilon)$
+
+\item<7->[-] Then we have: $\liminf_n \BP(X_n\leq z) \geq \BP(X\leq z-\varepsilon)$, let $\varepsilon\rightarrow 0$, $\liminf_n \BP(X_n\leq z) \geq \BP(X< z)=\BP(X\leq z)$ when $\BP(X=z)=0$. 
+
+
+\end{itemize}
+}
+
+\subsection{Characteristic Functions}
+
+\frame
+{
+  \frametitle{Characteristic Function: Definition and Properties} 
+
+   \begin{itemize}
+          
+                     
+                     \item<1-> \textbf{Characteristic Function} of a random variable $X$ is defined as:
+                     
+                     $$\phi_X(t)=\BE(e^{itX})=\BE[cos(tX)]+i\BE[sin(tX)], \ \ \ \ t\in \mathbf{R}$$
+                     
+                     \item<2-> Unlike moment generating function, characteristic function is always finite for any $t\in \mathbf{R}$, since: 
+                     
+                     $$|e^{itX}|= 1$$
+                     
+                     \item<3-> Similar to the moment generating function, we can use the derivative of characteristic function to find the moment:
+                     
+                     $$\phi_X^{(k)}(0)=i^k\BE(X^k),\ \ \ \text{  if  } \BE(|X^k|)<\infty$$.
+                     
+                     \item<4>[-]\textbf{Remark:} If the moment generating function is finite in an interval around 0, then all the moments are finite. However, the knowledge on characteristic function (which is always finite) does not guarantee the existence of moment of any order. 
+
+                                                                                                   
+                                               \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Characteristic Function: A Uniformly Continuous Function} 
+
+   \begin{itemize}
+          
+                     
+                                          \item<1-> \textbf{Continuous Function} A function $f(x)$ is continuous on set $A$ if for any $\varepsilon>0$, $x\in A$, there is a $\delta>0$ that depends on both $\varepsilon$ and $x$, so that for any $|h|<\delta$, $|f(x+h)-f(x)|<\varepsilon$.
+
+
+                     \item<2-> \textbf{Uniformly Continuous Function} A function $f(x)$ is {\bf uniformly continuous} on $A$ if for any $\varepsilon>0$, there is a $\delta>0$ that only depends on $\varepsilon$, so that for any $x\in A$, and for any $|h|<\delta$, $|f(x+h)-f(x)|<\varepsilon.$
+                     
+                         \item<4-> \textbf{Example (1): }  $f(x)=x$ on $\mathbf{R}$ is uniformly continuous, as $|f(x+h)-f(x)|=|h|$ does not depend on $x$. 
+                         
+                     
+                     \item<3-> \textbf{Example (2):}  $f(x)=\frac{1}{x}$ on $(0, \infty)$ is continuous but not uniformly continuous. 
+                     $$|f(x+h)-f(x)|=|\frac{1}{x+h}-\frac{1}{x}|=|\frac{h}{x(x+h)}|$$
+                     
+                     \item<4->[-] If $f(x)=\frac{1}{x}$ is uniformly continuous, let us choose $\varepsilon=1$, then there must be a $\delta$ that does not depend on $x$, so that as long as $|h|<\delta$, $|\frac{h}{x(x+h)}|<1$ for all $x>0$. However, for $0<h<1/2$, we can always let $x=h$, and $|\frac{h}{x(x+h)}|=|\frac{1}{2h}|>1$, a contradiction. 
+                     
+                     
+                                                                                                   
+                                               \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Characteristic Function: A Uniformly Continuous Function} 
+
+   \begin{itemize}
+                     
+	\item<1-> \textbf{Example (2):}  $f(x)=\frac{1}{x}$ on $(0, \infty)$ is continuous but not uniformly continuous. 
+
+
+	\item<2-> \textbf{Example (3):}  $f(x)=\frac{1}{x}$ on $[1, \infty)$ is uniformly continuous: 
+                     
+	\item<3->  $|f(x+h)-f(x)|=|\frac{1}{x+h}-\frac{1}{x}|=|\frac{h}{x(x+h)}| \le |h/1+h|$                                                                
+                                               \end{itemize}
+}
+
+\frame
+{
+  \frametitle{Characteristic Function : A Uniformly Continuous Function} 
+
+   \begin{itemize}
+          
+\item<1->[] \begin{Proposition} Characteristic function is a uniformly continuous function on $\mathbf{R}$. \end{Proposition}
+                                          
+\item<2-> \textbf{Proof:} Denote the distribution of random variable $X$ as $\mu$:
+\begin{align*}
+|\phi_X(t+h)-\phi_X(t)| & =|\int (e^{i(t+h)x}-e^{itx})\mu(dx)| \\ 
+& \leq \int |e^{i(t+h)x}-e^{itx} | \mu(dx) \\
+&=  \int |e^{itx}| |e^{ihx}-1 | \mu(dx) =\int  |e^{ihx}-1 | \mu(dx),
+\end{align*}                    
+
+\noindent which does not depend on $t$. 
+
+\item<3-> [-] Furthermore, as $| e^{ihx}-1 | \leq 2$, by  dominated convergence theorem: 
+$$\lim_{h\rightarrow 0} \int | e^{ihx}-1 | \mu(dx) =\int ( \lim_{h\rightarrow 0} |e^{ihx}-1 |) \mu(dx)=0.$$
+                                        \noindent So $\phi_X(t)$ is a  uniformly continuous function on $\mathbf{R}$.
+                                               \end{itemize}
+}
+
+
+\end{document}
