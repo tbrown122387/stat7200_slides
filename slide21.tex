@@ -160,8 +160,8 @@ WTS: $$\mu([a,b])=\lim_{T\rightarrow \infty} \frac{1}{2\pi} \int_{-T}^T \frac{e^
 
 \begin{align*}
 &\frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt \\
-&= \frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \left( \int_{\mathbf{R}} e^{itx} \mu(dx)  \right) dt \tag{Fubini and first Lemma} \\
-&= \frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{ e^{it(x-a)}-  e^{it(x-b)}  }{it} dt  \mu(dx) \\ 
+&= \frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \left( \int_{\mathbf{R}} e^{itx} \mu(dx)  \right) dt  \\
+&= \frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{ e^{it(x-a)}-  e^{it(x-b)}  }{it} dt  \mu(dx) \tag{Fubini and first Lemma}\\ 
 &= \frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{ i\sin(t(x-a))- i \sin( t(x-b))  }{it} dt  \mu(dx)  
 \end{align*}  
 }
@@ -178,7 +178,7 @@ Taking $T \to \infty$:
 &= \mu((a,b)) + \frac{1}{2} \mu(\{a\}) + \frac{1}{2}\mu(\{b\}) \\
 &=\mu([a,b])
 \end{align*}  
-
+where the last equality follows because $\mu(\{a\})=\mu(\{b\})=0$.	
 
 }
 
@@ -193,7 +193,7 @@ Taking $T \to \infty$:
   \item<1->[] \begin{Theorem}[Fourier Uniqueness Theorem] Let $X, Y$ be random variables. Then $\phi_X(t)=\phi_Y(t)$ if and only if $\mathcal{L}(X)=\mathcal{L} (Y)$.   
    \end{Theorem}
   
-  \item<2->\textbf{Proof:} The ``if" part is trivial. For the ``only if'' part, to show $\mathcal{L}(X)=\mathcal{L} (Y)$, we only need to show $\BP(X\in I)=\BP(Y\in I)$ for all intervals in $\mathbf{R}$ (uniqueness of extension). 
+  \item<2->\textbf{Proof:} The ``if" part is trivial. For the ``only if'' part, to show $\mathcal{L}(X)=\mathcal{L} (Y)$, we only need to show $\BP(X\in I)=\BP(Y\in I)$ for all intervals in $\mathbf{R}$ (uniqueness of extension Prop. 2.5.8). 
   
   \item<3->[-] By Fourier Inversion theorem, $\BP(X\in [a,b])=\BP(Y\in [a,b])$ whenever $a<b$ and $\BP(X=a)=\BP(X=b)=\BP(Y=a)=\BP(Y=b)=0$. 
   \item<4->[-] For any interval $I$, we can always find a sequence of closed intervals $\{[a_i, b_i]\}$ that satisfy the above conditions, and $[a_i,b_i]\rightarrow I$. Thus, we can apply the continuity of probability to show that $\BP(X\in I)=\BP(Y\in I)$.
@@ -264,7 +264,7 @@ Also, $F$ is not necessarily a cdf.
 
 \frame
 {
-\frametitle{Helly Selection Principle:proof} 
+\frametitle{Helly Selection Principle: proof} 
 
 List out rationals $\mathbf{Q} = \{q_1, q_2,\ldots\}$. Note that $0 \le F_n(q_1) \le 1$ for all $n$. By Bolzano-Weirstrass, there exists a subsequence $l_k^{(1)}$ such that $\lim_k F_{l_k^{(1)} }(q_1)$ exists. Then there exists a subsequence of that subsequence, call it $l_k^{(2)}$, such that $\lim_k F_{l_k^{(2)} }(q_2)$ exists. Because it is a subsequence of the first one, we also have that $\lim_k F_{l_k^{(2)} }(q_1)$ exists. We can do this for each $m \in \mathbf{N}$. For each $\{l_{n_k}^{(m)} \}$, we have $\lim_k F_{l_k^{(m)} }(q_j)$ exists for all $0 < j \le m$.
 \newline
@@ -296,9 +296,7 @@ which is defined on the reals. It has a few properties that we'll need:
 \item $F(q) > G(q)$ for all $q \in \mathbf{Q}$
 \end{itemize}
 
-Next, we'll show that, for any continuity point of $F$, call it $x \in \mathbf{R}$, we have $F_{n_k}(x) \to F(x)$ as $k \to \infty$. 
-
-Pick any $\varepsilon > 0$, then pick $r,u,s \in \mathbf{Q}$ such that $r < u < x < s$ and $F(s) - F(r) < \varepsilon$.
+Next, we'll show that, for any continuity point of $F$, call it $x \in \mathbf{R}$, we have $F_{n_k}(x) \to F(x)$ as $k \to \infty$. Pick any $\varepsilon > 0$, then pick $r,u,s \in \mathbf{Q}$ such that $r < u < x < s$ and $F(s) - F(r) < \varepsilon$.
 
 \begin{align*}
 F(x) - \varepsilon &\le F(r) \\
@@ -386,8 +384,8 @@ Remember our goal is to prove the other direction of Levy's continuity theorem. 
 \frac{1}{y} \int_{-y}^{y} [1-\phi_n(t)] dt
 & = \int_{-\infty}^{\infty} \left[ \frac{1}{y} \int_{-y}^{y} (1-e^{itx}) dt \right]\mu_n (dx)  \\
 &= 2 \int_{-\infty}^{\infty} (1-\frac{\sin y x}{y x}) \mu_n (dx)  \\
-&\geq \int_{|x|>2/y} (1-\frac{1}{|y x|}) \mu_n (dx)  \\ 
-& \geq \mu_n[\{x: |x| \geq \frac{2}{y}\}]  
+&\geq 2\int (1-\frac{1}{|y x|}) \mu_n (dx)  \\ 
+&\geq \int_{|x| > 2/y} 1 \mu_n (dx)  = \mu_n\left( \left\{x: |x| \geq \frac{2}{y} \right\} \right)  
 \end{align*} 
 
 
