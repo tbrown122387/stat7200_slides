@@ -1,0 +1,443 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 21}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+\section{(Levy's) Continuity Theorem} 
+
+
+\frame
+{
+  \frametitle{(Levy's) Continuity Theorem} 
+
+ \begin{itemize}
+ 
+\item<1->[] \begin{Theorem}[The Continuity Theorem (11.1.14)] Let $\mu, \mu_1, \mu_2,\ldots$  be probability measures with characteristic functions $\phi, \phi_1, \phi_2,\ldots$. Then $\mu_n$ converges weakly to $\mu$ if and only if $\phi_n(t)\rightarrow \phi(t)$ for all $t \in \mathbf{R}$.  That is, the weak convergence is equivalent to the pointwise convergence of characteristic functions. \end{Theorem}
+
+\item<2-> \textbf{Proof:} \textit{(1) Weak convergence implies pointwise convergence of characteristic functions:}
+\item<3->[-] Since $cos(x)$ and $sin(x)$ are both bounded and continuous functions, then for any $t\in \mathbf{R}:$
+\begin{align*}
+\phi_n(t)& =\int cos(tx) \mu_n(dx)+i \int sin(tx)\mu_n dx \\
+&\rightarrow \int cos(tx) \mu (dx)+i \int sin(tx) \mu(dx)=\phi(t),
+\end{align*}
+
+\noindent by the definition of weak convergence. 
+
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Continuity Theorem: Pointwise Convergence of Characteristic Function Implies Weak Convergence} 
+
+ \begin{itemize}
+ 
+ \item<1-> \textbf{Proof:} (2) On the other hand, if we have $\phi_n(t)\rightarrow \phi(t)$ for all $t \in \mathbf{R}$, we do not even know if the limit of $\{\mu_n\}$ exists or not. 
+ 
+ \item<2-> We will need several theorems, lemmas and corollaries to show that this is indeed true. Many of these will need their own results to prove them.
+ 
+% \item<2->[-] Now suppose that a subsequence $\{\mu_{n_k}\}$ converges weakly to a measure $\nu$,  then by part (1), $\phi_{n_k}(t)\rightarrow \phi_{\nu}(t)$ for all $t$, which suggests  
+% $\phi_{\nu}(t)= \phi(t)$. Does this result imply $\nu=\mu$?
+% 
+% \item<3>[Q1:]  \textbf{Does a characteristic function uniquely determine a probability measure?} 
+% 
+% \item<4-> [-] A "yes" answer to question 1 implies that, if a subsequence of $\{\mu_n\}$ converges weakly to a probability measure, then this limit must be $\mu$. In this sense, $\mu$ is the only possible weak limit of $\{\mu_n\}$. So to establish $\mu_n$ converges weakly to $\mu$, we need to answer the second question: 
+% 
+%  \item<5>[Q2:] \textbf{Under what condition, if $\mu$ is the only possible weak limit of a sequence of probability measures, this sequence of probability measures must converge weakly to  $\mu$?} (Answer: $\{\mu_n\}$ must be ``tight".)
+% 
+ 
+ 
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Fourier Inversion Theorem} 
+
+ \begin{itemize}
+ 
+  \item<1->[] \begin{Theorem}[Fourier Inversion Theorem (11.1.1)] Let $\mu$ be a Borel probability measure on $\mathbf{R}$ with characteristic function $\phi(t)=\int e^{itx} \mu(dx)$. Then for $a<b$ and $\mu(\{a\})=\mu(\{b\})=0$:
+  
+  $$\mu([a,b])=\lim_{T\rightarrow \infty} \frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt.$$
+  
+   \end{Theorem}
+  
+ 
+ \item<2-> \textbf{Remark 1:} We'll prove this with two Lemmas.
+ 
+ \item<3-> \textbf{Remark 2:} The number of intervals $[a,b]$ with $\mu(\{a\}) \neq 0 $ or $\mu(\{b\})\neq 0$ is at most countable because the set $\{x:\mu(\{x\})>0\}$ is at most countable. That's from the previous lecture.  
+ 
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{First Lemma to prove Fourier Inversion Theorem} 
+
+ \begin{itemize}
+ 
+  \item<1->[] \begin{Theorem}[Lemma 11.1.2] 
+  For $T \ge 0$ and $a < b$
+  	$$\int_{\mathbf{R}} \int_{-T}^T \left| \frac{ e^{-ita} - e^{-itb} }{it} e^{itx} \right| dt \mu(dx) \le 2T(b-a) < \infty.$$
+   \end{Theorem}
+  
+ 
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{First Lemma to prove Fourier Inversion Theorem} 
+
+\begin{align*}
+\left| \frac{ e^{-ita} - e^{-itb} }{it} e^{itx} \right| &= \left| \frac{ e^{-ita} - e^{-itb} }{it}  \right||e^{itx}| \\
+&= \left| \int_a^b e^{itr} dr  \right| \\
+&\le  \int_a^b |e^{itr}| dr  \\
+&= b-a 
+\end{align*}
+
+So
+$$
+\int_{\mathbf{R}} \int_{-T}^T \left| \frac{ e^{-ita} - e^{-itb} }{it} e^{itx} \right| dt \mu(dx) \le \int_{\mathbf{R}} \int_{-T}^T (b-a) dt \mu(dx) = 2T(b-a)
+$$
+
+}
+
+
+\frame
+{
+  \frametitle{Second Lemma to prove Fourier Inversion Theorem} 
+
+ \begin{itemize}
+ 
+  \item<1->[] \begin{Theorem}[Lemma 11.1.3] 
+	For $T \ge 0$ and $\theta \in \mathbf{R}$
+	$$
+	\lim_{T \to \infty}\int_{-T}^T \frac{\sin(\theta t)}{t}dt = \pi \text{sign}(\theta)
+	$$
+	where $\text{sign}(\theta)$ is either $1$, $-1$ or $0$ depending on whether $\theta$ is positive, negative or $0$, respectively.
+   \end{Theorem}
+  
+ We're omitting the proof because it's elementary integration, but it's fun and involves a lot of cool stuff (e.g. the sinc function, integration by parts, u-substitution, different trigonometric properties, etc.) so you should try it.
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{Fourier Inversion Theorem: Proof} 
+
+WTS: $$\mu([a,b])=\lim_{T\rightarrow \infty} \frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt$$
+
+\begin{align*}
+&\frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt \\
+&= \frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \left( \int_{\mathbf{R}} e^{itx} \mu(dx)  \right) dt \tag{Fubini and first Lemma} \\
+&= \frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{ e^{it(x-a)}-  e^{it(x-b)}  }{it} dt  \mu(dx) \\ 
+&= \frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{ i\sin(t(x-a))- i \sin( t(x-b))  }{it} dt  \mu(dx)  
+\end{align*}  
+}
+
+\frame
+{
+  \frametitle{Fourier Inversion Theorem: Proof (continued) } 
+Taking $T \to \infty$:
+\begin{align*}
+& \lim_{T \to \infty} \frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt \\
+&= \lim_{T \to \infty}\frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{ \sin(t(x-a))-  \sin( t(x-b))  }{t} dt  \mu(dx)  \\
+&= \frac{1}{2\pi}   \int_{\mathbf{R}} \lim_{T \to \infty} \int_{-T}^T \frac{ \sin(t(x-a))-  \sin( t(x-b))  }{t} dt  \mu(dx)  \tag{DCT} \\
+&= \frac{1}{2\pi}   \int_{\mathbf{R}} \pi\left[\text{sign}(x-a) - \text{sign}(x-b) \right]  \mu(dx)  \tag{Lemma 2} \\
+&= \mu((a,b)) + \frac{1}{2} \mu(\{a\}) + \frac{1}{2}\mu(\{b\}) \\
+&=\mu([a,b])
+\end{align*}  
+
+
+}
+
+
+
+\frame
+{
+  \frametitle{Fourier Uniqueness Theorem: Characteristic Function Determines Distribution} 
+
+ \begin{itemize}
+ 
+  \item<1->[] \begin{Theorem}[Fourier Uniqueness Theorem] Let $X, Y$ be random variables. Then $\phi_X(t)=\phi_Y(t)$ if and only if $\mathcal{L}(X)=\mathcal{L} (Y)$.   
+   \end{Theorem}
+  
+  \item<2->\textbf{Proof:} The ``if" part is trivial. For the ``only if'' part, to show $\mathcal{L}(X)=\mathcal{L} (Y)$, we only need to show $\BP(X\in I)=\BP(Y\in I)$ for all intervals in $\mathbf{R}$ (uniqueness of extension). 
+  
+  \item<3->[-] By Fourier Inversion theorem, $\BP(X\in [a,b])=\BP(Y\in [a,b])$ whenever $a<b$ and $\BP(X=a)=\BP(X=b)=\BP(Y=a)=\BP(Y=b)=0$. 
+  \item<4->[-] For any interval $I$, we can always find a sequence of closed intervals $\{[a_i, b_i]\}$ that satisfy the above conditions, and $[a_i,b_i]\rightarrow I$. Thus, we can apply the continuity of probability to show that $\BP(X\in I)=\BP(Y\in I)$.
+  
+  \end{itemize}
+}
+
+
+
+%\frame
+%{
+%  \frametitle{Fourier Inversion Theorem: Proof} 
+%
+% \begin{itemize}
+% \item<1->[] $$\mu([a,b])=\lim_{T\rightarrow \infty} \frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt.$$
+%  \item<1-> \textbf{Proof:} First, we have:
+%    \begin{equation}\frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt=\frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} (\int_{\mathbf{R}} e^{itx} \mu(dx) ) dt \label{fourier1}\end{equation}
+% 
+% \item<2->[-] We claim that we may exchange the order of integrals in (\ref{fourier1}), since
+% 
+% $$|\frac{e^{-ita}-e^{-itb}}{it}  e^{itx}|=|\int_a^b e^{-itr} dr|\leq \int_a^b |e^{-itr}| dr=b-a$$
+% 
+%So $\int_{\mathbf{R}}\int_{-T}^T | \frac{e^{-ita}-e^{-itb}}{it}  e^{itx}|   dt \mu(dx) \leq 2T(b-a)<\infty$. 
+%
+%\item<3->[-]Then we may apply Fubini's theorem on (\ref{fourier1}) and:
+%  \begin{equation}\frac{1}{2\pi} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t) dt=\frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{e^{it(x-a)}-e^{it(x-b)}}{it}  dt \mu(dx)\label{fourier2}\end{equation}
+%   
+%\end{itemize}
+%}
+%
+%
+%
+%\frame
+%{
+%  \frametitle{Fourier Inversion Theorem: continued} 
+%
+% \begin{itemize}
+% \item<1->\textbf{continued:} As $e^{itc}=\cos(tc)+i\sin(tc)$, and $\cos(tc)/(it)$ is an odd function, then $\int_{-T}^T e^{itc} /(it) dt=\int_{-T}^T \sin(tc)/t dt$, thus:
+%\begin{equation}  \resizebox{0.9\hsize}{!} {$\frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{e^{it(x-a)}-e^{it(x-b)}}{it} dt \mu(dx) = \frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{\sin[t(x-a)]-\sin[t(x-b)]}{t} dt \mu(dx)  $} \label{fourier3}\end{equation}
+%
+% \item<3->[-] Utilize the fact that, for any $T\geq 0$ and $\theta\in \mathbf{R}$, there is a constant $C$:
+% 
+% $$\lim_{T\rightarrow \infty} \int_{-T}^T\frac{\sin \theta t}{t} dt =\pi \text{sign} (\theta),  \text{and } |\int_{-T}^T\frac{\sin \theta t}{t} dt|\leq C.$$
+% 
+%  \item<4->[-] We can then let $T\rightarrow \infty$ in (\ref{fourier3}), and exchange limit and the integral (bounded convergence theorem):
+%\scalebox{0.9}{$ \begin{array}{ll} &   \lim_{T\rightarrow \infty} \frac{1}{2\pi} \int_{\mathbf{R}} \int_{-T}^T \frac{e^{it(x-a)}-e^{it(x-b)}}{it} dt \mu(dx)  \\ & = \frac{1}{2\pi} \int_{\mathbf{R}} \lim_{T\rightarrow \infty}  \int_{-T}^T \frac{\sin[t(x-a)]-\sin[ t(x-b)]}{t} dt \mu(dx)  \\ &
+%= \frac{1}{2\pi} \int_{\mathbf{R}} \pi [\text{sign}(x-a)-\text{sign}(x-b)] \mu(dx)=\frac{1}{2} \mu(\{a\})+\mu((a,b))+\frac{1}{2}\mu(\{b\}) \end{array}
+%$}
+%
+% \end{itemize}
+%}
+
+
+
+\frame
+{
+\frametitle{Helly Selection Principle} 
+
+\begin{Theorem}[Helly Selection Principle] 
+Let $\{F_n\}$ be a sequence of cdfs, each corresponding with a measure $\mu_n$. Then there exists a subsequence $F_{n_k}$, and a non-decreasing, right-continuous $0 \le F \le 1$, such that $F_{n_k}(x) \to F(x)$ for each $x \in \mathbf{R}$ that is a continuity point of $F$.
+\end{Theorem}
+
+The proof will remind you of the uncountability proofs. 
+\newline
+
+Also, $F$ is not necessarily a cdf.
+}
+
+\frame
+{
+\frametitle{Helly Selection Principle:proof} 
+
+List out rationals $\mathbf{Q} = \{q_1, q_2,\ldots\}$. Note that $0 \le F_n(q_1) \le 1$ for all $n$. By Bolzano-Weirstrass, there exists a subsequence $l_k^{(1)}$ such that $\lim_k F_{l_k^{(1)} }(q_1)$ exists. Then there exists a subsequence of that subsequence, call it $l_k^{(2)}$, such that $\lim_k F_{l_k^{(2)} }(q_2)$ exists. Because it is a subsequence of the first one, we also have that $\lim_k F_{l_k^{(2)} }(q_1)$ exists. We can do this for each $m \in \mathbf{N}$. For each $\{l_{n_k}^{(m)} \}$, we have $\lim_k F_{l_k^{(m)} }(q_j)$ exists for all $0 < j \le m$.
+\newline
+
+Now define $n_k = l_k^{(k)}$. These are the diagonals. However, note that all these subsequences are nested, so for any $k$, 
+\begin{itemize}
+\item $\{n_k, n_{k+1}, \ldots\} \subseteq \{l^{(k)}_{k}, l^{(k)}_{k+1},\ldots\}  $ 
+\item $\{n_{k+1}, n_{k+2}, \ldots\} \subseteq \{l^{(k+1)}_{k+1}, l^{(k+1)}_{k+2},\ldots\}  $, etc. 
+\end{itemize}
+
+These ensure that $\lim_k F_{n_k}(q) := G(q)$ exists for each $q \in \mathbf{Q}$. $G$ is also clearly non-decreasing as well, just like each $F_{n,k}$ .
+
+}
+
+\frame
+{
+\frametitle{Helly Selection Principle:proof} 
+
+For each rational $q$, $F_{n_k}(q) \to  G(q)$. $G$ is defined on the rationals, only. Now we define 
+$$
+F(x) = \inf\{ G(q) : q > x, q \in \mathbf{Q} \}
+$$
+which is defined on the reals. It has a few properties that we'll need:
+
+\begin{itemize}
+\item $F$ is non-decreasing
+\item $0 \le F \le 1$
+\item $F$ is right-continuous,and
+\item $F(q) > G(q)$ for all $q \in \mathbf{Q}$
+\end{itemize}
+
+Next, we'll show that, for any continuity point of $F$, call it $x \in \mathbf{R}$, we have $F_{n_k}(x) \to F(x)$ as $k \to \infty$. 
+
+Pick any $\varepsilon > 0$, then pick $r,u,s \in \mathbf{Q}$ such that $r < u < x < s$ and $F(s) - F(r) < \varepsilon$.
+
+\begin{align*}
+F(x) - \varepsilon &\le F(r) \\
+&= \inf\{ G(q) : q > r\} \\
+&= \inf\{ \lim_{k} F_{n_k}(q) : q > r\} 
+\end{align*}
+}
+
+
+\frame
+{
+\frametitle{Helly Selection Principle:proof} 
+
+
+\begin{align*}
+F(x) - \varepsilon &\le \inf_{q > r} \liminf_{k} F_{n_k}(q) \\
+&\le \liminf_{k} F_{n_k}(u) \tag{$u > r$} \\
+&\le \liminf_{k} F_{n_k}(x) \tag{$x > u$ } \\
+&\le \limsup_{k} F_{n_k}(x)  \\
+&\le \limsup_{k} F_{n_k}(s) \tag{$s > x$ } \\
+&= G(s) \\
+&\le F(s) \\
+&\le F(x) + \varepsilon 
+\end{align*}
+QED
+}
+
+
+
+%\frame
+%{
+%  \frametitle{Tightness of Measure}
+%
+% \begin{itemize}
+% \item<1-> Our discussion on Fourier inversion theorem shows that, given a sequence of probability measure $\{\mu_n\}$ whose characteristic function convergences to the characteristic function of another measure $\mu$, if a subsequence of $\{\mu_n\}$ converges weakly to measure $\nu$, then $\mu=\nu$. 
+% 
+% \item<2-> To resolve the issue on whether such subsequence of $\{\mu_n\}$ exists, and whether  $\{\mu_n\}$ itself would converge weakly to the limit of its subsequence, we need to introduce the concept of tightness. 
+% 
+% \item<3-> \textbf{Tightness of Measure} A collection of probability measure $\{\mu_n\}$ on $\mathbf{R}$ is \textbf{tight} if for all $\varepsilon>0$, there are $a<b$ with $\mu_n([a,b]) \geq 1-\varepsilon$ for all $n$. (Probability mass does not ``escape of infinity").
+% 
+% \item<4-> \textbf{Example:} 1) $\{N(0, \frac{1}{n})\}$ is tight. 2) $\{N(0, n)\}$ is not tight. 
+% 
+% \item<5-> \textbf{Property:} Any subsequence of a tight sequence is tight.  \end{itemize}
+%}
+
+
+\frame
+{
+  \frametitle{Tightness of Measure: Three More Results }
+
+\begin{theorem}[11.1.10]
+ If $\{\mu_n\}$ is a tight sequence of prob. measures, then there exists a subsequence $\{\mu_{n_k}\}$ and a probability measure $\mu$ such that $\mu_{n_k}$ converges weakly to $\mu$. 
+ \end{theorem}
+ 
+\begin{theorem}[Corollary 11.1.11]
+ Let $\{\mu_n\}$ be a tight sequence of prob. measures on $\mathbf{R}$. Also suppose that, whenever $\mu_{n_k} \Rightarrow \nu$, then $\nu$ is always equal to $\mu$. Then $\mu_n \Rightarrow \mu$.
+ \end{theorem}
+
+\begin{Lemma}[11.1.13]
+ Let $\{\mu_n\}$ be a sequence of probability measures on $\mathbf{R}$, and $\{\phi_n(t)\}$ be the characteristic functions. If there is a function $g$ that is continuous at 0, and $\phi_n(t)\rightarrow g(t)$ for all $|t|<t_0$ ($t_0>0$), then $\{\mu_n\}$ is tight. 
+ \end{Lemma}
+
+Remember our goal is to prove the other direction of Levy's continuity theorem. Let's prove the third one first.
+
+}
+
+
+% TODO prove these
+
+\frame
+{
+  \frametitle{Tightness and Characteristic Functions}
+
+ \begin{itemize}
+ 
+ \item<1->[] \begin{Lemma}[11.1.13]
+ Let $\{\mu_n\}$ be a sequence of probability measures on $\mathbf{R}$, and $\{\phi_n(t)\}$ be the characteristic functions. If there is a function $g$ that is continuous at 0, and $\phi_n(t)\rightarrow g(t)$ for all $|t|<t_0$ ($t_0>0$), then $\{\mu_n\}$ is tight. 
+ \end{Lemma}
+ 
+ \item<2-> \textbf{Proof:} 
+ Let $y > 0$
+% We will show that for any $\varepsilon>0$, we can find a particular $y_0$, such that $\mu_n( (-\frac{2}{y_0},\frac{2}{y_0}))>1-\varepsilon$ for all $n$. 
+% \item<3->[-] For this purpose, we will first investigate the following integral:
+\begin{align*} 
+\frac{1}{y} \int_{-y}^{y} [1-\phi_n(t)] dt
+& = \int_{-\infty}^{\infty} \left[ \frac{1}{y} \int_{-y}^{y} (1-e^{itx}) dt \right]\mu_n (dx)  \\
+&= 2 \int_{-\infty}^{\infty} (1-\frac{\sin y x}{y x}) \mu_n (dx)  \\
+&\geq \int_{|x|>2/y} (1-\frac{1}{|y x|}) \mu_n (dx)  \\ 
+& \geq \mu_n[\{x: |x| \geq \frac{2}{y}\}]  
+\end{align*} 
+
+
+\end{itemize}
+ }
+
+
+
+\frame
+{
+  \frametitle{Tightness and Characteristic Functions: continued}
+
+ \begin{itemize}
+ 
+ \item<1-> \textbf{Proof continued:} The previous discussion shows that $\mu_n[\{x: |x| \geq \frac{2}{y}\}] \leq \frac{1}{y} \int_{-y}^{y} [1-\phi_n(t)] dt$. 
+ 
+\item<2->[-] Now since $g(t)$ is continuous at 0, and $g(0)=\lim_n \phi_n(0)=1$, then for any $\varepsilon>0$, we can always find $y_0 \in (0,t_0)$ such that:
+$$
+|1 - g(t)| < \varepsilon / 4
+$$
+whenever $|t| < y_0$. Then
+
+\begin{align*}
+\left| \frac{1}{y_0} \int_{-y_0}^{y_0} [1-g(t)] dt \right| &\le  \frac{1}{y_0} \int_{-y_0}^{y_0} \left|1-g(t)\right| dt \\
+&\le  \frac{1}{y_0} \int_{-y_0}^{y_0} \varepsilon/4 dt = \varepsilon/2 \\
+\end{align*}
+\end{itemize}
+ }
+ 
+ \frame
+{
+  \frametitle{Tightness and Characteristic Functions: continued}
+
+ \begin{itemize}
+ 
+ \item<1-> \textbf{Proof continued:} The previous discussion shows that 
+ \begin{enumerate}
+ \item $\mu_n[\{x: |x| \geq \frac{2}{y}\}] \leq \frac{1}{y} \int_{-y}^{y} [1-\phi_n(t)] dt$ and
+ \item $\left| \frac{1}{y_0} \int_{-y_0}^{y_0} [1-g(t)] dt \right| \le \varepsilon/2$
+ \end{enumerate} 
+ 
+\item<3->[-] On the other hand, as $\phi_n(t)\rightarrow g(t)$ for  $|t|<t_0$, and $|\phi_n(t)|=1$, we can apply the dominated convergence theorem:
+ $$ \left|\int_{-y_0}^{y_0} [1-\phi_n(t)] dt  -\int_{-y_0}^{y_0} [1-g(t)] dt \right| \leq \varepsilon/2 $$
+  for $n>N$. 
+\item<4->[-] Then for all $n>N$, 
+$$\mu_n[\{x: |x| \geq \frac{2}{y_0}\}] \leq \frac{1}{y_0} \int_{-y_0}^{y_0} [1-\phi_n(t)] dt \leq \varepsilon$$
+\item<5->[-] It then follows that $\{\mu_n\}$ must be tight. 
+
+\end{itemize}
+ }
+ 
+ 
+ \end{document}
