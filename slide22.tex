@@ -1,0 +1,284 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 22}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+
+\section{Characteristic Function}
+
+
+\subsection{(Levy's) Continuity Theorem} 
+
+
+\frame
+{
+  \frametitle{Continuity Theorem} 
+
+ \begin{itemize}
+ 
+            \item<1->[] \begin{Theorem}[The Continuity Theorem] Let $\mu, \mu_1, \mu_2,\cdots$  be probability measures with characteristic functions $\phi, \phi_1, \phi_2,\cdots$. Then $\mu_n$ converges weakly to $\mu$ if and only if $\phi_n(t)\rightarrow \phi(t)$ for all $t \in \mathbf{R}$.  That is, the weak convergence is equivalent to the pointwise convergence of characteristic function. \end{Theorem}
+
+% \item<2->[Q1:]  \textbf{Does characteristic function uniquely determines probability measure?} 
+% 
+%   \item<3->[Q2:] \textbf{Under what condition, if $\mu$ is the only possible weak limit of a sequence of probability measures, this sequence of probability measures must converge weakly to  $\mu$?} 
+
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Results So Far} 
+
+ \begin{itemize}
+   \item<1->[] \begin{Theorem}[Fourier Uniqueness Theorem] Let $X, Y$ be random variables. Then $\phi_X(t)=\phi_Y(t)$ if and only if $\mathcal{L}(X)=\mathcal{L} (Y)$.   
+   \end{Theorem}
+   
+ \item<2-> \textbf{Tightness of Measure} A collection of probability measure $\{\mu_n\}$ on $\mathbf{R}$ is \textbf{tight} if for all $\varepsilon>0$, there are $a<b$ with $\mu_n([a,b]) \geq 1-\varepsilon$ for all $n$. (Probability mass does not ``escape of infinity").
+    
+    
+ 
+ \item<3->[] \begin{Lemma} 
+ Let $\{\mu_n\}$ be a sequence of probability measure on $\mathbf{R}$, and $\{\phi_n(t)\}$ be the characteristic functions. If there is a function $g$ that is continuous at 0, and $\phi_n(t)\rightarrow g(t)$ for all $|t|<t_0$ ($t_0>0$), then $\{\mu_n\}$ is tight. 
+ \end{Lemma}
+
+   
+ \end{itemize}
+}
+
+
+ 
+ \frame
+{
+  \frametitle{Tightness and Weak Convergence I}
+
+ \begin{itemize}
+ 
+ \item<1-> Our discussion shows that, $\{\mu_n\}$ in the Continuity Theorem is tight. Here we will introduce a key property of a tight sequence of measure. That is, you may always find a subsequence that converges weakly to a probability measure. 
+ 
+  \item<2->[] \begin{Theorem}[11.1.10] 
+ Let $\{\mu_n\}$ be a tight sequence of probability measure, then there must be a subsequence $\{\mu_{n_k}\}$ and another probability measures $\mu$, such that $\{\mu_{n_k}\}$ converges weakly to $\mu$.
+ \end{Theorem}
+ 
+\item<3-> \textbf{Proof:} Let $F_n(x)$ represents the CDF of $\mu_n$. The Helly selection principle (Lemma 11.1.8 of the textbook) states that, for a sequence of CDFs $\{F_n(x)\}$ (not necessarily tight), there is always a subsequence $\{F_{n_k} (x)\}$ and a non-decreasing right-continuous function $F$ ($0\leq F\leq1$) so that $F_n(x)\rightarrow F(x)$ at all continuity points of $F$.  
+\item<4->[-] With the extra condition of tightness, we can show that, such $F$ must be a proper CDF of a probability measure $\mu$. 
+ 
+\end{itemize}
+ }
+ 
+  \frame
+{
+  \frametitle{Tightness and Weak Convergence I: continued}
+
+ \begin{itemize}
+
+\item<1-> \textbf{Proof continued:} To show $F$ is a proper CDF, we only need to show that $\lim_{x\rightarrow \infty} F(x)=1$ and $\lim_{x\rightarrow -\infty} F(x)=0$.
+
+\item<2->[-] Since $\{\mu_n\}$ is tight, $\{\mu_{n_k}\}$ is also tight. For any $\varepsilon>0$, we can find $a<b$ so that $a,b$ are the continuity points of $F$ (the discontinuous points of $F$ is at most countable) and $\mu_{n_k} ((a,b])\geq 1-\varepsilon$ for all $n$:
+\item<3->[]\begin{align*}
+\lim_{x\rightarrow \infty} F(x)-\lim_{x\rightarrow -\infty} F(x) & \geq F(b)-F(a)  \\ & =\lim_k [F_{n_k} (b)-F_{n_k} (a) ] \\ & =\lim_k \mu_{n_k} ((a,b])\geq 1-\varepsilon
+\end{align*}
+\item<4->[] for all $\varepsilon>0$, then $\lim_{x\rightarrow \infty} F(x)-\lim_{x\rightarrow -\infty} F(x) \geq 1$ and we have $\lim_{x\rightarrow \infty} F(x)=1$ and $\lim_{x\rightarrow -\infty} F(x)=0$.
+
+\item<4->[-] For a proper CDF $F(x)$, we can always defined measure $\mu$ as $\mu((a,b])=F(b)-F(a)$. Then by definition, $\{\mu_{n_k}\}$ converges weakly to $\mu$. 
+ 
+\end{itemize}
+ }
+ 
+   \frame
+{
+  \frametitle{Tightness and Weak Convergence II}
+
+ \begin{itemize}
+
+\item<1-> A tight sequence always has a subsequence that converges weakly. The following corollary shows that, if there is only one possible weak limit,  the full sequence would converge weakly as well. 
+ \item<2->[] \begin{Corollary}[11.1.11]
+ Let $\{\mu_n\}$ be a tight sequence of probability measures. Suppose that for any subsequence $\{\mu_{n_k}\}$, if it converges weakly, it must converge to probability measure $\mu$. Then $\{\mu_n\}$ must converge to $\mu$.
+ \end{Corollary}
+\item<3->\textbf{Proof:} Suppose that  $\{\mu_n\}$ does not converge to $\mu$, then $F_n(x)$ would not converge to $F(x)$  at some $x$ with $\mu(\{x\})=0$. Hence, we can find $x\in \mathbf{R}$, $\varepsilon>0$ and a subsequence $\{n_k\}$ so that for all $k$, $|F_{n_k} (x)-F(x)|\geq \varepsilon$.
+\item<4->[-] As $\{\mu_{n_k}\}$ is tight, too, there must be a further subsequence of $\{\mu_{n_{k_j}}\}$ that converges weakly. However, according to the condition, this subsequence of $\{\mu_{n_{k_j}}\}$ must converge weakly to $\mu$. This is a contradiction.
+%, which contradicts the fact $|F_{n_k} (x)-F(x)|\geq \varepsilon$. Thus, $\{\mu_n\}$ must converge to $\mu$.
+
+\end{itemize}
+ }
+ 
+ 
+    \frame
+{
+  \frametitle{Back to Continuity Theorem}
+
+ \begin{itemize}
+
+\item<1-> Now we have enough results to prove the ``if'' part of continuity theorem, that is, if $\phi_n(t)\rightarrow \phi(t)$ for all $t\in \mathbf{R}$ then $\{\mu_n\}$ converges weakly to $\mu$. The argument runs as following:
+
+\item<2-> [(a)] As $\phi_n(t)\rightarrow \phi(t)$ for all $t\in \mathbf{R}$, and $\phi(t)$ is continuous at $0$, then $\{\mu_n\}$ is tight (Theorem 11.1.13).
+
+\item<3->[(b)] As $\{\mu_n\}$ is tight, there must be a subsequence $\{\mu_{n_k}\}$ that converges weakly to a probability measure $\nu$ (Theorem 11.1.10).
+
+\item<4->[(c)] As $\{\mu_{n_k}\}$  converges weakly to a probability measure $\nu$, the corresponding characteristic functions $\phi_{n_k} (t)\rightarrow \phi_{\nu} (t)$ for all $t\in \mathbf{R}$ (easy half of this proof we did last class).
+
+\item<5->[(d)] But $\phi_{n_k} (t)\rightarrow \phi (t)$ as well, then $ \phi (t)= \phi_{\nu} (t)$. By the Fourier uniqueness theorem (Corollary 11.1.7), $\nu=\mu$.
+
+\item<6-> [(e)] Then $\mu$ is the only possible weak limit of $\{\mu_n\}$. Thus, $\{\mu_n\}$ converges weakly to $\mu$ (Corollary 11.1.11). 
+\end{itemize}
+
+QED.
+ }
+ 
+ \subsection{Method of Moments}
+ 
+ 
+  
+\frame
+{
+  \frametitle{Moment and Weak Convergences}
+
+ \begin{itemize}
+
+\item<1-> The continuity theorem demonstrates that the weak convergence is equivalent to the convergence of characteristic functions. On the other hand, the convergence of moments (even all the moments) does not necessarily indicate the weak convergence. Still, under the following condition, we can still determine the weak convergence based on the convergence of moments. 
+
+\item<2-> \textbf{Determined by the Moments:} We say a distribution $\mu$ is determined by its moments if: 1) For all $k\in \mathbf{N}$, $\int |x^k| \mu(dx)<\infty$. 2) If there is another distribution $\nu$ so that $\int x^k \mu(dx)=\int x^k \nu(dx)$ for all $k\in \mathbf{N}$, then $\mu=\nu$.
+\end{itemize}
+ }
+
+\frame
+{
+  \frametitle{Moment and Weak Convergences}
+
+
+\textbf{Remark} Not all distributions are determined by their moments. Example: a log-normal distribution. Let $g(x)$ be the density function of a log-normal distribution. Then define $h(x)=g(x) [1+\sin (2\pi \log x)]$, then we can show that $g(x)$ is a proper density function, and the distribution determined by $g(x)$ has the same moments as the log-normal distribution. 
+
+\includegraphics[width=50mm]{"lognormal_v_weirdlognormal.png"}
+
+ }
+
+
+
+   \frame
+{
+  \frametitle{Determined by the Moments and Weak Convergence}
+
+ \begin{itemize}
+
+\item<1->[]\begin{Theorem}[11.4.1]If $\mu$ is determined by its moments. Let $\{\mu_n\}$ be a sequence of distributions whose moments are all finite, and $\lim_n \int x^k \mu_n(dx)=\int x^k \mu(dx)$ for each $k\in \mathbf{N}$. Then $\{\mu_n\}$ converges weakly to $\mu$. 
+\end{Theorem}
+
+\item<2-> \textbf{Proof:} First we will show that $\{\mu_n\}$ is tight
+%, then we show that $\mu$ is the only weak limit of $\{\mu_n\}$. Then by the same argument as in the continuity theorem, $\{\mu_n\}$ converges weakly to $\mu$.
+
+\item<3->[-] Note that as $\lim_n \int x^k \mu_n(dx)=\int x^k \mu(dx)<\infty$, for each $k$, we can find finite constants $M_k$ such that $|\int x^k \mu_n(dx)| \leq M_k$. 
+
+\item<4->[-] Let $Y_n\sim \mu_n$, then 
+$$\mu_n([-R, R])=1-\BP(|Y_n|^2>R^2)\geq 1-\frac{\BE(|Y_n|^2)}{R^2}\geq 1-\frac{M_2}{R^2},$$
+
+\item<5-> for all $n$. Then we can always choose $R$ big enough, so that $\mu_n([-R, R])\geq 1-\frac{M_2}{R^2}\geq 1-\varepsilon$. Thus $\{\mu_n\}$ is tight.
+
+
+\end{itemize}
+ }
+
+
+
+\frame
+{
+  \frametitle{Determined by the Moments and Weak Convergence}
+
+ \begin{itemize}
+
+\item<2-> \textbf{continued:} By Theorem 11.1.10, every tight sequence of measures has a weakly convergent subsequence. 
+
+\item<3-> \textbf{continued:} Recall \begin{Corollary}[11.1.11]
+ Let $\{\mu_n\}$ be a tight sequence of probability measures. Suppose that for any subsequence $\{\mu_{n_k}\}$, if it converges weakly, it must converge to probability measure $\mu$. Then $\{\mu_n\}$ must converge to $\mu$.
+ \end{Corollary}
+ 
+ \item<4-> If we can verify the antecedent, then we can prove our final result.
+
+\end{itemize}
+ }
+
+
+
+
+\frame
+{
+  \frametitle{Determined by the Moments and Weak Convergence}
+
+ \begin{itemize}
+
+\item<5-> \textbf{continued:} Suppose we can find a subsequence $\{\mu_{n_r}\}$ that converges weakly to some measure $\nu$. By Skorohod's representation theorem, we can find random variables $Y$ and $\{Y_r\}$ such that $Y\sim \nu$, and $Y_r\sim \mu_{n_r}$ and $Y_r \overset{\text{a.s.}}{\to} Y$ almost surely. Furthermore, $Y^k_r \overset{\text{a.s.}}{\to} Y^k$.
+
+\item<6-> Next 
+%ow we also claim that $\BE(Y_r^k)\rightarrow \BE(Y^k)$ for each $k\in \mathbf{N}$ as: 
+
+$$\BE(|Y_r|^k\BI_{|Y_r|^k\geq \alpha})\leq \BE \left(\frac{|Y_r|^{2k}}{\alpha}\BI_{|Y_r|^k\geq \alpha}\right)  \leq \frac{1}{\alpha} \BE(|Y_r|^{2k}) \leq\frac{M_{2k}}{\alpha},$$
+for $\alpha>0$. 
+
+\item<7-> Thus, as $\alpha\rightarrow \infty$,
+
+$$\sup_r \BE(|Y_r|^k\BI_{|Y_r|^k\geq \alpha})\leq \frac{M_{2k}}{\alpha}\rightarrow \infty.$$
+
+Hence $\{Y_r^k\}$ are uniformly integrable.
+
+\item<8-> By the uniform integrability convergence theorem $\BE[Y_r^k] \to E[Y^k]$, so $\lim_n \int x^k \mu_{n_r}(dx)=\int x^k \nu(dx)$. 
+\end{itemize}
+ }
+ 
+ 
+ 
+ \frame
+{
+  \frametitle{Determined by the Moments and Weak Convergence}
+
+ \begin{itemize}
+
+  \item<9-> Now we want to show that $\nu$ must equal $\mu$. By hypothesis, all the moments converge to moments of $\mu$. And by the previous slide $\lim_n \int x^k \mu_{n_r}(dx)=\int x^k \nu(dx)$.
+
+\item<10->  We have $\lim_n \int x^k \mu_{n_r}(dx)=\int x^k \mu(dx)$. Then $\int x^k \mu(dx)=\int x^k \nu(dx)$ for all $k$. As $\mu$ is determined by its moments, we have $\mu=\nu$. That is, $\mu$ is the only weak limit of $\{\mu_n\}$.
+
+\item<11-> So we can invoke Corollary 11.1.11, and thus we have $\mu_n \Rightarrow \mu$.
+\end{itemize}
+ }
+ 
+ 
+ \frame
+{
+  \frametitle{Determined by the Moments}
+
+We will skip the proof of the following result:
+ \begin{itemize}
+
+\item<1->[]\begin{Theorem}[11.4.3]Let $X$ be a random variable. If for some $s_0>0$, $M_X(s)<\infty$ when $|s|<s_0$, then $\mathcal{L}(X)$ is determined by its moments. \end{Theorem}
+
+%\item<2-> \textbf{Sketch of the Proof:} As the moment generating function, if finite within an interval around 0,  can be expanded as the sum of moments, we can show that,  if $X$ and $Y$ have the same moments, then $M_X(s)=M_Y(s)$ when $|s|<s_0$. 
+%
+%\item<3->[-] Then if we define $f_X(z)=\BE(e^{zX})$, $f_Y(z)=\BE(e^{zY})$ ($z$ is complex). So when $z$ is real, $f_X(z)$ represents $M_X(s)$, and when $z=it$,  $f_X(z)=\phi_X(t)$. We can argue that $f_X(z)$, $f_Y(z)$ are both ``analytical function'' when $|\Re(z)|<s_0$ and are equal when $z$ is real. Then following the continuity of analytical function,  $f_X(z)=f_Y(z)$ over all $|\Re(z)|<s_0$, which covers $\phi_X(t)=\phi_Y(t)$ for all $t\in \mathbf{R}$. So, by the uniqueness of characteristic function, $X$ and $Y$ follows the same distribution. 
+\end{itemize}
+ }
+ 
+ 
+ 
+\end{document}
