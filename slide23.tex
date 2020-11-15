@@ -1,0 +1,213 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usepackage{amsmath}
+\usepackage{resizegather}
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 23}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+
+
+\section{Weak Convergence}
+\subsection{Characteristic Function}
+\subsection{Continuity Theorem}  
+ \subsection{Method of Moments} 
+ \subsection{Central Limit Theorem}
+ 
+    \frame
+{
+  \frametitle{Central Limit Theorem}
+
+ \begin{itemize}
+\item<1-> []\begin{Theorem}[Central Limit Theorem] If $X_1, X_2, \ldots, $ are i.i.d. random variables with finite mean $\mu$ and finite variance $\sigma^2$. Let $S_n=X_1+X_2+\cdots X_n$. Then as $n\rightarrow \infty$, $\mathcal{L}(\frac{S_n-n\mu}{\sqrt{n\sigma^2}})$ converges weakly to $N(0,1)$. If we use $\Phi(x)$ to represent the CDF of $N(0,1)$, then the CLT can be written as: 
+
+for all $x\in \mathbf{R}$, $\lim_{n\rightarrow \infty} \BP(\frac{S_n-n\mu}{\sqrt{n\sigma^2}}\leq x)=\Phi(x).$
+\end{Theorem}
+
+\item<2-> The proof uses the continuity theorem. The following facts are important:
+
+\item<3->[1)] The characteristic function of $N(0,1)$ is $e^{-\frac{t^2}{2}}$.
+\item<4->[2)] For any random variables $X$ with finite second moments: 
+$$\phi(t)=1+it\BE(X)-\frac{t^2}{2} \BE(X^2)+o(|t^2|).$$
+\noindent where ``small o" notation $o(|t^2|)$ represents a certain quantity so that $o(|t|^2)/(|t|^2)\rightarrow 0$ as $t\rightarrow 0$. 
+
+\end{itemize}
+ }
+ 
+ 
+     \frame
+{
+  \frametitle{Central Limit Theorem: Proof}
+
+ \begin{itemize}
+\item<1-> \textbf{Proof:} First, without loss of generality, we assume $\mu=0$, $\sigma^2=1$. Then our task is to show that, the distribution of $\frac{S_n-n\mu}{\sqrt{n\sigma^2}}=\frac{S_n}{\sqrt{n}}$ converges weakly to $N(0,1)$ distribution. And it would be sufficient to show $\phi_{S_n/\sqrt{n}}(t)\rightarrow e^{-t^2/2}$ for all $t\in \mathbf{R}$. 
+\item<2->[-] Since $X_1, X_2, \ldots$ are i.i.d, let $\phi(t)=\BE(e^{itX_1})$, then
+\begin{align*}
+\phi_{S_n/\sqrt{n}}(t)&=\prod_{i=1}^n \phi_{X_i/\sqrt{n}}=[\phi(t/\sqrt{n})]^n \\
+&=[1-\frac{t^2}{2n}+o(\frac{1}{n})]^n \\
+&\rightarrow e^{-\frac{t^2}{2}}
+\end{align*}
+%&=\big( [1-\frac{t^2}{2n}+o(\frac{1}{n})]^{ \frac{1}{-\frac{t^2}{2n}+o(\frac{1}{n})}}\big)^{n(-\frac{t^2}{2n}+o(\frac{1}{n}))} \\
+
+\end{itemize}
+ }
+ 
+ 
+ 
+\frame
+{
+  \frametitle{Convergence Speed of CLT}
+
+ \begin{itemize}
+ \item<1-> When we discussed the law of large numbers, we considered large deviations theory, which studies how rapidly the average converges to the mean. The answer is exponentially fast, as long as the moment generating function exists. 
+ 
+ \item<2-> Here we can also discuss similar issues for the CLT. What conclusion can we draw for  $\BP(\frac{S_n-n\mu}{\sqrt{n\sigma^2}} \leq x)-\Phi(x)$? 
+ 
+\end{itemize}
+ }
+
+
+\frame
+{
+  \frametitle{Convergence Speed of CLT}
+
+ \begin{itemize} 
+ 
+ \item<2-> []\begin{Theorem}[Berry-Esseen Theorem] Assume $X_1, X_2, \ldots $ are i.i.d. random variables with a finite mean $\mu$, finite variance $\sigma^2$ and a finite third central moment. If we denote $\rho=\BE|X_1-\mu|^3$, and  $S_n=X_1+X_2+\cdots X_n$, then as $n\rightarrow \infty$, 
+ $$\sup_x| \BP(\frac{S_n-n\mu}{\sqrt{n\sigma^2}} \leq x)-\Phi(x)| \leq \frac{C\rho}{\sigma^3\sqrt{n}},$$
+ where $C$ is a constant ($(2\pi)^{-1/2}\leq C <0.8$)
+ \end{Theorem}
+
+\end{itemize}
+ }
+
+
+
+
+ 
+      \frame
+{
+  \frametitle{Convergence Speed of CLT: Example}
+
+ \begin{itemize}
+ \item<1-> For instance, in practice, we often approximate a $Bin(n,p)$ with $N(np, np(1-p))$. This is because we can regard $S_n\sim Bin(n,p)$ as the sum of $n$ i.i.d. $Bern(p)$ random variables. Then by the central limit theorem, we have: 
+ $$\BP(\frac{S_n-np}{\sqrt{np(1-p)}}\leq x)\rightarrow \Phi(x).$$
+ 
+ \item<2-> Now if we apply Berry-Essen Theorem, the third central moment of $Bern(p)$ is $\rho=(1-p)^3p+p^3 (1-p)=p(1-p)[p^2+(1-p)^2]$. Then we have:
+ $$\sup_x| \BP(\frac{S_n-np}{\sqrt{np(1-p)}} \leq x)-\Phi(x)| \leq C \frac{p^2+(1-p)^2}{\sqrt{np(1-p)}}.$$
+
+ \item<3->[-] Then above result suggests that the approximation of the CDF of $\frac{S_n-np}{\sqrt{np(1-p)}}$ by the standard normal CDF can be poor when $p$ or $1-p$ is small (the distribution of $Bin(n,p)$ is very asymmetric). In these case, it would usually better to approximate the Binomial distribution with Poisson distribution.  
+ 
+\end{itemize}
+ }
+ 
+  
+   
+  
+     \frame
+{
+  \frametitle{Extension of Central Limit Theorem: Triangular Array}
+   \begin{itemize}
+
+\item<1-> The central limit theorem we studied requires that all the random variables are i.i.d., which are very limited. Here we will discuss the possible ways to relax this condition. First, we will introduce the concept of "triangular array" that is used to reformulate the problem. 
+
+\item<2->\textbf{Triangular Arrays:} A collection of random variables $\{Z_{nk}: n\geq 1, 1\leq k \leq r_n\}$ so that the r.v.s. in each row are independent. 
+$$\begin{array}{llll}
+Z_{11},\cdots, & Z_{1r_1} & \\
+Z_{21},\cdots,  & \cdots, &  Z_{2 r_2} \\
+\cdots \\
+Z_{n1},\cdots,  & \cdots, & \cdots  &  Z_{2 r_n} \\
+\cdots \\
+\end{array}$$
+\item<3-> We will assume that $\BE(Z_{nk})=0$ and $Var(Z_{nk}) =\sigma_{nk}^2$. Set $S_n=Z_{n1}+\cdots+Z_{nr_n}$, and $s_n^2=Var(S_{nk})=\sigma^2_{n1}+\cdots+\sigma^2_{nr_n}$. Then the question is, under what condition, the distribution of $S_n/s_n$ would converge to $N(0,1)$? 
+
+\end{itemize}
+ }
+ 
+ 
+     \frame
+{
+  \frametitle{ Lindeberg and Lyapunov Condition}
+   \begin{itemize}
+
+\item<1-> []\begin{Theorem}[Lindeberg Central Limit Theorem] For triangular array $\{Z_{nk}\}$, if the following Lindeberg condition holds:
+$$\lim_{n\rightarrow \infty} \frac{1}{s_n^2} \sum_{k=1}^{r_n} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon s_n})=0,$$
+for any $\varepsilon>0$, then $\mathcal{L} (S_n/s_n)$ converges weakly to $N(0,1)$.
+\end{Theorem}
+
+\item<2-> []\begin{Theorem}[Lyapunov Central Limit Theorem] For triangular array $\{Z_{nk}\}$, if for some $\delta>0$
+$$\lim_{n\rightarrow \infty} \sum_{k=1}^{r_n} \frac{ \BE(Z_{nk}^{2+\delta})}{s_n^{2+\delta}}=0,$$
+then $\mathcal{L} (S_n/s_n)$ converges weakly to $N(0,1)$.
+\end{Theorem}
+\end{itemize}
+ }
+
+
+
+ 
+     \frame
+{
+  \frametitle{Lindeberg Condition and Lyapunov Condition: Example}
+   \begin{itemize}
+
+\item<1->\textbf{Example:} Let $Y_1, Y_2,\ldots$ be i.i.d. random variables with mean $0$ and variance $1$, and $\{c_n\}$ be a constant sequence. If $u_n=\frac{\max_{1\leq k\leq n} c_k^2}{c_1^2+\cdots+c_n^2}\rightarrow 0$ as $n \rightarrow \infty$, then $\mathcal{L}(\frac{\sum_{k=1}^n c_kY_k}{\sqrt{c_1^2+\cdots+c_n^2}})$ converges weakly to $N(0,1)$. 
+
+\item<2-> We can construct triangular array $\{Z_{nk}\}$ so that for $1\leq k \leq n$, $Z_{nk}=c_kY_k$, then $S_n=\sum_{k=1}^n c_kY_k$ and $s_n^2=c_1^2+\cdots+c_n^2$. Then the Lindeberg condition can be verified:
+\item<3->[] \begin{align*}
+\frac{1}{s_n^2} \sum_{k=1}^{r_n} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon s_n})& =\frac{1}{s_n^2} \sum_{k=1}^{n} \BE(c_{k}^2Y_{k}^2 \BI_{c_k^2|Y_{k}|^2 \geq \varepsilon^2 s^2_n}) \\
+&\leq \frac{1}{s_n^2} \sum_{k=1}^{n} c_{k}^2 \BE(Y_{k}^2 \BI_{|Y_{k}|^2 \geq \varepsilon^2 \frac{1}{u_n}}) 
+\\ & =\frac{\sum_{k=1}^{n} c_{k}^2}{s_n^2} \BE(Y_{1}^2 \BI_{|Y_{1}|^2 \geq \varepsilon^2 \frac{1}{u_n}}) \\
+& =\BE(Y_{1}^2 \BI_{|Y_{1}|^2 \geq \varepsilon^2 \frac{1}{u_n}}) \rightarrow 0.
+\end{align*}
+
+\end{itemize}
+}
+
+
+
+     \frame
+{
+  \frametitle{Lindeberg Condition and Lyapunov Condition: Example}
+   \begin{itemize}
+
+
+\item<1->\textbf{Example:} Let $Y_1, Y_2,\ldots$ be i.i.d. random variables with mean $0$ and variance $1$, and $\{c_n\}$ be a constant sequence. If $u_n=\frac{\max_{1\leq k\leq n} c_k^2}{c_1^2+\cdots+c_n^2}\rightarrow 0$ as $n \rightarrow \infty$, then $\mathcal{L}(\frac{\sum_{k=1}^n c_kY_k}{\sqrt{c_1^2+\cdots+c_n^2}})$ converges weakly to $N(0,1)$. 
+
+
+\item<2-> If for some $\delta>0$, $\BE(Y_1^{2+\delta})=M<\infty$, we can also verify the Lyapunov condition.
+
+\item<3->[] \begin{align*}
+\sum_{k=1}^{r_n} \frac{ \BE(Z_{nk}^{2+\delta})}{s_n^{2+\delta}}& =\sum_{k=1}^{n} \frac{c_k^{2+\delta} \BE(Y_{k}^{2+\delta})}{s_n^{2+\delta}}\\
+&=M\sum_{k=1}^{n} \frac{c_k^{2+\delta}}{s_n^{2+\delta}}=M\sum_{k=1}^{n} \frac{c_k^{2}}{s_n^2} (\frac{c_k^2}{s_n^2})^{\delta/2} \\
+&\leq M\sum_{k=1}^{n} \frac{c_k^{2}}{s_n^2} (u_n)^{\delta/2}=M (u_n)^{\delta/2}  \rightarrow 0.
+\end{align*}
+
+\end{itemize}
+}
+ 
+ 
+
+
+\end{document}
