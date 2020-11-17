@@ -1,0 +1,366 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+%\usepackage{beamerthemesplit} // Activate for custom appearance
+\usepackage{amsmath}
+\usepackage{resizegather}
+\usetheme{Boadilla}
+\newtheorem{Proposition}[theorem]{Proposition}%
+\newcommand{\BP}{\mathbf{P}}
+\newcommand{\BE}{\mathbf{E}}
+\newcommand{\BI}{\mathbf{1}}
+\newcommand{\BV}{\mathbf{Var}}
+
+
+
+\setbeamertemplate{theorems}[numbered]
+
+\title{STAT 7200}
+ \subtitle{Introduction to Advanced Probability \newline Lecture 24}
+\author{Taylor R. Brown}
+\institute{}
+\date{}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+\section{Weak Convergence}
+
+
+\subsection{Characteristic Function}
+\subsection{Continuity Theorem} 
+\subsection{Central Limit Theorem}
+ 
+  
+     \frame
+{
+  \frametitle{Triangular Array}
+   \begin{itemize}
+
+
+\item<1->\textbf{Triangular Arrays:} A collection of random variables $\{Z_{nk}: n\geq 1, 1\leq k \leq r_n\}$ so that the r.v.s. in each row are independent. 
+$$\begin{array}{llll}
+Z_{11},\cdots, & Z_{1r_1} & \\
+Z_{21},\cdots,  & \cdots, &  Z_{2 r_2} \\
+\cdots \\
+Z_{n1},\cdots,  & \cdots, & \cdots  &  Z_{2 r_n} \\
+\cdots \\
+\end{array}$$
+\item<3-> We will assume that $\BE(Z_{nk})=0$ and $Var(Z_{nk}) =\sigma_{nk}^2$. Set $S_n=Z_{n1}+\cdots+Z_{nr_n}$, and $s_n^2=Var(S_{n})=\sigma^2_{n1}+\cdots+\sigma^2_{nr_n}$. Then the question is, under what condition, the distribution of $S_n/s_n$ would converge to $N(0,1)$? 
+
+\end{itemize}
+ }
+ 
+
+
+     \frame
+{
+  \frametitle{Lyapunov Condition Implies Lindeberg Condition}
+   \begin{itemize}
+
+
+\item<1-> For a triangular array $\{Z_{nk}\}$, if for some $\delta>0$
+$$\lim_{n\rightarrow \infty} \sum_{k=1}^{r_n} \frac{ \BE(Z_{nk}^{2+\delta})}{s_n^{2+\delta}}=0,$$
+then for any $\varepsilon>0$.
+$$\lim_{n\rightarrow \infty} \frac{1}{s_n^2} \sum_{k=1}^{r_n} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon s_n})=0.$$
+
+\item<2->\textbf{Proof:} \begin{align*}
+\frac{1}{s_n^2} \sum_{k=1}^{r_n} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon s_n})& \leq \frac{1}{s_n^2} \sum_{k=1}^{r_n} \BE[Z_{nk}^2 (\frac{Z_{nk}}{\varepsilon s_n} )^{\delta} \BI_{|Z_{nk}|\geq \varepsilon s_n}] \\
+&= \frac{1}{\varepsilon^{\delta}} \sum_{k=1}^{r_n} \BE( \frac{Z_{nk}^{2+\delta}}{s_n^{2+\delta}}  \BI_{|Z_{nk}|\geq \varepsilon s_n})  \\
+&\leq \frac{1}{\varepsilon^{\delta}} \sum_{k=1}^{r_n} \BE( \frac{Z_{nk}^{2+\delta}}{s_n^{2+\delta}})   \rightarrow 0.
+\end{align*}
+
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Infinitely Divisible Distributions}
+\begin{itemize}
+
+\item<1-> The limit  of the triangular array is not restricted to the Normal distribution. 
+
+\item<2-> \textbf{Example:} If $Z_{nk}\sim Bern(\lambda/n)$, then $\mathcal{L} (S_n)$ would converge weakly to $Poisson(\lambda)$.
+
+\item<3-> Generally speaking, in the triangular array, if: 
+\begin{enumerate}
+\item $\sup_n s_n^2<\infty$; 
+\item the uniformly asymptotically negligible (u.a.n.) (or uniform smallness) condition holds:
+$$
+u_n = \frac{\max_{1\leq k\leq n_r} \sigma_{nk}^2}{s_n^2} \rightarrow 0
+$$ 
+\item The weak limit of  $\mathcal{L} (S_n)$ exists,  
+\end{enumerate}
+then the limit must be an  \textbf{infinitely divisible} distribution. 
+
+\end{itemize}
+}
+ 
+
+
+
+\frame
+{
+\frametitle{Infinitely Divisible Distributions}
+\begin{itemize}
+
+\item<1->\textbf{Infinitely Divisible Distribution} A distribution $\mu$ is called infinitely divisible if for any $n\in \mathbf{N}$, we can find i.i.d. random variables $X_1, X_2, \cdots, X_n$ such that $X_1+X_2+\cdots+ X_n\sim \mu$.  
+
+\item<2-> Examples of infinitely divisible distributions are: Normal, Poisson, Cauchy...
+
+\item<3-> On the other hand, an infinitely divisible distribution must be the limit of some triangular array. 
+\end{itemize}
+}
+
+
+
+\frame
+{
+  \frametitle{On the Proof of CLT}
+   \begin{itemize}
+
+\item<1->Our proof of the classical version of CLT relies on the following fact:  For any random variables $X$ with finite second moments: 
+$$\phi(t)=1+it\BE(X)-\frac{t^2}{2} \BE(X^2)+o(|t^2|).$$
+
+
+
+\item<2-> Here we will discuss why the remainder term is of the order $o(|t^2|)$.
+
+%\item<3-> First, through induction and integration by parts, we have:
+%\begin{gather*}
+% e^{ix}-\sum_{k=0}^n \frac{(ix)^k}{k!} =\frac{i^{n+1}}{n!} \int_{0}^x (x-s)^n e^{is} ds=\frac{i^{n}}{(n-1)!} \int_{0}^x (x-s)^{n-1} ( e^{is}-1) ds 
+%\end{gather*}
+%
+%
+%\item<4-> For the remainder terms in the above equation, without loss of generality, let assume $x>0$, and we have: 
+%\begin{gather*}
+%|\frac{i^{n+1}}{n!} \int_{0}^x (x-s)^n e^{is} ds| \leq \frac{1}{n!} \int_{0}^x (x-s)^n ds = \frac{x^{n+1}}{(n+1)!}
+%\end{gather*}
+%
+%\begin{gather*}
+%|\frac{i^{n}}{(n-1)!} \int_{0}^x (x-s)^{n-1} ( e^{is}-1) ds | \leq \frac{2}{(n-1)!} \int_{0}^x (x-s)^{n-1} ds= \frac{2x^{n}}{n!}
+%\end{gather*}
+
+
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{On the Proof of CLT: continued}
+   \begin{itemize}
+
+\item<1->In Taylor's inequality states: 
+ $$ |e^{ix}-\sum_{k=0}^n \frac{(ix)^k}{k!}| \leq \min \{ \frac{|x|^{n+1}}{(n+1)!},  \frac{2|x|^{n}}{n!} \}$$
+
+For the proof, see the document I uploaded to Collab. Also, see the Billingsley textbook I referenced. 
+
+\item<2-> If the $n$-th moment of random variable $X$ is finite, replace $x$ with $Xt$, then take expectations:
+$$ |\phi(t) -\sum_{k=0}^n \frac{(it)^k}{k!} \BE(X^k) | \leq  \BE \big [ \min \{ \frac{|tX|^{n+1}}{(n+1)!},  \frac{2|tX|^{n}}{n!} \} \big]$$
+
+
+\end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{On the Proof of CLT: continued}
+   \begin{itemize}
+
+
+\item<1-> $$ |\phi(t) -\sum_{k=0}^n \frac{(it)^k}{k!} \BE(X^k) | \leq  \BE \big [ \min \{ \frac{|tX|^{n+1}}{(n+1)!},  \frac{2|tX|^{n}}{n!} \} \big]$$
+
+\item<2-> And 
+\begin{gather*}
+\begin{align*}\lim_{|t|\rightarrow 0} \BE \big [ \min \{ \frac{|tX|^{n+1}}{(n+1)!},  \frac{2|tX|^{n}}{n!} \} \big] / |t|^n & = \lim_{|t|\rightarrow 0} \BE \big [ \min \{ \frac{|t| |X|^{n+1}}{(n+1)!},  \frac{2|X|^{n}}{n!} \} \big] \\ 
+&= \BE \big [ \lim_{|t|\rightarrow 0} \min \{ \frac{|t| |X|^{n+1}}{(n+1)!},  \frac{2|X|^{n}}{n!} \} \big ]=0
+\end{align*}
+\end{gather*}
+
+\item<3>[] The exchange of limit and expectation is justified based on the dominated convergence theorem. Thus:
+$\phi(t)=\sum_{k=0}^n \frac{(it)^k}{k!} \BE(X^k)+o(|t^n|) $
+
+\end{itemize}
+}
+
+
+     \frame
+{
+  \frametitle{Proof to Lindeberg Central Limit Theorem}
+   \begin{itemize}
+
+\item<1->[] \begin{Theorem}[Lindeberg Central Limit Theorem] For triangular array $\{Z_{nk}\}$, if the following Lindeberg condition holds:
+$$\lim_{n\rightarrow \infty} \frac{1}{s_n^2} \sum_{k=1}^{r_n} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon s_n})=0,$$
+for any $\varepsilon>0$, then $\mathcal{L} (S_n/s_n)$ converges weakly to $N(0,1)$.
+\end{Theorem}
+
+
+\item<2-> \textbf{Proof:} WLOG, we may assume $s_n^2=1$ (otherwise we can just define $Z_{nk}^*=Z_{nk}/s_n.$ Then our goal is to show that, if $\lim_{n\rightarrow \infty} \sum_{k=1}^{r_n} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon })=0$, $\mathcal{L} (S_n)$ converges weakly to $N(0,1)$.
+
+\item<3->[-] Based on continuity theorem, we only need to show:
+
+$$\phi_{S_n} (t)=\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t) \rightarrow e^{-t^2/2}.$$
+
+\end{itemize}
+}
+
+ 
+      \frame
+{
+  \frametitle{Proof to Lindeberg Central Limit Theorem: continued}
+   \begin{itemize}
+
+\item<1->\textbf{continued:} By the expansion of characteristic function, we have:
+$$\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t)=\prod_{k=1}^{r_n} [1-\frac{t^2}{2} \sigma^2_{nk}+ o(|t|^2) ].$$
+
+\item<2->[-] As $1=s_n^2=\sum_{k=1}^{r_n}\sigma_{nk}^2$, 
+$$ e^{-\frac{t^2}{2}}=\prod_{k=1}^{r_n} e^{-\frac{t^2}{2}\sigma^2_{nk}}.$$
+
+\item<3->[-] We may investigate
+\begin{align*}  |\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t)-e^{-\frac{t^2}{2}}|  & \leq |\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t)-\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})|\\ + &  |\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})-\prod_{k=1}^{r_n} e^{-\frac{t^2}{2}\sigma^2_{nk}}|\end{align*}
+
+\item<4->[-] If both terms on the right side of inequality converges to 0 as $n\rightarrow \infty$, we can prove $\phi_{S_n} (t)=\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t) \rightarrow e^{-t^2/2}.$
+
+\end{itemize}
+}
+
+ 
+      \frame
+{
+  \frametitle{Proof to Lindeberg Central Limit Theorem: continued}
+   \begin{itemize}
+
+\item<1->\textbf{continued:} To establish the limit behaviors of the aforementioned terms, we need the following lemma: 
+ \begin{Lemma} Let $z_1, \cdots, z_m$, $w_1, \cdots, w_m$ be complex numbers, and $|z_k|\leq 1, |w_k|\leq 1$ for $1\leq k\leq n$. Then: $$|z_1\cdots z_m-w_1\cdots w_m|\leq \sum_{k=1}^m |z_k-w_k|$$
+\end{Lemma}
+
+\item<2->[-] When $m=1$, the equality clearly holds. For $m+1$, 
+\begin{gather}
+\begin{align*}& |z_1\cdots z_mz_{m+1}-w_1\cdots w_m w_{m+1}| \\  = & |z_1\cdots z_mz_{m+1}-w_1\cdots w_m z_{m+1}+ w_1\cdots w_m z_{m+1}-w_1\cdots w_m w_{m+1}| \\ \leq & |z_1\cdots z_m-w_1\cdots w_m| |z_{m+1}|+|w_1\cdots w_m| |z_{m+1}-w_{m+1}| \\  \leq & \sum_{k=1}^{m+1} |z_k-w_k|\end{align*}
+\end{gather}
+
+\end{itemize}
+}
+
+
+
+
+ 
+      \frame
+{
+  \frametitle{Proof to Lindeberg Central Limit Theorem: continued}
+   \begin{itemize}
+
+\item<1->\textbf{continued:}  Now apply the lemma, we have:
+
+$$|\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t)-\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})| \leq \sum_{k=1}^{r_n} | \phi_{Z_{nk}}(t)-1+\frac{t^2}{2} \sigma^2_{nk} |$$
+\item<2->[-] Based on our discussion of the expansion of characteristic function,  $|\phi(t) -\sum_{k=0}^n \frac{(it)^k}{k!} \BE(X^k) | \leq  \BE \big [ \min \{ \frac{|tX|^{n+1}}{(n+1)!},  \frac{2|tX|^{n}}{n!} \} \big]$, thus:
+\item<3->[] $$|\phi_{Z_{nk}}(t)-1+\frac{t^2}{2} \sigma^2_{nk} | \leq \BE[\min \{|tZ_{nk}|^3, |tZ_{nk}|^2\}]$$
+
+\item<4->[-] For fixed $t$, $|tZ_{nk}|^3\leq |tZ_{nk}|^2$ if $Z_{nk}$ is small enough. Then for small $\varepsilon>0$,
+
+\begin{align*}\BE[\min \{|tZ_{nk}|^3, |tZ_{nk}|^2\}] &  =\BE[|tZ_{nk}|^3\BI_{|Z_{nk}|< \varepsilon}]+\BE[|tZ_{nk}|^2 \BI_{|Z_{nk}|  \geq \varepsilon}] \\ & \leq |t|^3\varepsilon \sigma_{nk}^2+ |t|^2 \BE[|Z_{nk}|^2 \BI_{|Z_{nk}|\geq \varepsilon}] 
+\end{align*}
+
+\end{itemize}
+}
+
+
+
+ 
+      \frame
+{
+  \frametitle{Proof to Lindeberg Central Limit Theorem: continued}
+   \begin{itemize}
+
+\item<1->\textbf{continued:}  Therefore, 
+
+\begin{align*} |\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t)-\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})| &  \leq \sum_{k=1}^{r_n} | \phi_{Z_{nk}}(t)-1+\frac{t^2}{2} \sigma^2_{nk} | \\
+=&\varepsilon |t|^3 \sum_{k=1}^{r_n} \sigma_{nk}^2 + |t|^2 \sum_{k=1}^{r_n} \BE[|Z_{nk}|^2 \BI_{|Z_{nk}|\geq \varepsilon}]  \\
+=&\varepsilon |t|^3  + |t|^2 \sum_{k=1}^{r_n} \BE[|Z_{nk}|^2 \BI_{|Z_{nk}|\geq \varepsilon}] 
+\end{align*}
+
+\item<2->[-] As the choice of $\varepsilon$ is arbitrary, , and for fixed $\varepsilon>0$, the second term converges to 0 as $n$ goes to infinity. We can then conclude that, for any fixed $t$, 
+
+$$ |\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t)-\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})|  \rightarrow 0,$$
+
+as $n\rightarrow \infty.$
+
+\end{itemize}
+}
+
+
+
+ 
+      \frame
+{
+  \frametitle{Proof to Lindeberg Central Limit Theorem: continued}
+   \begin{itemize}
+
+\item<1->\textbf{continued:}  Now we may turn our attention to: 
+$$ |\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})-\prod_{k=1}^{r_n} e^{-\frac{t^2}{2}\sigma^2_{nk}}| \leq \sum_{k=1}^{r_n}| e^{-\frac{t^2}{2}\sigma^2_{nk}}-1+\frac{t^2}{2} \sigma^2_{nk}|$$
+
+\item<2->[-] But for any complex number $z$,
+$$|e^z-1-z|=|\sum_{k=2}^{\infty} \frac{z^k}{k!}| \leq |z^2| \sum_{k=2}^{\infty} \frac{|z^{k-2}|}{(k-2)!}=|z^2| e^{|z|}.$$
+
+\item<3->[-] Thus, 
+\begin{align*} |\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})-\prod_{k=1}^{r_n} e^{-\frac{t^2}{2}\sigma^2_{nk}}| &  \leq \sum_{k=1}^{r_n} \frac{|t|^4}{4}\sigma^4_{nk} e^{\frac{|t|^2}{2}\sigma^2_{nk}} \\
+& \leq \frac{|t|^4}{4} u_n  e^{\frac{|t|^2}{2} u_n} \sum_{k=1}^{r_n} \sigma^2_{nk}= \frac{|t|^4}{4} u_n  e^{\frac{|t|^2}{2} u_n}.
+\end{align*}
+
+ where $u_n=\max_{1\leq k\leq r_n} \sigma_{nk}^2$.
+ 
+\end{itemize}
+}
+
+      \frame
+{
+  \frametitle{Proof to Lindeberg Central Limit Theorem: continued}
+   \begin{itemize}
+
+\item<1->\textbf{continued:}  Apply the Lindeberg condition, we can show that, $u_n=\max_{1\leq k\leq r_n} \sigma_{nk}^2 \rightarrow 0$ as $n\rightarrow \infty$ (uniform asymptotic negligible condition).
+
+\item<2->[-] For any $\varepsilon>0$, we have:
+$$\sigma_{nk}^2=\BE(Z_{nk}^2)=\BE(Z_{nk}^2 \BI_{|Z_{nk}|<\varepsilon})+\BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon}) \leq \varepsilon^2+ \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon}) $$
+\item<3->[-] Thus,
+$$u_n\leq \varepsilon^2+ \sum_{k=1}^{n_r} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon}) $$
+
+\item<4->[-] By Lindeberg condition, we have $u_n\rightarrow 0$ as $n\rightarrow \infty.$, then,
+$$|\prod_{k=1}^{r_n} (1-\frac{t^2}{2} \sigma^2_{nk})-\prod_{k=1}^{r_n} e^{-\frac{t^2}{2}\sigma^2_{nk}}| \leq \frac{|t|^4}{4} u_n  e^{\frac{|t|^2}{2} u_n} \rightarrow 0.$$
+
+\item<5->[-] Combine the results above, we have: $ |\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t)-e^{-\frac{t^2}{2}}| \rightarrow 0, $
+as $n\rightarrow \infty$. Thus, $\mathcal{L} (S_n)$ converges weakly to $N(0,1)$.
+
+
+ 
+\end{itemize}
+}
+
+
+      \frame
+{
+  \frametitle{Lindeberg Condition and Central Limit Theorem}
+   \begin{itemize}
+
+\item<1-> As we have discussed,  Lindeberg condition is a sufficient condition for the central limit theorem. Conversely, we might ask, if 
+the central limit theorem holds for the triangular array, would the Lindeberg condition hold? That is, is the Lindeberg condition a necessary condition for the CLT? 
+
+\item<2-> Generally speaking, Lindeberg condition is not necessary. However, if the u.a.n. condition holds ($u_n=\max_{1\leq k\leq r_n} \frac{\sigma_{nk}^2}{s_n^2} \rightarrow 0$, in the proof of Lindeberg CLT, we also show that Lindeberg condition implies u.a.n. condition), then Lindeberg condition is necessary. 
+
+\item<3->[] \begin{Theorem}[Lindeberg-Feller Theorem] For triangular array $\{Z_{nk}\}$, if the u.a.n. condition holds, then the Lindeberg condtion is necessary and sufficient for the validity of the central limit theorem: $\mathcal{L} (S_n/s_n)$ converges weakly to $N(0,1)$.
+
+\end{Theorem}
+
+ 
+\end{itemize}
+}
+
+
+\end{document}
