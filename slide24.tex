@@ -204,7 +204,7 @@ for any $\varepsilon>0$, then $\mathcal{L} (S_n/s_n)$ converges weakly to $N(0,1
 
 \item<2-> \textbf{Proof:} WLOG, we may assume $s_n^2=1$ (otherwise we can just define $Z_{nk}^*=Z_{nk}/s_n.$ Then our goal is to show that, if $\lim_{n\rightarrow \infty} \sum_{k=1}^{r_n} \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon })=0$, $\mathcal{L} (S_n)$ converges weakly to $N(0,1)$.
 
-\item<3->[-] Based on continuity theorem, we only need to show:
+\item<3->[-] Based on the continuity theorem, we only need to show:
 
 $$\phi_{S_n} (t)=\prod_{k=1}^{r_n} \phi_{Z_{nk}}(t) \rightarrow e^{-t^2/2}.$$
 
@@ -325,7 +325,7 @@ $$|e^z-1-z|=|\sum_{k=2}^{\infty} \frac{z^k}{k!}| \leq |z^2| \sum_{k=2}^{\infty} 
   \frametitle{Proof to Lindeberg Central Limit Theorem: continued}
    \begin{itemize}
 
-\item<1->\textbf{continued:}  Apply the Lindeberg condition, we can show that, $u_n=\max_{1\leq k\leq r_n} \sigma_{nk}^2 \rightarrow 0$ as $n\rightarrow \infty$ (uniform asymptotic negligible condition).
+\item<1->\textbf{continued:}  Apply the Lindeberg condition, we can show that, $u_n=\max_{1\leq k\leq r_n} \sigma_{nk}^2 \rightarrow 0$ as $n\rightarrow \infty$ (uniform smallness condition).
 
 \item<2->[-] For any $\varepsilon>0$, we have:
 $$\sigma_{nk}^2=\BE(Z_{nk}^2)=\BE(Z_{nk}^2 \BI_{|Z_{nk}|<\varepsilon})+\BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon}) \leq \varepsilon^2+ \BE(Z_{nk}^2 \BI_{|Z_{nk}|\geq \varepsilon}) $$
