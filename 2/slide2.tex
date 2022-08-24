@@ -38,13 +38,15 @@
   \frametitle{Limits: Limits of Sequences of Real Numbers}
 
   \begin{itemize}
-  \item <1->  \textbf{Limit of A Sequence of Real Numbers} A sequence of real numbers $x_1,x_2,\cdots,x_n,\cdots $ converges to another real number $x$ if, given any $\varepsilon>0$, there is a $N\in\mathbf{N}$, so that for any $n>N$, $|x_n-x|<\varepsilon$. We denote this as $\lim_{n\rightarrow\infty} x_n=x$.
-  \item <2->  Intuition: imagine a small interval (or ball) centered at $x$ with radius $\varepsilon$. As long as the $x$ is the limit of the sequence, no matter how small you choose $\varepsilon$, there will only be a finite number of $x_n$ outside of this interval.
+  \item <1->  \textbf{Limit of A Sequence of Real Numbers} A sequence of real numbers $x_1,x_2,\ldots $ converges to another real number $x$ if, given any $\varepsilon>0$, there is a $N\in\mathbf{N}$, such that $n>N$ implies $|x_n-x|<\varepsilon$. 
   
-      \item<3-> \textbf{Example} Show that $\lim_{n\rightarrow\infty}  \frac{1}{n^k}= 0.$
+  We denote this as $\lim_{n\rightarrow\infty} x_n=x$ or $x_n \to x$.
+ 
+  
+      \item<2-> \textbf{Example} Show that $\lim_{n\rightarrow\infty}  \frac{1}{n^k}= 0.$
 
-    \item<4-> \textbf{Proof} First, choose an arbitrary $\varepsilon>0$.     
-    \item[]<5-> Set $N := \ceil[\big]{\frac{1}{\varepsilon^{1/k}}}$. Then $n > N$ guarantees  $|\frac{1}{n^k}-0|<\varepsilon$. 
+    \item<3-> \textbf{Proof} First, choose an arbitrary $\varepsilon>0$.     
+    \item[]<4-> Set $N := \ceil[\big]{\frac{1}{\varepsilon^{1/k}}}$. Then $n > N$ guarantees  $|\frac{1}{n^k}-0|<\varepsilon$. 
     
     
   \end{itemize}
@@ -57,36 +59,20 @@
   \frametitle{Sequences that Converge to Infinity and Sequences without Limits}
 
   \begin{itemize}
-  \item <1->  \textbf{Converges to Infinity} A sequence of real numbers $x_1,x_2,\cdots,x_n,\cdots $ converges to infinity if for any $M\in\mathbf{R}$, there is a $N\in\mathbf{N}$, so that for any $n>N$, $X_n>M$. We denote this as $\lim_{n\rightarrow\infty} x_n=\infty$. We can also define the convergence to negative infinity in a similar fashion. 
+  \item <1->  \textbf{Converges to Infinity} A sequence of real numbers $x_1,x_2,\ldots$ converges to infinity if for any $M\in\mathbf{R}$, there is a $N\in\mathbf{N}$, such that $n>N$ implies $X_n>M$. We write this as $\lim_{n\rightarrow\infty} x_n=\infty$. We define the convergence to negative infinity in a similar fashion. 
   
-      \item<2-> \textbf{Example} $\lim_{n\rightarrow\infty} n= \infty.$
+      \item<2-> \textbf{Example} $n^2 \to \infty.$
 
-    \item<3-> There are also sequences that do not have a finite or infinite limit. For instance, the sequence $0,1,0,1,0,1,\cdots$ oscillates between $0$ and $1$. Thus It does not converge to either $1$ or $0$. 
+    \item<3-> There are sequences that do not have a finite or infinite limit (e.g. $0,1,0,1,0,1,\cdots$, which oscillates between $0$ and $1$). These do not converge to anything, finite or infinite.
  
-    \item<4-> Still, for any real sequence, there is always at least a subsequence that converges to a finite value or infinity. This is reflected in the following facts: 1) For any sequence, you can always find a monotone subsequence, which converges to a finite value or infinity. 2) Bolzano-Weierstrass theorem:  if the original sequence is bounded, you will always be able to find a subsequence that converges (to a finite value). 
+    % \item<4-> Still, for any real sequence, there is always at least a subsequence that converges to a finite value or infinity. This is reflected in the following facts: 1) For any sequence, you can always find a monotone subsequence, which converges to a finite value or infinity. 2) Bolzano-Weierstrass theorem:  if the original sequence is bounded, you will always be able to find a subsequence that converges (to a finite value). 
          
   \end{itemize}
 }
 
 
 
-\subsubsection{Bounds of Limit}
 
-\frame
-{
-  \frametitle{Bounds and Limits}
-
-  \begin{itemize}
-  \item <1->   A set $A\subset R$ is \textbf{bounded above (or below) } if there is a real number $M$ such that $a\leq M$ (or $a\geq M$ ) for all $a\in A$.  A set that is bounded above and blow is called \textbf{bounded}. 
-  
-  \item [] <2-> \begin{Proposition} If $\lim_{n\rightarrow\infty} x_n=x$, then the set $\{x_n:n\in \mathbf{N}\}$ is bounded. \end{Proposition} 
-    \item<3-> \textbf{Proof} Choose $\varepsilon=1$. Because $\lim_{n\rightarrow\infty} x_n=x$, we can find a large $N$ where $|x_n-x|< 1$ for any $n>N$.
-    \item[]<4-> Let $M=\max \{x_1,x_2,\cdots, x_N, x+1\}$, $L=\min \{x_1,x_2,\cdots, x_N, x-1\}$. Clearly $L\leq x_n\leq M$ for all $n\in \mathbf{N}$.
-    
-
-         
-  \end{itemize}
-}
 
 
 \subsubsection{Properties of Limits}
@@ -105,7 +91,7 @@
     
       \item<2-> \textbf{Proof} We only consider the situation in which both limits are finite. 
 
-    \item[]<3->  2): By definition, given any $\varepsilon>0$, there are $N_1, N_2\in \mathbf{N}$, so that $|x_n-x|<\varepsilon/2$ for $n>N_1$ and $|y_n-y|<\varepsilon/2$ for $n>N_2$.
+    \item[]<3->  2): By definition, given any $\varepsilon>0$, there are $N_1, N_2\in \mathbf{N}$, such that $|x_n-x|<\varepsilon/2$ for $n>N_1$ and $|y_n-y|<\varepsilon/2$ for $n>N_2$.
         \item[]<4-> Now we let $N^*=\max(N_1, N_2)$, then for any $n>N^*$, $|x_n-x|<\varepsilon/2$ \textit{ and } $|y_n-y|<\varepsilon/2$.
 
         \item[]<4-> Furthermore, for $n>N^*$, we have, $|x_n+y_n-x-y|\leq |x_n-x|+|y_n-y|<\varepsilon/2+\varepsilon/2=\varepsilon$. 
@@ -125,9 +111,9 @@
     
       \item<2-> \textbf{Proof:} The intuition is to show $|x_ny_n-xy|$ can be arbitrarily small for large enough $n$. This can be shown by the following inequality: $|x_ny_n-xy|=|x_ny_n -xy_n+xy_n-xy|\leq |y_n||x_n-x|+|x| |y_n-y|$, in which $|y_n|$ approaches $y$, and $|x_n-x|$, $|y_n-y|$ approaches 0 for large $n$. A rigorous proof for the case $x\neq 0$ is shown below:
       
-        \item[]<4-> a)  For any $\varepsilon>0$, there is $N_1\in \mathbf{N}$ so that for any $n>N_1$, $|y_n-y|<\varepsilon/(2|x|)$.
-        \item[]<5-> b) Choose any constant $\delta>0$. Then there is $N_2\in \mathbf{N}$ so that for any $n>N_2$, $|y_n-y|<\delta$, which further implies $|y_n|<|y|+\delta$. 
-        \item[]<6-> c) For the same $\varepsilon>0$, there is $N_3\in \mathbf{N}$ so that for any $n>N_3$, $|x_n-x|<\varepsilon/(2(|y|+\delta))$.
+        \item[]<4-> a)  For any $\varepsilon>0$, there is $N_1\in \mathbf{N}$ such that for any $n>N_1$, $|y_n-y|<\varepsilon/(2|x|)$.
+        \item[]<5-> b) Choose any constant $\delta>0$. Then there is $N_2\in \mathbf{N}$ such that for any $n>N_2$, $|y_n-y|<\delta$, which further implies $|y_n|<|y|+\delta$. 
+        \item[]<6-> c) For the same $\varepsilon>0$, there is $N_3\in \mathbf{N}$ such that for any $n>N_3$, $|x_n-x|<\varepsilon/(2(|y|+\delta))$.
         \item[]<7-> d) Now we let $N^*=\max(N_1, N_2,N_3)$, then for any $n>N^*$,       
        \begin{align*}|x_ny_n-xy|& =|x_ny_n -xy_n+xy_n-xy|\leq |y_n||x_n-x|+|x| |y_n-y| \\ & \leq (|y|+\delta) \varepsilon/(2(|y|+\delta))+|x| \varepsilon/(2|x|)=\varepsilon\end{align*}
 
@@ -139,43 +125,7 @@
 }
 
 
-\subsubsection{Sums of Infinite Sequences}
 
-\frame
-{
-  \frametitle{Sum of Infinite Sequences}
-
-   \begin{itemize}
-  \item <1-> For sequence $x_1,x_2,\cdots,x_n,\cdots $, we define its sum as 
-  
-  $$\sum_{n=1}^{\infty} x_n=\lim_{n\rightarrow\infty} \sum_{i=1}^n x_i $$
-  
-   \item<2-> For nonnegative sequences, the limit is either finite or infinity.    
-   \item<3-> \textbf{Examples} $$\sum_{n=1}^{\infty} \frac{1}{n}= \infty;\ \sum_{n=1}^{\infty} \frac{1}{n!}= e.$$
-       
-  \end{itemize}
-}
-
-
-\subsubsection{On Sums of Infinite Sequences}
-
-\frame
-{
-  \frametitle{Sums of Infinite Sequences}
-
-   \begin{itemize}
-  \item <1-> Recall that the sum of an infinite sequence $x_1,x_2,\cdots,x_n,\cdots $ is:
-  
-  $$\sum_{n=1}^{\infty} x_n=\lim_{n\rightarrow\infty} \sum_{i=1}^n x_i $$
-  
- $\sum_{n=1}^{\infty} x_n$ converges if the limit of the partial sum is finite. 
- 
-  
-   \item[]<2-> \begin{Theorem} 1) If $\sum_{n=1}^{\infty} x_n$ converges, then for every $\varepsilon>0$, there is an $N\in \mathbf{N}$ so that $|\sum_{k=n+1}^{\infty} x_k|<\varepsilon$ for all $n>N$ \newline 2) Let $\{x_{n}\}_{n\in \mathbf{N}}$ and $\{y_{n}\}_{n\in \mathbf{N}}$ be two sequences of real numbers with $|x_n|<y_n$ for all $n$. If $\sum_{n=1}^{\infty} y_n$ converges, then $\sum_{n=1}^{\infty} x_n$ also converges and $|\sum_{n=1}^{\infty} x_n|<\sum_{n=1}^{\infty} y_n$ \end{Theorem} 
-      
-       
-  \end{itemize}
-}
 
 
 \subsubsection{More on Limits: Squeeze Theorem}
@@ -188,7 +138,7 @@
   \item [] <1-> \begin{Theorem}Suppose that we have three sequences $\{a_n\}$, $\{b_n\}$, $\{c_n\}$ that satisfy $a_n\leq b_n\leq c_n$ for all $n$ and $\lim_{n\rightarrow \infty} a_n=\lim_{n\rightarrow \infty} c_n=L.$ Then $\lim_{n\rightarrow \infty} b_n=L$
   \end{Theorem}
   
-  \item<2-> \textbf{Proof} For any $\varepsilon>0$, there are $N_1, N_2\in \mathbf{N}$, so that $|a_n-L|<\varepsilon$ for $n>N_1$ and $|c_n-L|<\varepsilon$ for $n>N_2$. 
+  \item<2-> \textbf{Proof} For any $\varepsilon>0$, there are $N_1, N_2\in \mathbf{N}$, such that $|a_n-L|<\varepsilon$ for $n>N_1$ and $|c_n-L|<\varepsilon$ for $n>N_2$. 
         \item[]<3-> Now we let $N^*=\max(N_1, N_2)$, then for any $n>N^*$, $|a_n-L|<\varepsilon$ \textit{ and } $|c_n-L|<\varepsilon$. These two inequalities further imply $L-\varepsilon <a_n\leq b_n\leq c_n<L+\varepsilon$. 
 
         \item[]<4-> Thus, for $n>N^*$, $|b_n-L|<\varepsilon$. We have $\lim_{n\rightarrow \infty} b_n=L$
@@ -213,11 +163,69 @@
   
   \item<2-> \textbf{Proof} Assume to the contrary that $L>M$. Pick $\varepsilon>0$ such that $M+\varepsilon< L-\varepsilon$ (e.g. $\varepsilon=(L-M)/4$)
   
-     \item[]<3-> For this same $\varepsilon>0$, pick $N\in\mathbf{N}$ so that $|a_n-L|<\varepsilon$  and $|b_n-M|<\varepsilon$ for $n>N$.  However, these two inequalities imply $a_n>L-\varepsilon>M+\varepsilon>b_n$ when $n>N$, which contradicts the hypothesis that $a_n\leq b_n$ for all $n$. Thus, $L\leq M$. 
+     \item[]<3-> For this same $\varepsilon>0$, pick $N\in\mathbf{N}$ such that $|a_n-L|<\varepsilon$  and $|b_n-M|<\varepsilon$ for $n>N$.  However, these two inequalities imply $a_n>L-\varepsilon>M+\varepsilon>b_n$ when $n>N$, which contradicts the hypothesis that $a_n\leq b_n$ for all $n$. Thus, $L\leq M$. 
                   
   \end{itemize}
 }
 
+
+
+\subsubsection{Sums of Infinite Sequences}
+
+\frame
+{
+  \frametitle{Sums of Infinite Sequences}
+
+   \begin{itemize}
+  \item <1-> For a sequence $x_1,x_2,\ldots$, we define its sum as 
+  
+  $$\sum_{n=1}^{\infty} x_n=\lim_{n\rightarrow\infty} \sum_{i=1}^n x_i $$
+  
+  \item<2-> This boils down to a different sequence: the partial sums $s_n := \sum_{i=1}^n x_i$. 
+  
+   \item<3-> For nonnegative sequences, the limit is either finite or infinite.    
+   \item<4-> \textbf{Examples} $$\sum_{n=1}^{\infty} \frac{1}{n}= \infty;\ \sum_{n=1}^{\infty} \frac{1}{n!}= e.$$
+       
+  \end{itemize}
+}
+
+
+\subsubsection{On Sums of Infinite Sequences}
+
+\frame
+{
+  \frametitle{Sums of Infinite Sequences}
+
+   \begin{itemize}
+
+ 
+  
+   \item[]<1-> \begin{Theorem} 1) If $\sum_{n=1}^{\infty} x_n$ converges, then for every $\varepsilon>0$, there is an $N\in \mathbf{N}$ such that $|\sum_{k=n+1}^{\infty} x_k|<\varepsilon$ for all $n>N$ \newline 2) Let $\{x_{n}\}_{n\in \mathbf{N}}$ and $\{y_{n}\}_{n\in \mathbf{N}}$ be two sequences of real numbers with $|x_n|<y_n$ for all $n$. If $\sum_{n=1}^{\infty} y_n$ converges, then $\sum_{n=1}^{\infty} x_n$ also converges and $|\sum_{n=1}^{\infty} x_n|<\sum_{n=1}^{\infty} y_n$ \end{Theorem} 
+      
+       
+  \end{itemize}
+}
+
+
+
+
+\subsubsection{Bounds of Limit}
+
+\frame
+{
+  \frametitle{Bounds and Limits}
+
+  \begin{itemize}
+  \item <1->   A set $A\subseteq R$ is \textbf{bounded above (or below) } if there is a real number $M$ such that $a\leq M$ (or $a\geq M$ ) for all $a\in A$.  A set that is bounded above and below is called \textbf{bounded}. 
+  
+  \item [] <2-> \begin{Proposition} If $\lim_{n\rightarrow\infty} x_n=x$, then $\{x_n: n\in \mathbf{N}\}$ is bounded. \end{Proposition} 
+    \item<3-> \textbf{Proof} Choose $\varepsilon=1$. Because $\lim_{n\rightarrow\infty} x_n=x$, we can find a large $N$ where $|x_n-x|< 1$ for any $n>N$.
+    \item[]<4-> Let $M=\max \{x_1,x_2,\cdots, x_N, x+1\}$, $L=\min \{x_1,x_2,\cdots, x_N, x-1\}$. Clearly $L\leq x_n\leq M$ for all $n\in \mathbf{N}$.
+    
+
+         
+  \end{itemize}
+}
 
 
 
@@ -229,13 +237,15 @@
   \frametitle{Supremum and Infimum}
 
   \begin{itemize}
-  \item <1->  \textbf{Supremum} For any nonempty subset $A$ of $\mathbf{R}$ that is bounded above, the \textbf{supremum} or \textbf{least upper bound} is the number $L$ so that \newline 1) $a\leq L$ for all $a\in A$. 2) For any other upper bound $L'$ of $A$, $L'\geq L$. The supremum of $A$ is denoted by $\sup A$.
+  \item <1->  \textbf{Supremum} For any nonempty subset $A$ of $\mathbf{R}$ that is bounded above, the \textbf{supremum} or \textbf{least upper bound} is the number $L$ such that \newline 1) $a\leq L$ for all $a\in A$. 2) For any other upper bound $L'$ of $A$, $L'\geq L$. The supremum of $A$ is denoted by $\sup A$.
 
   \item <2->  \textbf{Infimum} Similarly, we can also define the \textbf{infimum} or \textbf{greatest lower bound} for any nonempty subset $A$ of $\mathbf{R}$ that is bounded below as $\inf A$ 
   
-        \item<3-> \textbf{Example} \newline1) $\inf \{0,1,2,3,\cdots,n\cdots\}=0;$  \newline 2) $\sup \{1/2,2/3,3/4,\cdots,n/(n+1), \cdots\}=1.$
+        \item<3-> \textbf{Example} \newline
+        1) $\inf \{0,1,2,3,\ldots\}=0;$  \newline 
+        2) $\sup \{1/2,2/3,3/4,\ldots,n/(n+1), \ldots\}=1.$
 
-        \item<4-> \textbf{Exercise} Show that, if $A$ and $B$ are two nonempty subset of $\mathbf{R}$, $A\subset B$, and if the corresponding suprema and infima exist, then $\sup A\leq \sup B$ and $\inf A\geq \inf B$.
+        \item<4-> \textbf{Exercise} Show that, if $A$ and $B$ are two nonempty subset of $\mathbf{R}$, $A\subseteq B$, and if the corresponding suprema and infima exist, then $\sup A\leq \sup B$ and $\inf A\geq \inf B$.
         
 
         
@@ -263,24 +273,55 @@
 
 
 
-\subsubsection{Monotone Convergence Theorem}
+\subsubsection{The Bolzano-Weierstrass Theorem}
 
 \frame
 {
-  \frametitle{Monotone Convergence Theorem}
+  \frametitle{Towards the Bolzano-Weierstrass Theorem}
 
   \begin{itemize}
-  \item [] <1-> \begin{Theorem} A monotone increasing sequence that is bounded above converges (to a finite value). A monotone decreasing sequence that is bounded below converges (to a finite value). \end{Theorem} 
+  \item [] <1-> \begin{Lemma} A monotone increasing sequence that is bounded above converges (to a finite value). A monotone decreasing sequence that is bounded below converges (to a finite value). \end{Lemma} 
 
-    \item<2-> \textbf{Proof} Suppose that sequence $x_1,x_2,\cdots,x_n,\cdots $ is a monotone increasing sequence that is bounded above, and denote $L=\sup\{x_n: n\in \mathbf{N}\}$. We will show that $\lim_{n\rightarrow\infty} x_n=L$.
+    \item<2-> \textbf{Proof} Suppose that sequence $x_1,x_2,\ldots$ is a monotone increasing sequence that is bounded above. Then $x_n \to \sup\{x_n: n\in \mathbf{N}\}$. Why?
 
-    \item[]<3->  For any $\varepsilon>0$, since $L-\varepsilon$ can not be an upper bound of $\{x_n\}$, there must be a natural number $N$ so that $x_N>L-\varepsilon$. 
+    \item[]<3->  For any $\varepsilon>0$, since $L-\varepsilon$ can not be an upper bound of $\{x_n\}$, there must be a natural number $N$ such that $x_N>L-\varepsilon$. 
         \item[]<4-> However, since $\{x_n\} $ is a increasing sequence, for all $n>N$, $L\geq x_n\geq x_N>L-\varepsilon$. 
         
          \item[]<5->  The inequality above suggests that $|x_n-L|<\varepsilon$ for all $n>N$. Thus, $\lim_{n\rightarrow\infty} x_n=L$.         
   \end{itemize}
 }
 
+
+\frame
+{
+  \frametitle{Towards the Bolzano-Weierstrass Theorem}
+
+  \begin{itemize}
+  \item [] <1-> \begin{Lemma} Every real sequence $x_n$ has a monotone subsequence $x_{n_k}$. \end{Lemma} 
+  
+  \item<2-> \textbf{Proof} Define $S = \{ n : x_m > x_n, \forall m > n \}$. This is either countably infinite or finite. If it's the first, write it as $\{n_1, n_2, \ldots\}$. Clearly $x_{n_k}$ is monotone in this case. 
+  
+  \item<3-> Suppose $S$ is finite now. That means it's bounded, so there exists $n_1$ greater than all elements of $S$. This means $n_1 \notin S$. In other words, $n_1 \in S^c$. 
+  
+  \item<4-> Looking at the definition of $S$, we see there exists $n_2 > n_1$ such that $x_{n_2} \le  x_{n_1}$.  As $n_2 \notin S$, we can find $n_3, n_4, \ldots$. This mean $x_{n_k}$ is monotonically decreasing. 
+  
+  
+  \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{The Bolzano-Weierstrass Theorem}
+
+  \begin{itemize}
+  \item [] <1-> \begin{Theorem} Every bounded real sequence $x_n$ has a convergent subsequence $x_{n_k}$. \end{Theorem} 
+  
+  \item<2-> \textbf{Proof} Just use the previous two lemmas.
+  
+  
+  \end{itemize}
+}
 
 
 \subsubsection{Limit Superior and Limit Inferior}
@@ -290,11 +331,11 @@
   \frametitle{Limit Superior and Limit Inferior}
 
    \begin{itemize}
-  \item<1-> \textbf{Limit Superior and Limit Inferior} For $x_1,x_2,\cdots,x_n,\cdots $, the \textbf{limit inferior} is defined as $\liminf_{n\rightarrow \infty} x_n=\lim_{n\rightarrow \infty} (\inf_{m\geq n} x_m)$  the  \textbf{limit superior} is defined as $\limsup_{n\rightarrow \infty} x_n=\lim_{n\rightarrow \infty} (\sup_{m\geq n} x_m)$
+  \item<1-> \textbf{Limit Superior and Limit Inferior} For $x_1,x_2,\ldots$, the \textbf{limit inferior} is defined as $\liminf_{n\rightarrow \infty} x_n=\lim_{n\rightarrow \infty} (\inf_{m\geq n} x_m)$  the  \textbf{limit superior} is defined as $\limsup_{n\rightarrow \infty} x_n=\lim_{n\rightarrow \infty} (\sup_{m\geq n} x_m)$
   
       \item<2-> \textbf{Exercise} Find the limit superior and limit inferior for $0,1,0,1,\cdots$?
   
-    \item<3-> Both limit superior and limit inferior exist (maybe infinity). For this, note that both $\{v_n: v_n=\inf_{m\geq n} x_m\}$ and $\{u_n: u_n=\sup_{m\geq n} x_m\}$ are monotone squences. 
+    \item<3-> Both limit superior and limit inferior exist (maybe infinity). For this, note that both $\{\inf_{m\geq n} x_m\}_{n=1}^\infty$ and $\{\sup_{m\geq n} x_m\}_{n=1}^\infty$ are monotone sequences. 
       
    \item[]<4-> \begin{Proposition}  $\inf_{n} x_n \leq \liminf_{n\rightarrow \infty} x_n\leq \limsup_{n\rightarrow \infty} x_n\leq \sup_{n} x_n$\end{Proposition} 
    
@@ -313,7 +354,7 @@
       \item[]<1-> \begin{Theorem}  $\lim_{n\rightarrow\infty}x_n$ exists if and only if $\liminf_{n\rightarrow \infty} x_n=\limsup_{n\rightarrow \infty} x_n$\end{Theorem} 
   \item<2-> \textbf{Proof} Let $\{v_n: v_n=\inf_{m\geq n} x_m\}$ and $\{u_n: u_n=\sup_{m\geq n} x_m\}$, then $\liminf_{n\rightarrow \infty} x_n=\lim_{n\rightarrow \infty} v_n$ and $\limsup_{n\rightarrow \infty} x_n=\lim_{n\rightarrow \infty} u_n$. Note that for all $n$, we have $v_n\leq x_n\leq u_n$.
    \item[]<3-> 1) ``if" part: By the Squeeze Theorem, \newline if $\lim_{n\rightarrow \infty} v_n=\lim_{n\rightarrow \infty} u_n=x$, we must have $\lim_{n\rightarrow\infty}x_n=x$. 
-     \item[]<4-> 2) ``only if" part: If $\lim_{n\rightarrow\infty}x_n=x$, then for any $\varepsilon$, there is a $N\in \mathbf{N}$, so that for $n>N$, $x-\varepsilon<x_n<x+\varepsilon$. 
+     \item[]<4-> 2) ``only if" part: If $\lim_{n\rightarrow\infty}x_n=x$, then for any $\varepsilon$, there is a $N\in \mathbf{N}$, such that for $n>N$, $x-\varepsilon<x_n<x+\varepsilon$. 
      \item[]<5-> Consequently, we deduce that, for $n>N$, $x-\varepsilon\leq v_n\leq u_n\leq x+\varepsilon$. Thus, $x-\varepsilon \leq \lim_{n\rightarrow \infty} v_n\leq \lim_{n\rightarrow \infty} u_n\leq x+\varepsilon$. Furthermore, since $\varepsilon$ is arbitrary. we must have $x\leq \lim_{n\rightarrow \infty} v_n\leq \lim_{n\rightarrow \infty} u_n\leq x$. Thus, $\liminf_{n\rightarrow \infty} x_n=\limsup_{n\rightarrow \infty} x_n=x$.
      
  
@@ -331,7 +372,7 @@
   \frametitle{Example}
 
    \begin{itemize}
-  \item <1-> \textbf{Problem:}  Let $\{x_{n}\}_{n\in \mathbf{N}}$ and $\{y_{n}\}_{n\in \mathbf{N}}$ be two sequences of real numbers with $y_n\geq 0$ for all $n$ so that $\limsup_{n\rightarrow \infty} \frac{|x_n|}{y_n} <\infty$ and $\sum_{n=1}^{\infty} y_n<\infty$, then  $\sum_{n=1}^{\infty} x_n$ converges .
+  \item <1-> \textbf{Problem:}  Let $\{x_{n}\}_{n\in \mathbf{N}}$ and $\{y_{n}\}_{n\in \mathbf{N}}$ be two sequences of real numbers with $y_n\geq 0$ for all $n$ such that $\limsup_{n\rightarrow \infty} \frac{|x_n|}{y_n} <\infty$ and $\sum_{n=1}^{\infty} y_n<\infty$, then  $\sum_{n=1}^{\infty} x_n$ converges .
   
    \item<2-> \textbf{Proof:}  The key here is to show that $|x_n|$ is bounded by $y_n$ times a positive constant. 
    \item[]<3-> Since  $\limsup_{n\rightarrow \infty} \frac{|x_n|}{y_n}=\lim_{n\rightarrow \infty} (\sup_{m\geq n} \frac{|x_m|}{y_m} )$ converges, $\sup_{ n} \frac{|x_n|}{y_n}$ must be finite and positive. 
@@ -354,7 +395,7 @@
 
    \begin{itemize}
    
-      \item[]<1-> \begin{Theorem} Let $\{x_{nk}\}_{n,k\in\mathbf{N}}$ be a collection of real numbers, so that $\lim_{n\rightarrow \infty} x_{nk}=a_k$ for each fixed $k$. If $\sum_{k=1}^{\infty} \sup_n |x_{nk}|<\infty$, then $\lim_{n\rightarrow \infty } \sum_{k=1}^{\infty} x_{nk}=\sum_{k=1}^{\infty} a_k = \sum_{k=1}^{\infty} \lim_{n\rightarrow \infty } x_{nk}$\end{Theorem} 
+      \item[]<1-> \begin{Theorem} Let $\{x_{nk}\}_{n,k\in\mathbf{N}}$ be a collection of real numbers, such that $\lim_{n\rightarrow \infty} x_{nk}=a_k$ for each fixed $k$. If $\sum_{k=1}^{\infty} \sup_n |x_{nk}|<\infty$, then $\lim_{n\rightarrow \infty } \sum_{k=1}^{\infty} x_{nk}=\sum_{k=1}^{\infty} a_k = \sum_{k=1}^{\infty} \lim_{n\rightarrow \infty } x_{nk}$\end{Theorem} 
  
   \item<2-> \textbf{Proof} For any fixed $k$, $|a_k|=|\lim_{n\rightarrow \infty} x_{nk}|  \leq \sup_n |x_{nk}|$, so $\sum_{k=1}^n |a_k|<\infty$.
   
@@ -362,7 +403,7 @@
   
      \item[]<3-> We now need to prove that $ |\sum_{k=1}^{\infty} x_{nk}- \sum_{k=1}^{\infty} a_k|=  |\sum_{k=1}^{\infty} ( x_{nk}- a_k)| $ is smaller than any $\varepsilon>0$ for large $n$. To achieve this, we should break this sum into two parts: $ |\sum_{k=1}^{\infty} ( x_{nk}- a_k)| \leq |\sum_{k=1}^{K} ( x_{nk}- a_k) |+|\sum_{k=K+1}^{\infty} ( x_{nk}- a_k)| $.
      
-     \item[]<4-> 1) For the second sum, note that $|\sum_{k=K+1}^{\infty} ( x_{nk}- a_k)| \leq \sum_{k=K+1}^{\infty} | x_{nk}- a_k| \leq 2 \sum_{k=K+1}^{\infty} \sup_n |x_{nk}| $. However, since $\sum_{k=1}^{\infty} \sup_n |x_{nk}|<\infty$, we should be able to choose $K$ big enough so that $\sum_{k={K+1}}^{\infty} \sup_n |x_{nk}|<\varepsilon/4$.
+     \item[]<4-> 1) For the second sum, note that $|\sum_{k=K+1}^{\infty} ( x_{nk}- a_k)| \leq \sum_{k=K+1}^{\infty} | x_{nk}- a_k| \leq 2 \sum_{k=K+1}^{\infty} \sup_n |x_{nk}| $. However, since $\sum_{k=1}^{\infty} \sup_n |x_{nk}|<\infty$, we should be able to choose $K$ big enough such that $\sum_{k={K+1}}^{\infty} \sup_n |x_{nk}|<\varepsilon/4$.
      
     
  
@@ -378,10 +419,10 @@
    \begin{itemize}
    
  
-  \item<1-> \textbf{Proof: continued} Our goal is to show that $ |\sum_{k=1}^{\infty} ( x_{nk}- a_k)|  \leq |\sum_{k=1}^{K} ( x_{nk}- a_k) |+|\sum_{k=K+1}^{\infty} ( x_{nk}- a_k)| <\varepsilon $ for big $n$, and we have already proved that we can choose $K$ big enought so that $|\sum_{k=K+1}^{\infty} ( x_{nk}- a_k)|<\varepsilon/2$. 
+  \item<1-> \textbf{Proof: continued} Our goal is to show that $ |\sum_{k=1}^{\infty} ( x_{nk}- a_k)|  \leq |\sum_{k=1}^{K} ( x_{nk}- a_k) |+|\sum_{k=K+1}^{\infty} ( x_{nk}- a_k)| <\varepsilon $ for big $n$, and we have already proved that we can choose $K$ big enought such that $|\sum_{k=K+1}^{\infty} ( x_{nk}- a_k)|<\varepsilon/2$. 
   
   
-     \item[]<2-> 2) For the first sum, since $ |\sum_{k=1}^{K} ( x_{nk}- a_k)| \leq  \sum_{k=1}^{K} |( x_{nk}- a_k)|$, and $\lim_{n\rightarrow \infty} x_{nk}=a_k$. Then for each $1\leq k\leq K$, we can find $N_K \in \mathbf{N}$ so that for $n>N_k$, $|x_{nk}-a_k|<\varepsilon/(2K)$.
+     \item[]<2-> 2) For the first sum, since $ |\sum_{k=1}^{K} ( x_{nk}- a_k)| \leq  \sum_{k=1}^{K} |( x_{nk}- a_k)|$, and $\lim_{n\rightarrow \infty} x_{nk}=a_k$. Then for each $1\leq k\leq K$, we can find $N_K \in \mathbf{N}$ such that for $n>N_k$, $|x_{nk}-a_k|<\varepsilon/(2K)$.
      
        \item[]<3->  If we choose $N^*=\max(N_1,N_2,\cdots, N_K)$, then for all $n>N^*$, $\sum_{k=1}^{K} |( x_{nk}- a_k)|<\sum_{k=1}^K \varepsilon/(2K) =\varepsilon/2$.
      
