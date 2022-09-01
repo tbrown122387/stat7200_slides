@@ -67,10 +67,10 @@
        a) $\emptyset, \Omega \in \mathcal{J}$.
        
     
-       b) If $A_1, A_2,\cdots, A_k \in \mathcal{J}$, then $\bigcap_{i=1}^k A_i \in \mathcal{J}$. (Closed under finite intersections) 
+       b) If $A_1, A_2, \ldots, A_k \in \mathcal{J}$, then $\bigcap_{i=1}^k A_i \in \mathcal{J}$. (Closed under finite intersections) 
        
 
-       c) If $A \in \mathcal{J}$, then there is a pairwise disjoint sequence of sets $B_1, B_2,\cdots, B_m \in \mathcal{J}$ so that $A^c=\bigcup_{i=1}^m B_i$. 
+       c) If $A \in \mathcal{J}$, then there is a pairwise disjoint sequence of sets $B_1, B_2,\ldots, B_m \in \mathcal{J}$ such that $A^c=\bigcup_{i=1}^m B_i$. 
        
        \item<2-> [] \begin{Proposition}[Exercise 2.2.3] $\mathcal{J}=\{\text{ All ``intervals" contained in [0,1] (or } \mathbf{R})\}$  is a semialgebra.  \end{Proposition}
        
@@ -124,13 +124,13 @@
              a) $\mathbf{P} (\emptyset)=0, \mathbf{P}(\Omega)=1$.
                  \newline
          
-             b) $\BP(\bigcup_{i=1}^k A_i)\geq \sum_{i=1}^k \BP(A_i)$ whenever $A_1,\cdots,A_k \in\mathcal{J}$, $\bigcup_{i=1}^k A_i  \in\mathcal{J}$, and $A_1,\cdots,A_k$ are pairwise disjoint (\textit{finite superadditivity}).
+             b) $\BP(\bigcup_{i=1}^k A_i)\geq \sum_{i=1}^k \BP(A_i)$ whenever $A_1,\ldots,A_k \in\mathcal{J}$, $\bigcup_{i=1}^k A_i  \in\mathcal{J}$, and $A_1,\ldots,A_k$ are pairwise disjoint (\textit{finite superadditivity}).
                    \newline
        
-             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,\cdots,A_n,\cdots \in\mathcal{J}$, and $A\subseteq \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
+             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,A_2,\ldots \in\mathcal{J}$, and $A\subseteq \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
              \newline
              
-             Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a countably-additive probability measure $\BP^*$ on $\mathcal{M}$ so that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
+             Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a countably-additive probability measure $\BP^*$ on $\mathcal{M}$ such that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
              \end{Theorem}    
        
                 
@@ -151,7 +151,7 @@
        
 		\item<2-> For any $A\subseteq \Omega$
        
-       $$\BP^*(A):=\inf_{A_1,A_2\cdots, \in \mathcal{J}, A\subseteq \bigcup_i A_i} \sum_i \BP(A_i) $$
+       $$\BP^*(A):=\inf_{A_1,A_2,\ldots \in \mathcal{J}, A\subseteq \bigcup_i A_i} \sum_i \BP(A_i) $$
        
         \item<3->   [] \begin{Lemma} Outer measure satisfies the following properties:  
        
@@ -176,7 +176,7 @@
 
             \item<1->   [] \begin{Lemma}[2.3.6.] Outer measure $\BP^*$ is countably subadditive:  
             
-            $\BP^*(\bigcup_{n=1}^{\infty} B_n)\leq \sum_{n=1}^{\infty} \BP^* (B_n) \text{ for any }B_1, B_2,\cdots \in \Omega$
+            $\BP^*(\bigcup_{n=1}^{\infty} B_n)\leq \sum_{n=1}^{\infty} \BP^* (B_n) \text{ for any }B_1, B_2,\ldots \in \Omega$
                \end{Lemma}    
        
               \item<2-> []\textbf{Proof:} The key is $\BP^* (A)$ is defined as the infimum of the countable unions of sets in $\mathcal{J}$ that ``cover" $A$.
@@ -229,7 +229,7 @@
                        
               \item<3-> Regarding $\BP^*$, for any $A\in\mathcal{M}$, first, $\BP^*(A)\geq 0$; second, in the definition of $\mathcal{M}$, by choosing $E=\Omega$, we have $\BP^*(A)=1- \BP^*(A^c)$. So we still need to show that, on $\mathcal{M}$, $\BP^*$ is countably additive. 
               
-              \item<4-> Countable additivity of $\BP^*$ is shown in the next lecture, as well as the fact that $\mathcal{M}$ is a sigma-field. 
+              \item<4-> Countable additivity of $\BP^*$ is shown in the next lecture, as well as the fact that $\mathcal{M}$ is a $\sigma$-field. 
               
 %              For the fact that $\mathcal{M}$ is closed under countable unions, we will follow the route: 
 %              
