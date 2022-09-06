@@ -41,10 +41,10 @@
              b) $\BP(\bigcup_{i=1}^k A_i)\geq \sum_{i=1}^k \BP(A_i)$ whenever $A_1,\ldots,A_k \in\mathcal{J}$, $\bigcup_{i=1}^k A_i  \in\mathcal{J}$, and $A_1,\ldots,A_k$ are pairwise disjoint (\textit{finite superadditivity}).
                    \newline
        
-             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,\ldots,A_n,\ldots \in\mathcal{J}$, and $A\subseteq \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
+             c) $\BP(A)\leq \sum_{n} \BP(A_n)$ whenever $A,A_1,A_2,\ldots \in\mathcal{J}$, and $A\subseteq \bigcup_{n} A_n$ (\textit{countable monotonicity}).               
              \newline
              
-             Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a probability measure $\BP^*$ on $\mathcal{M}$ so that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
+             Then there is a $\sigma$-algebra $\mathcal{M} \supseteq \mathcal{J}$ and a probability measure $\BP^*$ on $\mathcal{M}$ such that $\BP^*(A)=\BP(A)$ for all $A\in \mathcal{J}$.
              \end{Theorem}    
        
                 
@@ -67,7 +67,7 @@
                
     $$\BP^*(A)=\inf_{A_1,A_2\ldots \in \mathcal{J}, A\subseteq \bigcup_i A_i} \sum_i \BP(A_i) $$
 
-               We have shown that the outer measure is an extension of $\mathbf{P}$, is monotonic and countably subadditive over all subsets.
+               We have shown that the outer measure is an extension of $\mathbf{P}$, is monotonic and countably subadditive over *all* subsets.
                
               
                  \end{itemize}
@@ -80,9 +80,9 @@
    \begin{itemize}
 
       
-        \item <1->[4)]   We construct a new collection of subsets, denoted as $\mathcal{M}$:
+        \item <1->[4)]   We constructed a new collection of subsets, $\mathcal{M}$:
  
-                         $$\mathcal{M}=\{A: A\subseteq \Omega, \BP^*(A\cap E)+\BP^*(A^c\cap E)=\BP^*(E) \text{ for all }E\subseteq \Omega \}$$
+                         $$\mathcal{M}:=\{A: A\subseteq \Omega, \BP^*(A\cap E)+\BP^*(A^c\cap E)=\BP^*(E) \text{ for all }E\subseteq \Omega \}$$
 
  We have shown that $\mathcal{M}$ includes the empty set and sample space, and is closed under complement. And based on this definition, it is easy to see that $\BP^*(A)=1-\BP^*(A^c)$ for all $A\in\mathcal{M}$. 
  
@@ -137,7 +137,7 @@ Furthermore,       $\sum_n \BP^*(A_n)=\lim_{n\rightarrow \infty} \sum_{i=1}^n \B
 
    \begin{itemize}
 
-            \item<1->   [] \begin{Lemma}[2.3.10] If $A_1, A_2,\ldots A_n \in \mathcal{M}$, then $\bigcap_{i=1}^n A_i \in \mathcal{M}$ and  $\bigcup_{i=1}^n A_i \in \mathcal{M}$.                \end{Lemma}    
+            \item<1->   [] \begin{Lemma}[2.3.10] If $A_1, A_2,\ldots, A_n \in \mathcal{M}$, then $\bigcap_{i=1}^n A_i \in \mathcal{M}$ and  $\bigcup_{i=1}^n A_i \in \mathcal{M}$.                \end{Lemma}    
        
               \item<2-> []\textbf{Proof:} Since $\mathcal{M}$ is closed under complement, then by de Morgan's law, $\mathcal{M}$ is closed under finite unions if $\mathcal{M}$ is closed under finite intersections. So we need to show if $A, B\in \mathcal{M}$, then $A\cap B\in \mathcal{M}$.
                          
@@ -154,10 +154,10 @@ Furthermore,       $\sum_n \BP^*(A_n)=\lim_{n\rightarrow \infty} \sum_{i=1}^n \B
 
 
 
-\subsubsection{$\mathcal{M}$ is Closed under Countable Unions of Disjoint Sets}
+\subsubsection{$\mathcal{M}$ is Closed under *Countable* Unions of *Disjoint* Sets}
 \frame
 {
-  \frametitle{$\mathcal{M}$ is Closed under Countable Unions of Disjoint Sets: I}
+  \frametitle{$\mathcal{M}$ is Closed under *Countable* Unions of *Disjoint* Sets: I}
 
    \begin{itemize}
 
@@ -178,7 +178,7 @@ Furthermore,       $\sum_n \BP^*(A_n)=\lim_{n\rightarrow \infty} \sum_{i=1}^n \B
 
 \frame
 {
-  \frametitle{$\mathcal{M}$ is Closed under Countable Unions of Disjoint Sets: II}
+  \frametitle{$\mathcal{M}$ is Closed under *Countable* Unions of *Disjoint* Sets: II}
 
    \begin{itemize}
 
@@ -205,7 +205,7 @@ $$ \BP^*( E) =   \BP^*( E\cap B_n)+ \BP^*(E\cap B_n^c)
 
             \item<1->   [] \begin{Lemma}[2.3.14] $\mathcal{M}$ is a $\sigma$-algebra  \end{Lemma}    
        
-              \item<2-> []\textbf{Proof}: We only need to prove that $\mathcal{M}$ is closed under countable unions. Let $A_1, A_2,\ldots \in \mathcal{M}$. For each $n$, define $B_n=A_n\bigcap (\bigcup_{i=1}^{n-1} A_i)^c$.                    
+              \item<2-> []\textbf{Proof}: We only need to prove that $\mathcal{M}$ is closed under *countable* *not disjoint* unions. Let $A_1, A_2,\ldots \in \mathcal{M}$. For each $n$, define $B_n=A_n\bigcap (\bigcup_{i=1}^{n-1} A_i)^c$.                    
                    \item<3-> [] Since we already show that $\mathcal{M}$ is closed under complement, finite intersections/unions, $B_n\in \mathcal{M}$.
                    \item<4-> [] As $B_n\bigcap B_m=\emptyset$ for all $n\neq m$, by the previously established result, $\bigcup_n B_n \in \mathcal{M}$. However, $\bigcup_n A_n=\bigcup_n B_n$, so $\bigcup_n A_n \in \mathcal{M}$. Then $\mathcal{M}$ is closed under countable unions.
 \end{itemize}
@@ -216,18 +216,23 @@ $$ \BP^*( E) =   \BP^*( E\cap B_n)+ \BP^*(E\cap B_n^c)
 {
   \frametitle{$\mathcal{J} \subseteq \mathcal{M}$}
 
-   \begin{itemize}
+\begin{itemize}
 
-            \item<1->   [] \begin{Lemma} $\mathcal{J}\subseteq \mathcal{M}$ \end{Lemma}    
+\item<1->   [] \begin{Lemma} $\mathcal{J}\subseteq \mathcal{M}$ \end{Lemma}    
        
-              \item<2-> []\textbf{Proof}: We need to show that for any $A\in \mathcal{J}$, $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$ for all $E \subseteq \Omega$. 
+\item<2-> []\textbf{Proof}: We need to show that for any $A\in \mathcal{J}$, $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$ for all $E \subseteq \Omega$. 
               
-                   \item<3->  By the definition of outer measure and A.4.2, for any $\varepsilon>0$, we can find $B_1, B_2 \ldots, \in\mathcal{J}$ so that $E\subseteq \bigcup_n B_n$ and $\sum_n \BP(B_n) < \BP^*(E)+\varepsilon$. Furthermore, by the definition of semialgebra, $A^c=\bigcup_{k=1}^K J_k$ where $J_1,J_2,\ldots J_k\in \mathcal{J} $ are pairwise disjoint. Thus: 
-                                      \item<4->$ \BP^*(E\cap A)+\BP^*(E\cap A^c ) \leq \BP^*((\bigcup_n B_n)\cap A)+\BP^*((\bigcup_n B_n) \cap A^c) $
-                                      \item<5->[] $=\BP^*( \bigcup_n (B_n \cap A) )+\BP^*((\bigcup_n B_n)\cap ( \bigcup_{k=1}^K J_k) )$ 
-                                      \item<6->[]  $\leq \sum_n \BP^*( B_n \cap A)+\sum_{n,k}\BP^*(B_n \cap  J_k)=\sum_n \BP( B_n \cap A)+\sum_{n,k}\BP(B_n \cap  J_k) $
-                                     \item<7->[]  $= \sum_n (\BP( B_n \cap A)+\sum_{k}\BP(B_n \cap  J_k) )\leq \sum_n \BP( B_n)  < \BP^*(E)+\varepsilon $
-                                     \item<8-> As $\varepsilon$ is an arbitrary constant, we  can conclude that $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$. Thus $A\in \mathcal{M}$, $\mathcal{J}\subseteq \mathcal{M}$ .
+\item<3->  By the definition of outer measure and A.4.2, for any $\varepsilon>0$, we can find $B_1, B_2, \ldots \in\mathcal{J}$ such that $E\subseteq \bigcup_n B_n$ and $\sum_n \BP(B_n) < \BP^*(E)+\varepsilon$. Furthermore, by the definition of semialgebra, $A^c=\bigcup_{k=1}^K J_k$ where $J_1,J_2,\ldots, J_k\in \mathcal{J} $ are pairwise disjoint. Thus: 
+
+\item<4->$ \BP^*(E\cap A)+\BP^*(E\cap A^c ) \leq \BP^*((\bigcup_n B_n)\cap A)+\BP^*((\bigcup_n B_n) \cap A^c) $
+
+\item<5->[] $=\BP^*( \bigcup_n (B_n \cap A) )+\BP^*((\bigcup_n B_n)\cap ( \bigcup_{k=1}^K J_k) )$ 
+
+\item<6->[]  $\leq \sum_n \BP^*( B_n \cap A)+\sum_{n,k}\BP^*(B_n \cap  J_k)=\sum_n \BP( B_n \cap A)+\sum_{n,k}\BP(B_n \cap  J_k) $
+
+\item<7->[]  $= \sum_n \left\{ \BP( B_n \cap A)+\sum_{k}\BP(B_n \cap  J_k) \right\}\leq \sum_n \BP( B_n)  < \BP^*(E)+\varepsilon $
+
+\item<8-> As $\varepsilon$ is an arbitrary constant, we  can conclude that $\BP^*(A\cap E)+\BP^*(A^c\cap E)\leq \BP^*(E)$. Thus $A\in \mathcal{M}$, $\mathcal{J}\subseteq \mathcal{M}$ .
                                       
 
                    \end{itemize}
