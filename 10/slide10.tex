@@ -183,7 +183,10 @@ Recall the MCT:
   
   \item<2-> [] From the previous result, it's clear that $\BE[aX+bY] = \BE[aX] + \BE[bY]$. All we need to show is that the nonrandom real numbers can be pulled out of the expectation.
   
-\item<3-> [] WLOG assume $a < 0$: $\BE[aX] = \BE[(aX)^+] - \BE[(aX)^-] =  -\BE[a(X)^-] + \BE[a(X)^+] = a\BE[(X)^+]  -a\BE[(X)^-]  = a\BE[X]$. 
+\item<3-> [] WLOG assume $a < 0$: 
+$\BE[aX] = \BE[(aX)^+] - \BE[(aX)^-] =  
+\BE[-a(X)^-] -  \BE[-a(X)^+] = 
+a\BE[(X)^+]  -a\BE[(X)^-]  = a\BE[X]$. Note that we can only use linearity on nonnegative rvs with positive coefficients!
 
 
 \end{itemize}
