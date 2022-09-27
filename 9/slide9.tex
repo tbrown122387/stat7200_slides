@@ -155,7 +155,7 @@ $$\BE(X)=\sup\{\BE(Y): Y\text{ is simple}, Y\leq X\}$$
 
 \item<4-> Example: $E[X^k] < \infty \implies E[X^{k-1}] < \infty$ because $x^{k-1} \le \max(x^k,1) \le 1 + x^k$
 
-\item<5->Third, the expectation might be infinite. Example: $X(\omega) = \sum_{n=1}^{\infty} 2^n 1(2^{-n} \le \omega < 2^{-(n-1)})$ on $([0,1], \mathcal{F}, \BP)$
+\item<5->Third, the expectation might be infinite. Example: $X(\omega) = \sum_{n=1}^{\infty} 2^n 1(2^{-n} \le \omega < 2^{-(n-1)})$ on $([0,1], \mathcal{F}, \lambda)$
 
 \item<6-> Proving linearity requires another result...
 
@@ -210,7 +210,7 @@ Last, pick $Y = \sum_{i=1}^m y_i 1_{A_i}$ be a simple rv such that $Y \le X$ and
 You can't always move the limit inside and outside of the expectation operator.
 \newline
 
-Example, on $([0,1],\mathcal{F},\BP)$ consider $X_n(\omega) = n 1_{(0,n^{-1})}$.
+Example, on $([0,1],\mathcal{F},\lambda)$ consider $X_n(\omega) = n 1_{(0,n^{-1})}$.
 \newline
 
 % Also, you can replace the condition $\{X_n\} \nearrow X$ with $\{X_n\} \nearrow X$ almost surely.
