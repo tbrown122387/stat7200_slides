@@ -61,7 +61,7 @@
 
    \begin{itemize}
        \item<1->[]
-   \begin{Theorem}[Cauchy-Schwarz Inequality] For random variables $X, Y$ so that $\BE(X^2)<\infty, \BE(Y^2)<\infty$, we have $\BE(|XY|) \leq \sqrt{\BE(X^2)\BE(Y^2)} $. 
+   \begin{Theorem}[Cauchy-Schwarz Inequality] For random variables $X, Y$ such that $\BE(X^2)<\infty, \BE(Y^2)<\infty$, we have $\BE(|XY|) \leq \sqrt{\BE(X^2)\BE(Y^2)} $. 
    \end{Theorem}
 
 \item<2-> \textbf{Proof} 
@@ -81,12 +81,16 @@
 
    \begin{itemize}
        \item<1->[]
-   \begin{Theorem}[Cauchy-Schwarz Inequality] For random variables $X, Y$ so that $\BE(X^2)<\infty, \BE(Y^2)<\infty$, we have $\BE(|XY|) \leq \sqrt{\BE(X^2)\BE(Y^2)} $. 
+   \begin{Theorem}[Cauchy-Schwarz Inequality] For random variables $X, Y$ such that $\BE(X^2)<\infty, \BE(Y^2)<\infty$, we have $\BE(|XY|) \leq \sqrt{\BE(X^2)\BE(Y^2)} $. 
    \end{Theorem}
 
 \item<2-> Special case 1: correlation must always be between $-1$ and $1$. For r.v.s $X$ and $Y$ with finite variances, $\mathbf{Cov} (X, Y)= \BE((X-\BE X)(Y-\BE Y ))$. Then $|\mathbf{Cov} (X, Y)|\leq \BE(|X-\BE X||Y-\BE Y|)\leq \sqrt{\BV(X)\BV(Y)}$, and $|\mathbf{Corr} (X,Y)|\leq 1.$
 
 \item<3-> Special case 2: the Cram\'er-Rao inequality. For esimator $\hat{\theta}$ and score function $U$. $\BE[U] = 0$ and $\BV\left[ U\right] = I(\theta)$. 
+
+\item<4-> Note: some resources define CS inequality as $|\BE(XY)| \leq \sqrt{\BE(X^2)\BE(Y^2)}$, but this isn't as tight, and we can prove it by using this CS inequality and Jensen's together.
+
+ 
          
 \end{itemize}
 }
@@ -122,7 +126,7 @@ $\BE(\phi(X))\geq \BE(g(X))=a+b \BE(X)=g(\BE(X))=\phi (\BE(X))$.
   \frametitle{Almost Sure Convergence}
 
    \begin{itemize}
-       \item<1-> \textbf{Pointwise Convergence} Suppose we have random variables $Z, Z_1, Z_2, \ldots $ on probability triple $(\Omega,\mathcal{F}, \BP)$ so that for each $\omega \in \Omega$, $\lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega)$. Then we may say that $\{Z_n\}$ converges to $Z$ pointwise, 
+       \item<1-> \textbf{Pointwise Convergence} Suppose we have random variables $Z, Z_1, Z_2, \ldots $ on probability triple $(\Omega,\mathcal{F}, \BP)$ such that for each $\omega \in \Omega$, $\lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega)$. Then we may say that $\{Z_n\}$ converges to $Z$ pointwise, 
        
  
        \item<2-> This type of convergence is usually unnecessarily strong in probability theory. So a slightly weaker version is more popular and useful: we would only require $Z_n(\omega)$ converges to $Z(\omega)$ with probability one. That is, $\BP(\{\omega \in \Omega: \lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega) \})=1$. 
@@ -146,7 +150,7 @@ $\BE(\phi(X))\geq \BE(g(X))=a+b \BE(X)=g(\BE(X))=\phi (\BE(X))$.
    \begin{itemize}
        \item<1->[]
        \begin{Lemma}[5.2.1] 
-       For r.v.s $Z, Z_1, Z_2, \ldots $ so that for each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$. Then $\BP(Z_n\rightarrow Z)=1$. (The converse is also true).
+       For r.v.s $Z, Z_1, Z_2, \ldots $ such that for each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$. Then $\BP(Z_n\rightarrow Z)=1$. The converse is also true.
        \end{Lemma}       
  
     
@@ -181,7 +185,7 @@ $\BE(\phi(X))\geq \BE(g(X))=a+b \BE(X)=g(\BE(X))=\phi (\BE(X))$.
        
    \item<2->[]     \begin{Lemma} For r.v.s $Z, Z_1, Z_2, \ldots $ such that for any $\varepsilon>0$, $\sum_n \BP(|Z_n-Z| \geq \varepsilon)<\infty$. Then $\BP(Z_n\rightarrow Z)=1$.   \end{Lemma}       
 
-  \item<3-> \textbf{Example} Let $Z_1, Z_2, \ldots$ be random variables so that $P(Z_n=1)=\frac{1}{2^n}$ and $P(Z_n=0)=1-\frac{1}{2^n}$. Then for $1>\varepsilon>0$, $\BP(|Z_n|\geq \varepsilon)=\frac{1}{2^n}$ and $\sum_n \BP(|Z_n|\geq \varepsilon)=1<\infty$, so we must have $Z_n\rightarrow 0$ almost surely. 
+  \item<3-> \textbf{Example} Let $Z_1, Z_2, \ldots$ be random variables such that $P(Z_n=1)=\frac{1}{2^n}$ and $P(Z_n=0)=1-\frac{1}{2^n}$. Then for $1>\varepsilon>0$, $\BP(|Z_n|\geq \varepsilon)=\frac{1}{2^n}$ and $\sum_n \BP(|Z_n|\geq \varepsilon)=1<\infty$, so we must have $Z_n\rightarrow 0$ almost surely. 
   
   
   \item<4-> \textbf{Note}  The converse of this lemma is not necessarily true. For instance, consider $Z_1, Z_2,\ldots$ defined on $([0,1],\mathcal{M}, \lambda)$, $Z_n(\omega)=\BI_{[0,\frac{1}{n}]} (\omega)$.                              
