@@ -31,12 +31,12 @@
 \frame{\tableofcontents}
 
 
-\subsection{Convergence Almost Surely}
+\subsection{Almost Sure Convergence}
 
 
 \frame
 {
-  \frametitle{Convergence Almost Surely}
+  \frametitle{Almost Sure Convergence}
 
    \begin{itemize}
        \item<1-> We say that $\{Z_n\}$ converges to $Z$ almost surely (or a.s., or with probability 1), if $\BP(\{\omega: \lim_{n\rightarrow \infty} Z_n(\omega)= Z(\omega) ,\omega \in \Omega\})=1$ \newline
@@ -46,7 +46,7 @@
        For each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$ (or $\BP(|Z_n-Z| < \varepsilon \  a.a.)=1$) \newline
        
        
-       \item<3-> For r.v.s. $Z, Z_1, Z_2, \cdots $, we have that $\varepsilon>0$, $\sum_n \BP(|Z_n-Z| \geq \varepsilon)<\infty$ implies $\BP(Z_n\rightarrow Z)=1$ by the Borel-Cantelli lemma.  
+       \item<3-> For r.v.s. $Z, Z_1, Z_2, \ldots $, we have that $\varepsilon>0$, $\sum_n \BP(|Z_n-Z| \geq \varepsilon)<\infty$ implies $\BP(Z_n\rightarrow Z)=1$ by the Borel-Cantelli lemma.  
                 
 \end{itemize}
 }
@@ -65,7 +65,7 @@
       
       \item<2-> \textbf{Example} Let $Z_1, Z_2, \ldots$ be random variables such that $P(Z_n=1)=\frac{1}{2^n}$ and $P(Z_n=0)=1-\frac{1}{2^n}$. Then for $1>\varepsilon>0$, $\BP(|Z_n|\geq \varepsilon)=\frac{1}{2^n}\rightarrow 0$, so we must have $Z_n\rightarrow 0$ in probability. 
       
-   \item<3->[]     \begin{Proposition} Convergence almost surely implies convergence in probability.  \end{Proposition}       
+   \item<3->[]     \begin{Proposition} Almost Sure Convergence implies convergence in probability.  \end{Proposition}       
 
   \item<4-> \textbf{Proof} If $\{Z_n\}$ converges to $Z$ almost surely, then for each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$. That is, $\BP(\limsup_n \{|Z_n-Z| \geq \varepsilon\})=0$.  
     
@@ -80,7 +80,7 @@
 
 \frame
 {
-  \frametitle{Convergence in Probability and Convergence Almost Surely}
+  \frametitle{Convergence in Probability and Almost Sure Convergence}
 
 	On the other hand, even if we know $\BP(|Z_n-Z| \geq \varepsilon) \to 0$, we still have no idea regarding the probability of $\{ |Z_n-Z| \geq \varepsilon \ i.o. \}$ is greater than 0. 
 	\newline
@@ -91,7 +91,7 @@
 
 \frame
 {
-  \frametitle{Convergence in Probability and Convergence Almost Surely}
+  \frametitle{Convergence in Probability and Almost Sure Convergence}
 
    \begin{itemize}
      
@@ -106,7 +106,7 @@
 
 \frame
 {
-  \frametitle{Convergence in Probability and Convergence Almost Surely}
+  \frametitle{Convergence in Probability and Almost Sure Convergence}
 
    \begin{itemize}
      
@@ -127,7 +127,7 @@
     
     
     
-    \item<5->[-] For each $\omega$, the sequence $Z_1(\omega), Z_2(\omega),\cdots$ contains infinitely number of $1$s. 
+    \item<5->[-] For each $\omega$, the sequence $Z_1(\omega), Z_2(\omega),\ldots$ contains infinitely number of $1$s. 
       
       
           
@@ -245,7 +245,7 @@
    \end{Corollary}
       
       
-      \item<3->[] The second version of WLLN follows from the fact that convergence almost surely implies convergence in probability. 
+      \item<3->[] The second version of WLLN follows from the fact that Almost Sure Convergence implies convergence in probability. 
       
                  
                                       
@@ -279,7 +279,7 @@
     
          \item<4->[-]  As $\sum_{k=1}^{\infty} \BP(X_k\neq Y_k)=\sum_{k=1}^{\infty} \BP (X_k>k) \leq \sum_{k=1}^{\infty} \BP (X_1\geq k)\leq \BE(X_1)=\mu<\infty$ (see Proposition 4.2.9), by the Borel-Cantelli Lemma, $\BP(X_k\neq Y_k\ i.o.)=0$. Thus $\BP(X_k-Y_k=0\ a.a)=1$.
          
-         \item<5->[-]   For any $\omega\in \{\omega: X_k(\omega)-Y_k(\omega)=0\ a.a \}$, there is an $N \in \mathbf{N}$ so that for any $n>N$, $X_n(\omega)=Y_n(\omega)$. Correspondingly, for $n>N$, $(T_n(\omega)-S_n(\omega))/n=\sum_{i=1}^N (Y_i(\omega)-X_i (\omega) )/n \rightarrow 0$ as $n\rightarrow \infty$.  Thus $\BP (\lim_n (T_n-S_n)/n=0)\leq \BP(X_k-Y_k=0\ a.a)=1$.
+         \item<5->[-]   For any $\omega\in \{\omega: X_k(\omega)-Y_k(\omega)=0\ a.a \}$, there is an $N \in \mathbf{N}$ such that for any $n>N$, $X_n(\omega)=Y_n(\omega)$. Correspondingly, for $n>N$, $(T_n(\omega)-S_n(\omega))/n=\sum_{i=1}^N (Y_i(\omega)-X_i (\omega) )/n \rightarrow 0$ as $n\rightarrow \infty$.  Thus $\BP (\lim_n (T_n-S_n)/n=0)\leq \BP(X_k-Y_k=0\ a.a)=1$.
                                       
 \end{itemize}
 }
