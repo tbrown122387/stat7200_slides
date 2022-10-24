@@ -44,8 +44,10 @@ Goal: prove Lebesgue's Decomposition. Write any measure as the sum of three comp
 \newline
 
 
-Roadmap: Definitions $\to$ Hahn's Decomposition theorem $\to$ Lebesgue's Decomposition Theorem
+Roadmap: Definitions $\to$ Hahn's Decomposition theorem $\to$ Lebesgue's Decomposition Theorem (and Radon-Nikodym theorem as a corollary!)
 \newline
+
+
 
 
 
@@ -71,7 +73,7 @@ Let $\mu$ and $\lambda$ be two measures. We say $\mu$ is absolutely continuous w
 Let $(\Omega, \mathcal{F})$ be a measurable space. Then $\phi : \mathcal{F} \to \mathbf{R}$ is a signed measure if 1.) $\phi(\emptyset) = 0$, and 2.) $\phi$ is countably additive.
 \end{mytheo}
 
-Apply the proof of Proposition 3.3.1 to show that $\phi$ is continuous.
+% Apply the proof of Proposition 3.3.1 to show that $\phi$ is continuous.
 
   % \ref{th:theoexample} and is given on page \pageref{th:theoexample}.
 
@@ -121,9 +123,11 @@ We want to find $A^+$ such that $\phi(A^+) = \alpha$.
 \newline
 
 
-Choose $A_1, A_2, \ldots \in \mathcal{F}$ such that $\phi(A_i) \to \alpha$. Then define $A = \cup_{i=1}^\infty A_i$. Then define 
+Choose $A_1, A_2, \ldots \in \mathcal{F}$ such that $\phi(A_i) \to \alpha$. 
+
+Then define 
 $$
-\mathcal{G}_n = \left\{ \bigcap_{k=1}^n A_k' : A_k' = A_k \text{ or } A_k' = A \setminus A_k  \right\}.
+\mathcal{G}_n = \left\{ \bigcap_{k=1}^n A_k' : A_k' = A_k \text{ or } A_k' = \left[\cup_{i=1}^\infty A_i\right] \setminus A_k  \right\}.
 $$
 Then define
 $$
@@ -247,7 +251,7 @@ Without loss of generality, write $\mu$ for $\mu - \mu_{\text{disc}}$.
 {
 \frametitle{Lebesgue Decomposition: Proof} 
 
-Now we construct an $f$ so that and define
+Now we construct the ac part by finding a density $f \ge 0$ such that
 $$
 \mu_{\text{ac}}(A) = \int_A f d\lambda
 $$
