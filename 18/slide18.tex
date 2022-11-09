@@ -8,6 +8,10 @@
 \newcommand{\BI}{\mathbf{1}}
 \newcommand{\BV}{\mathbf{Var}}
 
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems}
+\newtcbtheorem[number within=section]{mytheo}{}%
+{colback=green!5,colframe=green!35!black,fonttitle=\bfseries}{th}
 
 
 \setbeamertemplate{theorems}[numbered]
@@ -67,7 +71,7 @@
                 
                 \item<3->  Let $X$ be random variable such that $M_X(s)<\infty$ for $0 < |s| < s_0$. Then $\BE(|X^n|)<\infty$ for all $n$. And for $|s|<s_0$, we have:
                 
-                $$M_X(s)=\sum_{k=0}^{\infty} \BE(X^k)s^k/k!, \BE(X^r)=M_X^{(r)} (0)$$. 
+                $$M_X(s)=\sum_{k=0}^{\infty} \BE(X^k)s^k/k! \text{  and  } \BE(X^r)=M_X^{(r)} (0)$$. 
 
 \end{itemize}
 }
@@ -94,15 +98,28 @@
 
 \frame
 {
-  \frametitle{Large Deviations Theory and Moment Generating function} 
+  \frametitle{Large Deviations Theory and Moment Generating functions} 
 
    \begin{itemize}
 
                  \item<1-> Cherbychev's inequality gives us a weak result:
                                   $$\BP\left(\frac{X_1+\cdots+X_n}{n}\geq \mu+\varepsilon\right)\leq \BP\left(\left|\frac{X_1+\cdots+X_n}{n}-\mu\right|\geq \varepsilon \right)\leq \frac{\sigma^2}{ n \varepsilon}$$
-                            That is, the probability of large deviation decreases in the order of $O(1/n)$ (roughly proportional to $1/n$), which is rather slow. 
+                            
 
-               \item<2->[] \begin{Theorem}[Large Deviation Theorem for LLN] Let $X_1, X_2,\ldots$ be i.i.d. random variables with mean $\mu$, and $M_{X_i}(s) <\infty $ for $s\in (-a, b)$ where $a, b>0$. Then 
+               \item<2->[] That is, the probability of large deviation decreases in the order of $O(1/n)$ (roughly proportional to $1/n$), which is rather slow. But this theorem is applicable under broad conditions. 
+          
+          
+                            \end{itemize}
+}
+
+
+\frame
+{
+  \frametitle{Large Deviations Theory and Moment Generating functions} 
+
+   \begin{itemize}
+
+                 \item<1->[] \begin{Theorem}[Large Deviation Theorem for LLN] Let $X_1, X_2,\ldots$ be i.i.d. random variables with mean $\mu$, and $M_{X_i}(s) <\infty $ for $s\in (-a, b)$ where $a, b>0$. Then 
                $$\BP \left( \frac{X_1+\cdots+X_n}{n}\geq \mu+\varepsilon \right) \leq \rho^n$$
                where $\rho=\inf_{0<s<b} [e^{-s(\mu+\varepsilon)} M_{X_1} (s) ]<1.$
                             \end{Theorem}
@@ -110,6 +127,7 @@
           
                             \end{itemize}
 }
+
 
 \frame
 {
@@ -154,22 +172,38 @@
 \section{Theory of Convergence II}
 \subsection{Weak Convergence}
 
+
 \frame
 {
   \frametitle{Weak Convergence (chapter 10) } 
 
-   \begin{itemize}
+\begin{mytheo}{Definition: Weak Convergence}{weakconvg}
+Given Borel probability measures $\mu_1, \mu_2,\ldots, $ on $\mathbf{R}$, we say that $\{\mu_n \}$ converges weakly to $\mu$ if $\int_{\mathbf{R}} f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for \textit{all bounded continuous functions} $f:\mathbf{R}\rightarrow \mathbf{R}$. (Also known as convergence in distribution). 
+\end{mytheo}
 
-                 \item<1-> \textbf{Weak Convergence} (Also known as convergence in distribution). Given Borel probability measures $\mu_1, \mu_2,\ldots, $ on $\mathbf{R}$, we say that $\{\mu_n \}$ converges weakly to $\mu$ if $\int_{\mathbf{R}} f d\mu_n \rightarrow \int_{\mathbf{R}}f d\mu$ for \textit{all bounded continuous functions} $f:\mathbf{R}\rightarrow \mathbf{R}$. 
 
-                 \item<2-> \textbf{Example:} Let $\mu_n\sim N(0, \frac{1}{n})$, then  $\{\mu_n \}$ converges weakly to $\delta_0$, the point mass at $0$. 
 
-                 \item<3-> \textbf{Note:} Unlike the convergence almost surely and convergence in probability, which are about the convergence of random variables, the weak convergence solely focuses on the convergence of probability measures. Thus, the weak convergence of measure $\{\mu_n \}$ usually does not guarantee the convergence of random variables $\{X_n\}$ even if $\mathcal{L} (X_n)\sim \mu_n$. 
-                 
-                   \item<4-> For instance, for random variable $Z\sim N(0,1)$, define $Z_k=Z$ when $k$ is odd, and $Z_k=-Z$ when $k$ is even. Then $\{Z_n\}$ does not converge almost surely or in probability. However, since $\mathcal{L} (Z_n) \sim N(0,1)$,  the distributions of $\{Z_n\}$ would converge weakly to $N(0,1)$.
-                   
-                                               \end{itemize}
 }
+
+
+\frame
+{
+\frametitle{Weak Convergence (chapter 10) } 
+
+\begin{itemize}
+
+\item<1-> \textbf{Example:} Let $\mu_n\sim N(0, \frac{1}{n})$, then  $\{\mu_n \}$ converges weakly to $\delta_0$
+
+\item<1-> \textbf{Example:} Let $\mu_n\sim N(0, \frac{n-1}{n})$, then  $\{\mu_n \}$ converges weakly to $N(0, 1)$
+
+\item<2-> \textbf{Note:} Unlike the convergence almost surely and convergence in probability, which are about the convergence of random variables, the weak convergence solely focuses on the convergence of probability measures. Thus, the weak convergence of measure $\{\mu_n \}$ usually does not guarantee the convergence of random variables $\{X_n\}$ even if $\mathcal{L} (X_n)\sim \mu_n$. 
+                 
+\item<3-> For instance, for random variable $Z\sim N(0,1)$, define $Z_k=Z$ when $k$ is odd, and $Z_k=-Z$ when $k$ is even. Then $\{Z_n\}$ does not converge almost surely or in probability. However, since $\mathcal{L} (Z_n) \sim N(0,1)$,  the distributions of $\{Z_n\}$ would converge weakly to $N(0,1)$.
+                   
+\end{itemize}
+}
+
+
 
 
 \frame
