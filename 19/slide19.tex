@@ -153,7 +153,7 @@
 \item<2-> \textbf{Proof:} Pick an appropriate $f$. First, we want to show that $P\left( f(Y_n) \to f(Y) \right) = 1$. Note that
 \begin{itemize}
 \item $0 \le P(Y_n(\omega) \to Y(\omega), D_f) \le P( D_f) = 0$
-\item$1 = P(Y_n \to Y) = P(Y_n \to Y, D_f) + P(Y_n \to Y, D_f^c) +  P(Y_n \to Y, D_f^c)$
+\item$1 = P(Y_n \to Y) = P(Y_n \to Y, D_f) + P(Y_n \to Y, D_f^c) =  P(Y_n \to Y, D_f^c)$
 \item $\{\omega : f(Y_n) \to f(Y)\} \supseteq \{\omega :  Y_n(\omega) \to Y(\omega)\} \cap \{\omega :  Y(\omega) \in D_f^c \}$
 \end{itemize}
 so $f(Y_n) \to f(Y)$ wp1 by (4) and monotonicity of $\BP$.
@@ -193,13 +193,13 @@ so $f(Y_n) \to f(Y)$ wp1 by (4) and monotonicity of $\BP$.
                        
 \item<2-> This theorem states that,  for random variable $U$ that follows uniform distribution, given any CDF $F(x)$, define quantile function $Q(p)=\inf \{x: F(x) \geq p\}$, then the random variable $Q(U)$ follows distribution with CDF $F(x)$. 
         
-\item<3->[-] The reason is, by definition $Q(p)\leq q \Leftrightarrow F(q)\geq p$
+\item<3->[-] By definition $F(q)\geq p \Rightarrow Q(p)\leq q $
                      
                                           $$\BP[Q(U)\leq x] =\BP [F(x) \geq U]=F(x)$$
                                           
 \item<4->[-] Other useful results include: 
                        
-                      a) $F(q)< p \Leftrightarrow Q(p)> q $
+                      a) $F(q)< p \Rightarrow Q(p)\ge q $
 
                        
                        b) When the CDF is continuous and strictly increasing, the quantile function is the inverse of CDF.  
@@ -221,23 +221,23 @@ so $f(Y_n) \to f(Y)$ wp1 by (4) and monotonicity of $\BP$.
    \begin{itemize}
           
                      
-                     \item<1-> \textbf{Proof: continued} Let $F_n(x)=\mu_n((-\infty, x])$, $F(x)=\mu((-\infty, x])$, and let $(\Omega, \mathcal{F}, \BP)$ be the uniform measure over $\Omega=[0,1]$, and $Y_n(\omega)=\inf \{y: F_n(y) \geq \omega\}$, $Y(\omega)=\inf \{y: F(y) \geq \omega\}$. Then $Y_n$ has CDF $F_n(x)$ and $Y$ has CDF $F(x)$.  
+                     \item<1-> \textbf{Proof: continued} Let $F_n(x)=\mu_n((-\infty, x])$, $F(x)=\mu((-\infty, x])$, and let $(\Omega, \mathcal{F}, \BP)$ be a probability triple with the uniform measure over $\Omega=[0,1]$, and $Y_n(\omega)=\inf \{y: F_n(y) \geq \omega\}$, $Y(\omega)=\inf \{y: F(y) \geq \omega\}$. Then $Y_n$ has CDF $F_n(x)$ and $Y$ has CDF $F(x)$.  
                      
                      
                      \item<2->[-] Now we will show that $Y_n(\omega)\rightarrow Y(\omega)$ if $Y(\omega)$ is continuous at $\omega$. 
                      
                          \item<3->[-] Firstly, define $Y(\omega) = y$. Then $y-\varepsilon<Y(\omega)< y+\varepsilon$ implies:
-                                                  $$F(y-\varepsilon)< \omega \leq F(y+\varepsilon) $$
+                                                  $$F(y-\varepsilon)< \omega < F(y+\varepsilon) $$
                          
-                        If $Y(\omega)$ is continuous at $\omega$, the above inequality must be strict. 
+if $Y(\omega)$ is continuous at $\omega$.
                          
                 %   \item<4->[-] The reason is, if  $F(y-\varepsilon)=\omega$, then $Y(\omega ) \leq y-\varepsilon$, but $Y(\omega)=y$, then $y\leq y-\varepsilon$, a contradiction. 
                    
-                   \item<4->[-] The reason: if $F(y+\varepsilon)=\omega$, for any $\delta>0$, $F(y+\varepsilon)<\omega+\delta$, then $Y(\omega+\delta)>y+\varepsilon=Y(\omega)+\varepsilon$. This indicates that there is a jump of at least size $\varepsilon$ of $Y(\omega)$ at $\omega$, which is a contradiction to the continuity of $Y$ at $\omega$. 
+\item<4->[-] The reason: if $F(y+\varepsilon)=\omega$, for any $\delta>0$, $F(y+\varepsilon)<\omega+\delta$, then $Y(\omega+\delta) \ge y+\varepsilon=Y(\omega)+\varepsilon$. This indicates that there is a jump of at least size $\varepsilon$ of $Y(\omega)$ at $\omega$, which is a contradiction to the continuity of $Y$ at $\omega$. 
                    
-                        \item<5->[-] Thus,    $F(y-\varepsilon)<\omega< F(y+\varepsilon) $
+\item<5->[-] Thus,    $F(y-\varepsilon)<\omega< F(y+\varepsilon) $
                                          
-                                               \end{itemize}
+\end{itemize}
 }
 
 
@@ -250,7 +250,7 @@ so $f(Y_n) \to f(Y)$ wp1 by (4) and monotonicity of $\BP$.
                      
                      \item<1-> \textbf{Proof: continued}  In the previous slide, if $Y$ is continuous at $\omega$, and $Y(\omega)=y$, then $F(y-\varepsilon)<\omega< F(y+\varepsilon) $ for all $\varepsilon>0$. 
                      
-                     \item<2-> Now for a particular $\varepsilon$, we can always find $0<\varepsilon'<\varepsilon$, so that $\mu(y-\varepsilon')=\mu(y+\varepsilon')=0$. ($\BP(x)>0$ only for at most countably many $\{x\}$). Then $F_n(y-\varepsilon')\rightarrow F(y-\varepsilon')$ and $F_n(y+\varepsilon')\rightarrow F(y+\varepsilon')$. Thus, for large enough $n$, we have:  
+                     \item<2-> Now for a particular $\varepsilon$, we can always find $0<\varepsilon'<\varepsilon$, such that $\mu(y-\varepsilon')=\mu(y+\varepsilon')=0$. ($\BP(x)>0$ only for at most countably many $\{x\}$). Then $F_n(y-\varepsilon')\rightarrow F(y-\varepsilon')$ and $F_n(y+\varepsilon')\rightarrow F(y+\varepsilon')$. Thus, for large enough $n$, we have:  
                      $$F_n(y-\varepsilon')<\omega< F_n(y+\varepsilon') $$                  
                      
                      \item<3->[-] Since $\omega< F_n(y+\varepsilon')$, $\omega \le F_n(y+\varepsilon')$, then: 
