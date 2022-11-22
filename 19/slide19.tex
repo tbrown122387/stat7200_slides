@@ -187,29 +187,56 @@ so $f(Y_n) \to f(Y)$ wp1 by (4) and monotonicity of $\BP$.
 {
   \frametitle{Proof: $(3) \Rightarrow (4)$:  Probability Integral Transform} 
 
+We can construct random variable with given CDF using probability integral transform theorem. 
+
+Useful facts:
+
 \begin{itemize}
 
-\item<1-> \textbf{Proof:} We can construct random variable with given CDF using probability integral transform theorem. 
-                       
-\item<2-> This theorem states that,  for random variable $U$ that follows uniform distribution, given any CDF $F(x)$, define quantile function $Q(p)=\inf \{x: F(x) \geq p\}$, then the random variable $Q(U)$ follows distribution with CDF $F(x)$. 
-        
-\item<3->[-] By definition $F(q)\geq p \Rightarrow Q(p)\leq q $
-                     
-                                          $$\BP[Q(U)\leq x] =\BP [F(x) \geq U]=F(x)$$
+\item<1->[-] $F(q)\geq p \iff Q(p)\leq q $
+                
                                           
-\item<4->[-] Other useful results include: 
-                       
-                      a) $F(q)< p \Rightarrow Q(p)\ge q $
+\item<2->[-] $F(q)< p \Rightarrow Q(p)\ge q$
 
                        
-                       b) When the CDF is continuous and strictly increasing, the quantile function is the inverse of CDF.  
+\item<3->[-]When the CDF is continuous and strictly increasing, the quantile function is the inverse of CDF.  
                        
                        
-                       c) The quantile function $Q(p)$ is a non-decreasing function, same as the CDF.
-                       
-                    %   c) $F[Q(p)]\geq p$, but $Q[F(q)] \leq q$                        
-                                               \end{itemize}
+\item<4->[-] The quantile function $Q(p)$ is a non-decreasing function, same as the CDF.
+
+\end{itemize}
+
 }
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$:  Probability Integral Transform} 
+
+\begin{itemize}
+
+\item<1->[-] For random variable $U$ that follows uniform distribution, given any CDF $F(x)$, define quantile function $Q(p)=\inf \{x: F(x) \geq p\}$, then the random variable $Q(U)$ follows distribution with CDF $F(x)$. 
+
+
+\item<2->[-] \textbf{Proof:} $$\BP[Q(U)\leq x] =\BP [F(x) \geq U]=F(x)$$
+
+\end{itemize}
+
+
+}
+
 
 
 
@@ -218,78 +245,140 @@ so $f(Y_n) \to f(Y)$ wp1 by (4) and monotonicity of $\BP$.
 {
   \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
 
-   \begin{itemize}
+
+\begin{enumerate}
+                   
+\item Another fact we'll need, any nondecreasing function $f$ has at most a countable number of discontinuities. 
+
+\item Call the set of discontinuities $D_f$. Suppose for starts that $f : [a,b] \to \mathbb{R}$ (e.g. a quantile function).  $D_f = \bigcup_{n} \{  \frac{1}{n} \le  f(x^+) - f(x^-) \}$.
+
+\item $|\{  \frac{1}{n} \le  f(x^+) - f(x^-) \}| \le n [f(b) - f(a)]$
+
+\item Countable unions of finite sets are countable!
+
+
+\end{enumerate}
+}
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
+
+
+\begin{enumerate}
+                   
+\item Remove the assumption of compact domain...suppose that $f : \mathbb{R} \to \mathbb{R}$ (e.g. a cdf).
+
+\item Call the set of discontinuities $D_f$ again.  For any integer $z$, let $D_{zf}$ be the set of discontinuities on $[z,z+1]$. 
+
+\item Clearly $D_f = \bigcup_{z \in \mathbb{Z}} D_{zf}$.
+
+\item Countable unions of countable sets are countable!
+
+\end{enumerate}
+}
+
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
+
+\begin{itemize}
           
                      
-                     \item<1-> \textbf{Proof: continued} Let $F_n(x)=\mu_n((-\infty, x])$, $F(x)=\mu((-\infty, x])$, and let $(\Omega, \mathcal{F}, \BP)$ be a probability triple with the uniform measure over $\Omega=[0,1]$, and $Y_n(\omega)=\inf \{y: F_n(y) \geq \omega\}$, $Y(\omega)=\inf \{y: F(y) \geq \omega\}$. Then $Y_n$ has CDF $F_n(x)$ and $Y$ has CDF $F(x)$.  
+\item<1-> \textbf{Proof: continued} Let $F_n(x)=\mu_n((-\infty, x])$, $F(x)=\mu((-\infty, x])$, and let $(\Omega, \mathcal{F}, \BP)$ be a probability triple with the uniform measure over $\Omega=[0,1]$, and $Y_n(\omega)=\inf \{y: F_n(y) \geq \omega\}$, $Y(\omega)=\inf \{y: F(y) \geq \omega\}$. Then $Y_n$ has CDF $F_n(x)$ and $Y$ has CDF $F(x)$.  
                      
                      
-                     \item<2->[-] Now we will show that $Y_n(\omega)\rightarrow Y(\omega)$ if $Y(\omega)$ is continuous at $\omega$. 
+    \item<2->[-] Now we will show that $\{\omega : Y \text{ is continuous at } \omega\} \subseteq  \{ \omega : Y_n(\omega) \rightarrow Y(\omega)\}$ 
                      
-                         \item<3->[-] Firstly, define $Y(\omega) = y$. Then $y-\varepsilon<Y(\omega)< y+\varepsilon$ implies:
-                                                  $$F(y-\varepsilon)< \omega < F(y+\varepsilon) $$
-                         
-if $Y(\omega)$ is continuous at $\omega$.
-                         
-                %   \item<4->[-] The reason is, if  $F(y-\varepsilon)=\omega$, then $Y(\omega ) \leq y-\varepsilon$, but $Y(\omega)=y$, then $y\leq y-\varepsilon$, a contradiction. 
-                   
-\item<4->[-] The reason: if $F(y+\varepsilon)=\omega$, for any $\delta>0$, $F(y+\varepsilon)<\omega+\delta$, then $Y(\omega+\delta) \ge y+\varepsilon=Y(\omega)+\varepsilon$. This indicates that there is a jump of at least size $\varepsilon$ of $Y(\omega)$ at $\omega$, which is a contradiction to the continuity of $Y$ at $\omega$. 
-                   
-\item<5->[-] Thus,    $F(y-\varepsilon)<\omega< F(y+\varepsilon) $
+\item<3->[-] Roadmap: assume cty of $Y$, get inequality for $F$, get inequality for $F_n$, get inequality for $Y_n$. 
+
                                          
 \end{itemize}
 }
 
 
+
+
+
 \frame
 {
   \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
 
-   \begin{itemize}
+\begin{itemize}
           
-                     
-                     \item<1-> \textbf{Proof: continued}  In the previous slide, if $Y$ is continuous at $\omega$, and $Y(\omega)=y$, then $F(y-\varepsilon)<\omega< F(y+\varepsilon) $ for all $\varepsilon>0$. 
-                     
-                     \item<2-> Now for a particular $\varepsilon$, we can always find $0<\varepsilon'<\varepsilon$, such that $\mu(y-\varepsilon')=\mu(y+\varepsilon')=0$. ($\BP(x)>0$ only for at most countably many $\{x\}$). Then $F_n(y-\varepsilon')\rightarrow F(y-\varepsilon')$ and $F_n(y+\varepsilon')\rightarrow F(y+\varepsilon')$. Thus, for large enough $n$, we have:  
-                     $$F_n(y-\varepsilon')<\omega< F_n(y+\varepsilon') $$                  
-                     
-                     \item<3->[-] Since $\omega< F_n(y+\varepsilon')$, $\omega \le F_n(y+\varepsilon')$, then: 
-                     
-       \hspace{3cm}             $Y_n(\omega)\leq  y+\varepsilon'=Y(\omega)+\varepsilon'$. 
-       
-       \vspace{5mm}
-                     \item<4->[-] Since $F_n(y-\varepsilon')<\omega$, then $ y-\varepsilon' < Y_n(\omega) $, which implies a weaker inequality: 
-                     
-       \hspace{3cm}             $Y_n(\omega)\geq y-\varepsilon'=Y(\omega)-\varepsilon'$. 
-                            \vspace{5mm}
+\item<1-> \textbf{Proof: continued} Define $Y(\omega) = y$. Then $y-\varepsilon<y< y+\varepsilon$ implies:
+                                                  $$F(y-\varepsilon)< \omega < F(y+\varepsilon) $$
+                         
+if $Y(\omega)$ is continuous at $\omega$. Why?
+                         
+                %   \item<4->[-] The reason is, if  $F(y-\varepsilon)=\omega$, then $Y(\omega ) \leq y-\varepsilon$, but $Y(\omega)=y$, then $y\leq y-\varepsilon$, a contradiction. 
+                   
+\item<2-> The weak inequalities are obviously true. if $F(y+\varepsilon)=\omega$, then for any $\delta>0$, $F(y+\varepsilon)<\omega+\delta$, then $Y(\omega+\delta) \ge y+\varepsilon=Y(\omega)+\varepsilon$. This indicates that there is a jump of at least size $\varepsilon$ of $Y(\omega)$ at $\omega$, which is a contradiction to the continuity of $Y$ at $\omega$. 
+                   
+\item<3-> The other inequality is easier. It's just the contrapositive of $F(q)\geq p \Rightarrow Q(p)\leq q $.
 
-                         \item<5->[-] In summary, $|Y_n(\omega)-Y(\omega)|\leq \varepsilon'<\varepsilon$ for large enough $n$. Thus, $Y_n(\omega)\rightarrow Y(\omega)$ when $Y$ is continuous at $\omega$
-                                                                  
-                                               \end{itemize}
+                                         
+\end{itemize}
 }
 
 
 
+
 \frame
 {
   \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
 
-   \begin{itemize}
+\begin{itemize}
           
                      
-\item<1-> \textbf{Proof: continued} Finally, we need to establish the fact that $Y$ is continuous with probability 1. Or equivalently, $D_Y$, the set of the discontinuous points of $Y$, has probability 0. This statement can be justified based on : a) $Y$ is defined on a uniform measure over $[0,1]$, b)$D_Y$ is at most countable. 
+\item<1-> \textbf{Proof: continued}  In the previous slide, if $Y$ is continuous at $\omega$, and $Y(\omega)=y$, then $F(y-\varepsilon)<\omega< F(y+\varepsilon) $ for all $\varepsilon>0$. 
+                     
+\item<2-> Now, in addition to looking at $F$, we'll look at the $F_n$s. These converge to $F$, but only at $F$'s continuity points.
 
-\item<2-> To show  $D_f$ is at most countable, let us first create a partition of $\mathbf{R}=\bigcup_{z\in \mathbf{Z}} (z, z+1]$, and define $\Omega_z=\{\omega: z<Y(\omega)\leq z+1 \} = Y^{-1}\left( (z,z+1] \right)$. 
 
-Since $Y$ is a non-decreasing function, each $\Omega_z$ should be an interval on $[0,1]$ and $\{\Omega_z\}$ forms a partition of $[0,1]$.
+\item<3-> For a particular $\varepsilon$, we can always find $0<\varepsilon'<\varepsilon$, such that $\mu(y-\varepsilon')=\mu(y+\varepsilon')=0$. ($\mu(x)>0$ only for at most countably many $x$). Then $F_n(y-\varepsilon')\rightarrow F(y-\varepsilon')$ and $F_n(y+\varepsilon')\rightarrow F(y+\varepsilon')$. Thus, for large enough $n$, we have:  
+                     $$F_n(y-\varepsilon')<\omega< F_n(y+\varepsilon') $$                  
+                     
+\item<4-> Since $\omega< F_n(y+\varepsilon')$, $\omega \le F_n(y+\varepsilon')$, then: 
+                     
+       \hspace{3cm}             $Y_n(\omega)\leq  y+\varepsilon'=Y(\omega)+\varepsilon'$. 
+       
+       \vspace{5mm}
 
-\item<3-> Then Let $D_f^z = \text{ Discontinuous points in } \Omega_z$. Clearly $D_f=\bigcup_z D_f^z$. 
+\item<5-> Since $F_n(y-\varepsilon')<\omega$, then : 
+                     
+       \hspace{3cm}             $Y_n(\omega)\geq y-\varepsilon'=Y(\omega)-\varepsilon'$. 
+                            \vspace{5mm}
 
-\item<4-> Next define $D_f^z \supseteq D_f^z(m) = \{ \text{ jumps that have size } \ge m^{-1} \}$. 
+\item<6-> So $|Y_n(\omega)-Y(\omega)|\leq \varepsilon'<\varepsilon$ for large enough $n$ when $Y$ is cts at $\omega$
+                                                                  
+\end{itemize}
+}
 
-\item<5-> Clearly $|D_f^z| \le m$ and $D_f = \bigcup_z \bigcup_m D_f^z(m)$. Therefore the number of discontinuous points is at most countable. 
 
-                                               \end{itemize}
+
+
+
+\frame
+{
+  \frametitle{Proof: $(3) \Rightarrow (4)$: continued} 
+
+
+\begin{enumerate}
+
+\item \textbf{Proof: continued} We showed $\{\omega : Y \text{ is continuous at } \omega\} \subseteq  \{ \omega : Y_n(\omega) \rightarrow Y(\omega)\}$.
+
+\item By monotonicity $P(Y \text{ is continuous at } \omega ) \le  P( Y_n(\omega) \rightarrow Y(\omega) )$.
+
+\item We need to establish the fact that $Y$ is continuous with probability $1$. Or equivalently, $D_Y$, the set of the discontinuous points of $Y$, has probability 0. 
+
+
+\item We showed discontinuities of $Y(\omega)$, call it $D_Y$, is at most a countable. So $P(D_y) = 0$.
+
+\end{enumerate}
 }
 
 
