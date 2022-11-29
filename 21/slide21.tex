@@ -146,7 +146,7 @@ $$
 	where $\text{sign}(\theta)$ is either $1$, $-1$ or $0$ depending on whether $\theta$ is positive, negative or $0$, respectively.
    \end{Theorem}
   
- We're omitting the proof because it's elementary integration, but it's fun and involves a lot of cool stuff (e.g. the sinc function, integration by parts, u-substitution, different trigonometric properties, etc.) so you should try it.
+We're omitting the proof because it's elementary integration, but it's fun and involves a lot of cool stuff (e.g. the sinc function, integration by parts, u-substitution, different trigonometric properties, etc.) so you should try it. It's also in the book.
 \end{itemize}
 }
 
@@ -256,7 +256,7 @@ where the last equality follows because $\mu(\{a\})=\mu(\{b\})=0$.
 Let $\{F_n\}$ be a sequence of cdfs, each corresponding with a measure $\mu_n$. Then there exists a subsequence $F_{n_k}$, and a non-decreasing, right-continuous $0 \le F \le 1$, such that $F_{n_k}(x) \to F(x)$ for each $x \in \mathbf{R}$ that is a continuity point of $F$.
 \end{Theorem}
 
-The proof will remind you of the uncountability proofs. 
+Proof: a lot of Bolzano-Weierstrass.
 \newline
 
 Also, $F$ is not necessarily a cdf.
@@ -275,7 +275,7 @@ Now define $n_k = l_k^{(k)}$. These are the diagonals. However, note that all th
 \item $\{n_{k+1}, n_{k+2}, \ldots\} \subseteq \{l^{(k+1)}_{k+1}, l^{(k+1)}_{k+2},\ldots\}  $, etc. 
 \end{itemize}
 
-These ensure that $\lim_k F_{n_k}(q) := G(q)$ exists for each $q \in \mathbf{Q}$. $G$ is also clearly non-decreasing as well, just like each $F_{n,k}$ .
+These ensure that $\lim_k F_{n_k}(q) := G(q)$ exists for each $q \in \mathbf{Q}$. $G$ is also clearly non-decreasing as well.
 
 }
 
@@ -293,7 +293,7 @@ which is defined on the reals. It has a few properties that we'll need:
 \item $F$ is non-decreasing
 \item $0 \le F \le 1$
 \item $F$ is right-continuous,and
-\item $F(q) > G(q)$ for all $q \in \mathbf{Q}$
+\item $F(q) \ge G(q)$ for all $q \in \mathbf{Q}$
 \end{itemize}
 
 Next, we'll show that, for any continuity point of $F$, call it $x \in \mathbf{R}$, we have $F_{n_k}(x) \to F(x)$ as $k \to \infty$. Pick any $\varepsilon > 0$, then pick $r,u,s \in \mathbf{Q}$ such that $r < u < x < s$ and $F(s) - F(r) < \varepsilon$.
@@ -326,21 +326,21 @@ QED
 
 
 
-%\frame
-%{
-%  \frametitle{Tightness of Measure}
-%
-% \begin{itemize}
-% \item<1-> Our discussion on Fourier inversion theorem shows that, given a sequence of probability measure $\{\mu_n\}$ whose characteristic function convergences to the characteristic function of another measure $\mu$, if a subsequence of $\{\mu_n\}$ converges weakly to measure $\nu$, then $\mu=\nu$. 
-% 
-% \item<2-> To resolve the issue on whether such subsequence of $\{\mu_n\}$ exists, and whether  $\{\mu_n\}$ itself would converge weakly to the limit of its subsequence, we need to introduce the concept of tightness. 
-% 
-% \item<3-> \textbf{Tightness of Measure} A collection of probability measure $\{\mu_n\}$ on $\mathbf{R}$ is \textbf{tight} if for all $\varepsilon>0$, there are $a<b$ with $\mu_n([a,b]) \geq 1-\varepsilon$ for all $n$. (Probability mass does not ``escape of infinity").
-% 
-% \item<4-> \textbf{Example:} 1) $\{N(0, \frac{1}{n})\}$ is tight. 2) $\{N(0, n)\}$ is not tight. 
-% 
-% \item<5-> \textbf{Property:} Any subsequence of a tight sequence is tight.  \end{itemize}
-%}
+\frame
+{
+ \frametitle{Tightness of Measure}
+
+\begin{itemize}
+\item<1-> For a sequence of cdfs $F_{n}$, there exists a convergent subsequence. However, the limit, $F$, isn't necessarily a cdf. $\lim_{x \to \infty} F(x) < 1$, for example. 
+
+\item<2-> We need to introduce the concept of tightness.
+
+\item<3-> \textbf{Tightness of Measure} A collection of probability measure $\{\mu_n\}$ on $\mathbf{R}$ is \textbf{tight} if for all $\varepsilon>0$, there are $a<b$ with $\mu_n([a,b]) \geq 1-\varepsilon$ for all $n$. (Probability mass does not ``escape of infinity").
+
+\item<4-> \textbf{Example:} 1) $\{N(0, \frac{1}{n})\}$ is tight. 2) $\{N(0, n)\}$ is not tight.
+
+\item<5-> \textbf{Property:} Any subsequence of a tight sequence is tight.  \end{itemize}
+}
 
 
 \frame
