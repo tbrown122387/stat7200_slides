@@ -153,14 +153,22 @@ $\BE(\phi(X))\geq \BE(g(X))=a+b \BE(X)=g(\BE(X))=\phi (\BE(X))$.
        For r.v.s $Z, Z_1, Z_2, \ldots $ such that for each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$. Then $\BP(Z_n\rightarrow Z)=1$. The converse is also true.
        \end{Lemma}       
  
+ \item<2-> \textbf{Proof} (1/2):
+ \begin{align*}
+ P(\{ \omega : Z_n(\omega) \rightarrow Z(\omega) \} ) 
+ &= P(\cap_{\epsilon > 0} \cup_{N=1}^\infty \cap_{n \ge N} |Z_n(\omega) - Z| < \epsilon  ) \\
+ &\ge P(\cap_{\epsilon > 0, \epsilon \in \mathbb{Q}} \cup_{N=1}^\infty \cap_{n \ge N} |Z_n(\omega) - Z| < \epsilon  ) \\
+ &= 1 - P(\cup_{\epsilon > 0, \epsilon \in \mathbb{Q}} \cap_{N=1}^\infty \cup_{n \ge N} |Z_n(\omega) - Z| \ge \epsilon  ) \\
+ &\ge 1 - \sum_{\epsilon > 0, \epsilon \in \mathbb{Q}} \BP(|Z_n-Z| \geq \varepsilon \  i.o.) = 1
+ \end{align*}
     
-\item<2-> \textbf{Proof}: Pick $\omega \in \Omega$. $Z_n(\omega) \rightarrow Z(\omega)$ iff $\forall \epsilon > 0$, $\exists N$ such that $n \ge N$ implies $|Z_n(\omega) - Z(\omega)| < \epsilon$.
-
-\item<3-> $Z_n(\omega) \rightarrow Z(\omega)$ iff $\omega \in \bigcup_{N = 1}^{\infty} \bigcap_{n \ge N} \{|Z_n(\omega) - Z(\omega)| < \epsilon\}$
-
-\item<3-> $Z_n(\omega) \rightarrow Z(\omega)$ iff $\omega \in \liminf_{n \to \infty}\{|Z_n(\omega) - Z(\omega)| < \epsilon\} := \{|Z_n(\omega) - Z(\omega)| < \epsilon \text{ a.a}\}$ 
-
-\item<3-> $\BP(Z_n \rightarrow Z) = \BP(\{ \omega \in \Omega :  |Z_n(\omega) - Z(\omega)| < \epsilon \text{ a.a.}\}) = 1 - \BP(|Z_n - Z| \ge \epsilon \text{ i.o.})$
+% \item<2-> \textbf{Proof}: Pick $\omega \in \Omega$. $Z_n(\omega) \rightarrow Z(\omega)$ iff $\forall \epsilon > 0$, $\exists N$ such that $n \ge N$ implies $|Z_n(\omega) - Z(\omega)| < \epsilon$.
+% 
+% \item<3-> $Z_n(\omega) \rightarrow Z(\omega)$ iff $\omega \in \bigcup_{N = 1}^{\infty} \bigcap_{n \ge N} \{|Z_n(\omega) - Z(\omega)| < \epsilon\}$
+% 
+% \item<3-> $Z_n(\omega) \rightarrow Z(\omega)$ iff $\omega \in \liminf_{n \to \infty}\{|Z_n(\omega) - Z(\omega)| < \epsilon\} := \{|Z_n(\omega) - Z(\omega)| < \epsilon \text{ a.a}\}$ 
+% 
+% \item<3-> $\BP(Z_n \rightarrow Z) = \BP(\{ \omega \in \Omega :  |Z_n(\omega) - Z(\omega)| < \epsilon \text{ a.a.}\}) = 1 - \BP(|Z_n - Z| \ge \epsilon \text{ i.o.})$
 % First, we can represent the event $\{\omega: Z_n (\omega) \rightarrow Z(\omega)\}$ as: 
 %        
 % $\{ Z_n\rightarrow Z \}=\bigcap_{h=1}^{\infty} \bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} \{ |Z_n-Z| <\frac{1}{h} \} $ (For each $h \in \mathbf{N}$, the events $\{ |Z_n-Z| <\frac{1}{h} \}$ occur almost always). 
@@ -173,6 +181,35 @@ $\BE(\phi(X))\geq \BE(g(X))=a+b \BE(X)=g(\BE(X))=\phi (\BE(X))$.
                               
 \end{itemize}
 }
+
+
+
+
+
+\frame
+{
+  \frametitle{Almost Sure Convergence: A lemma}
+
+   \begin{itemize}
+       \item<1->[]
+       \begin{Lemma}[5.2.1] 
+       For r.v.s $Z, Z_1, Z_2, \ldots $ such that for each $\varepsilon>0$, $\BP(|Z_n-Z| \geq \varepsilon \  i.o.)=0$. Then $\BP(Z_n\rightarrow Z)=1$. The converse is also true.
+       \end{Lemma}       
+ 
+\item<2-> \textbf{Proof} (2/2): For the converse, let $A = \{\omega : Z_n(\omega) \to Z(\omega)\}$ and assume $P(A) = 1$. Pick any $\epsilon > 0$.
+
+\begin{align*}
+\BP(|Z_n-Z| \geq \varepsilon \  i.o.) 
+&= 1 - \BP(|Z_n-Z| < \varepsilon \  a.a.) \\
+&= 1 - \BP(|Z_n-Z| < \varepsilon \  a.a. \cap A) \\
+&= 1 - \BP(A) = 0
+\end{align*}
+    
+
+                              
+\end{itemize}
+}
+
 
 
 
